@@ -1,0 +1,297 @@
+
+@import url(https://fonts.googleapis.com/css?family=ZCOOL%20KuaiLe);
+@import url(https://fonts.googleapis.com/css?family=Ma%20Shan%20Zheng);
+
+:root {
+  --main-color: linear-gradient(120deg, rgb(133 159 255) 0%, rgb(160 157 241) 40%, rgb(122 204 243) 72%, rgb(158 135 241) 100%);
+  --second-color: linear-gradient(90deg, #82c7ef, #bb8df3);
+}
+
+body {
+  background: linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(251, 251, 251, 0.1) 100%), linear-gradient(90deg, #84d2ff, #8d5acd) !important;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.col-md-6,
+.col-md-12 {
+  padding: 0;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.navbar {
+  background: linear-gradient(rgba(255, 255, 255, 1) 40%, rgba(251, 251, 251, 0.1) 100%), linear-gradient(90deg, rgba(210, 245, 255, 1) 20%, #e3cffd8c);
+  box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-container a .mobile-login {
+  background: var(--second-color);
+  background-clip: text;
+  cursor: pointer;
+  font-size: 28px;
+  position: absolute;
+  right: 15px;
+  -webkit-text-fill-color: transparent;
+  top: 4px;
+  z-index: 1002;
+}
+
+.nav-container .hamburger-lines {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  left: 20px;
+  position: absolute;
+  top: 13px;
+  width: 25px;
+  z-index: 1002;
+}
+
+.nav-container .hamburger-lines .line {
+  background: var(--second-color);
+  border-radius: 10px;
+  display: block;
+  height: 3px;
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+  background: white;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 50px;
+  transform: translatex(-200%);
+  transition: transform 0.5s ease-in-out;
+  width: fit-content;
+}
+
+.navbar .menu-items a {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  z-index: 1;
+}
+
+.logo {
+  background: var(--second-color);
+  background-clip: text;
+  color: white;
+  float: right;
+  font-family: kaiti;
+  font-family: ZCOOL KuaiLe;
+  font-size: 23px;
+  padding: 8px;
+  text-align: center;
+  -webkit-text-stroke: 4px transparent;
+  z-index: 1000;
+}
+
+.nav-container input[type="checkbox"] {
+  display: none;
+}
+
+.nav-container input[type="checkbox"]:checked~.menu-items {
+  transform: translate(0);
+}
+
+.nav-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+
+.nav-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+
+.breadcrumb {
+  background: #ffffff00;
+  margin-top: 50px;
+}
+
+.breadcrumb a {
+  color: grey;
+  text-decoration: none;
+}
+
+.breadcrumb .fa-home {
+  background: var(--main-color);
+  background-clip: text;
+  font-size: large;
+  padding: 0;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidemenu {
+  display: grid;
+  letter-spacing: 2px;
+  padding-bottom: 100px;
+  padding-top: 10px;
+}
+
+.sidemenu span {
+  color: #0000006e;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.sidemenu a {
+  padding: 15px 20px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.sidemenu a:hover {
+  background: linear-gradient(rgba(255, 255, 255, 1) 40%, rgba(251, 251, 251, 0.1) 100%), linear-gradient(90deg, rgba(210, 245, 255, 1) 20%, #e3cffd8c);
+  outline: 1px solid rgba(210, 245, 255, 1);
+}
+
+.sidemenu a:hover span,
+.login span {
+  background: var(--second-color);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidemenu .fa {
+  font-size: large;
+  padding-right: 10px;
+  width: fit-content;
+}
+
+.login {
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(210, 245, 255, 1) 100%);
+  border-top: 2px solid rgba(210, 245, 255, 1);
+  bottom: 0px;
+  color: #0000006e;
+  display: flex;
+  font-family: kaiti;
+  font-size: large;
+  font-size: x-large;
+  font-weight: bold;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+}
+
+.login:hover {
+  text-decoration: none;
+}
+
+.login:hover span {
+  background: var(--second-color);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login .fa {
+  font-size: 40px;
+  padding-right: 10px;
+}
+
+.panel {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: gray !important;
+  font-family: Arial, 楷体, KaiTi;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.8;
+  margin: 40px 10px;
+  overflow: hidden;
+}
+
+.panel-default .panel-heading {
+  background: var(--second-color) !important;
+  border-bottom: none !important;
+  box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: clamp(25px, 2.5vw, 30px);
+  font-weight: bold;
+  height: fit-content;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.panel-body {
+  padding: 10px 30px;
+}
+
+.panel-body h3 {
+  border-bottom: 1px solid transparent;
+  border-image: var(--second-color);
+  border-image-slice: 1;
+  color: #6c6feb;
+  font-size: clamp(25px, 2vw, 30px);
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.panel-content {
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+
+.carousel-indicators li {
+  transition: all .3s ease;
+}
+
+.carousel-indicators li:hover {
+  transform: scale(1.4);
+}
+
+.carousel-indicators .active {
+  background: var(--second-color) !important;
+  transform: scale(1.4);
+}
+
+#main-slide .carousel-control i {
+  background: #ffffff00 !important;
+}
+
+#main-slide .carousel-control a:hover i {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
