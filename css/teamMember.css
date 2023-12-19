@@ -1,0 +1,178 @@
+.team-member {
+	padding: 3px;
+	position: relative;
+}
+
+.team-member .member-photo {
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+	padding: 3px;
+	position: relative;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.team-member .member-photo img {
+	background: transparent url('http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif') center no-repeat!important;
+	background-size: 50%;
+	width: 75%;
+}
+
+.team-member .member-photo .member-name {
+	background-color: #444;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-o-border-radius: 2px;
+	bottom: 12px;
+	color: #fff;
+	font-size: 18px;
+	min-width: 40%;
+	padding: 5px;
+	position: absolute;
+	right: 0px;
+	z-index: 9994;
+}
+
+.team-member .member-photo .member-name span {
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+	color: #fff;
+	font-size: 13px;
+	padding: 1px 10px;
+	position: absolute;
+	right: 0;
+	top: 90%;
+}
+
+.team-member .member-info {
+	padding: 15px 6px 12px 6px;
+}
+
+.team-member .member-socail {
+	//text-align: center;
+}
+
+.team-member .member-socail a i {
+	background-color: #d2d2d2;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+	color: #fff;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+	width: 28px;
+}
+
+.team-member .member-socail a.facebook:hover i {
+	background-color: #507CBE;
+}
+
+.team-member .member-socail a.twitter:hover i {
+	background-color: #63CDF1;
+}
+
+.team-member .member-socail a.gplus:hover i {
+	background-color: #F16261;
+}
+
+.team-member .member-socail a.dribbble:hover i {
+	background-color: #E46387;
+}
+
+.team-member .member-socail a.linkedin:hover i {
+	background-color: #90CADD;
+}
+
+.team-member .member-socail a.flickr:hover i {
+	background-color: #E474AF;
+}
+
+.team-member .member-socail a.instagramm:hover i {
+	background-color: #4D4F54;
+}
+
+.team-member.modern .member-info {
+	padding: 14px 0;
+}
+
+.team-member.modern .member-photo {
+	border: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+	padding: 0px;
+	position: relative;
+}
+
+.team-member.modern .member-photo img{
+	width: 100%;
+}
+
+.team-member.modern .member-photo:after {
+	content: "";
+	display: block;
+	height: calc(100% + 1px);
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+	width: 100%;
+	z-index: 9993;
+	
+	
+}
+
+.team-member.modern:hover .member-photo:after {
+    height: 100%;
+	opacity: 0.5;
+	width: 100%;
+}
+
+.team-member.modern .progress {
+	border-width: 2px;
+	height: 3px;
+	margin-bottom: 6px;
+}
+
+.team-member.modern .progress-label {
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 2em;
+}
+
+.team-member.modern .progress span {
+	display: none;
+}
+
+.team-member.modern .member-socail {
+	margin-top: 15px;
+}
+
+.team-member.modern .member-socail a i {
+	background-color: transparent;
+	color: #666;
+}
+
+.team-member.modern .member-socail a:hover i {
+	color: #fff;
+}
