@@ -30,7 +30,7 @@ session_start();
 	<script src="lib/jquery.js" type="text/javascript"></script>
 	<script src="src/facebox.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
+		jQuery(document).ready(function($) {
 			$('a[rel*=facebox]').facebox({
 				loadingImage: 'src/loading.gif',
 				closeImage: 'src/closelabel.png'
@@ -185,8 +185,7 @@ session_start();
 					</div>
 					<div class="panel-body" style="font-family: 楷体, KaiTi; font-size: 14pt;line-height: 1.4;">
 
-						<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true"
-							data-search="true" data-select-item-name="toolbar1">
+						<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
 							<thead>
 								<tr>
 									<th>姓名<br>日期时间</th>
@@ -249,17 +248,17 @@ session_start();
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-table.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+		! function($) {
+			$(document).on("click", "ul.nav li.parent > a > span.icon", function() {
 				$(this).find('em:first').toggleClass("glyphicon-minus");
 			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 		})
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>

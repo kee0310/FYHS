@@ -1,43 +1,47 @@
 ﻿<?php
-require('connect.php');
-include("auth_teacher.php");
+require('exe/connect.php');
+include("exe/auth_teacher.php");
 session_start();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>学生课外实践活动</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>学生课外实践活动</title>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/bootstrap-table.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/bootstrap-table.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!--Icons-->
-<script src="js/lumino.glyphs.js"></script>
+	<!--Icons-->
+	<script src="js/lumino.glyphs.js"></script>
 
-<!--[if lt IE 9]>
+	<!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
 
-<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="lib/jquery.js" type="text/javascript"></script>
-<script src="src/facebox.js" type="text/javascript"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-      $('a[rel*=facebox]').facebox({
-        loadingImage : 'src/loading.gif',
-        closeImage   : 'src/closelabel.png'
-      })
-    })
-</script>
-<style type="text/css">
-.material-icons.print{Font-size:45px ; color:#ffffff;}</style>
+	<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="lib/jquery.js" type="text/javascript"></script>
+	<script src="src/facebox.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$('a[rel*=facebox]').facebox({
+				loadingImage: 'src/loading.gif',
+				closeImage: 'src/closelabel.png'
+			})
+		})
+	</script>
+	<style type="text/css">
+		.material-icons.print {
+			Font-size: 45px;
+			color: #ffffff;
+		}
+	</style>
 
 </head>
 
@@ -46,38 +50,40 @@ session_start();
 	$header = file_get_contents('header_teacher.php');
 	echo $header;
 	?>
-		
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
 
-			<div class="row">
+		<div class="row">
 			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xlink:href="#stroked-home"></use>
+						</svg></a></li>
 				<li class="active">
-				<?php
-			include('connect.php');
+					<?php
+					include('exe/connect.php');
 
-			$id = $_SESSION['username'];
-			$result = mysql_query("SELECT * FROM zteacher_detail WHERE teacher_number='$id'");
-			$row = mysql_fetch_assoc($result); 
-			$teacher_name = $row['teacher_name'];				
-				
-			echo $id;
-			echo "：";
-			echo $teacher_name;
-				?>
+					$id = $_SESSION['username'];
+					$result = mysql_query("SELECT * FROM zteacher_detail WHERE teacher_number='$id'");
+					$row = mysql_fetch_assoc($result);
+					$teacher_name = $row['teacher_name'];
+
+					echo $id;
+					echo "：";
+					echo $teacher_name;
+					?>
 				</li>
 			</ol>
-			</div><!--/.row-->
+		</div><!--/.row-->
 
-	
-					
+
+
 		<div class="row">
-					<div class="col-lg-12">
-					<div style="height: 20px"></div>
-					</div>				
+			<div class="col-lg-12">
+				<div style="height: 20px"></div>
+			</div>
 
-<!--/.mark-->
+			<!--/.mark-->
 			<div class="col-lg-12">
 				<div class="panel panel-info">
 					<div class="panel-heading" style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6; height:auto">
@@ -92,36 +98,36 @@ session_start();
 					</div>
 					<div class="panel-body" style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">
 						<table data-toggle="table" data-select-item-name="toolbar1" style="font-family: 楷体, KaiTi; font-size: 12pt;line-height: 1.4;">
-						    <thead>
-						    <tr>
-								<th>Group Code</th>
-								<th>Role</th>
-								<th>学号</th>
-								<th>班级</th>
-								<th>姓名</th>
-								<th>项目</th>
-								<th>分数1：20%</th>
-								<th>分数2：30%</th>
-								<th>分数3：30%</th>
-								<th>分数4：10%</th>
-								<th>分数5：10%</th>
-								<th>总分：100%</th>
-						    </tr>
+							<thead>
+								<tr>
+									<th>Group Code</th>
+									<th>Role</th>
+									<th>学号</th>
+									<th>班级</th>
+									<th>姓名</th>
+									<th>项目</th>
+									<th>分数1：20%</th>
+									<th>分数2：30%</th>
+									<th>分数3：30%</th>
+									<th>分数4：10%</th>
+									<th>分数5：10%</th>
+									<th>总分：100%</th>
+								</tr>
 							</thead>
 							<tbody>
 
-							
-<?php
-	include('connect.php');
 
-			$id = $_SESSION['username'];
-			$result = mysql_query("SELECT * FROM zteacher_detail WHERE teacher_number='$id'");
-			$row = mysql_fetch_assoc($result); 
-			$teacher_name = $row['teacher_name'];	
+								<?php
+								include('exe/connect.php');
 
-	
-			$id = $_SESSION['username'];
-			$result = mysql_query("
+								$id = $_SESSION['username'];
+								$result = mysql_query("SELECT * FROM zteacher_detail WHERE teacher_number='$id'");
+								$row = mysql_fetch_assoc($result);
+								$teacher_name = $row['teacher_name'];
+
+
+								$id = $_SESSION['username'];
+								$result = mysql_query("
 
 			SELECT *
 			FROM zstudent_mark a
@@ -131,38 +137,37 @@ session_start();
 			ORDER BY a.group_code ASC, a.mark_membernumber ASC
 			
 			");
-			while($row = mysql_fetch_array($result))
-			{
+								while ($row = mysql_fetch_array($result)) {
 
 
-				
-?>
+
+								?>
 
 
-						    <tr>
-							<td><?php echo $row['group_code']; ?></td>
-							<td><?php echo $row['mark_role']; ?></td>
-							<td><?php echo $row['student_number']; ?></td>
-							<td><?php echo $row['student_class']; ?></td>
-							<td><?php echo $row['student_name']; ?></td>
-							<td><?php echo $row['mark_topic']; ?></td>	
-							
-							<td><?php 
-							$totalpdfmark = $row['mark_pdf01'] + $row['mark_pdf02'] + $row['mark_pdf03'];
-							echo $totalpdfmark; ?></td>
+									<tr>
+										<td><?php echo $row['group_code']; ?></td>
+										<td><?php echo $row['mark_role']; ?></td>
+										<td><?php echo $row['student_number']; ?></td>
+										<td><?php echo $row['student_class']; ?></td>
+										<td><?php echo $row['student_name']; ?></td>
+										<td><?php echo $row['mark_topic']; ?></td>
 
-							<td><?php 
-							$totalreportmark = ($row['mark_report01'] + $row['mark_report02'] + $row['mark_report03'])/3;
-							echo round($totalreportmark,1); ?></td>
+										<td><?php
+												$totalpdfmark = $row['mark_pdf01'] + $row['mark_pdf02'] + $row['mark_pdf03'];
+												echo $totalpdfmark; ?></td>
 
-							<td><?php 
-							$totalpresentmark = ($row['mark_present01'] + $row['mark_present02'] + $row['mark_present03'])/3;
-							echo round($totalpresentmark,1); ?></td>
-							
-							<td><?php echo $row['mark_finalreport']; ?></td>
-							<td><?php echo $row['mark_individual']; 
-							
-							/*
+										<td><?php
+												$totalreportmark = ($row['mark_report01'] + $row['mark_report02'] + $row['mark_report03']) / 3;
+												echo round($totalreportmark, 1); ?></td>
+
+										<td><?php
+												$totalpresentmark = ($row['mark_present01'] + $row['mark_present02'] + $row['mark_present03']) / 3;
+												echo round($totalpresentmark, 1); ?></td>
+
+										<td><?php echo $row['mark_finalreport']; ?></td>
+										<td><?php echo $row['mark_individual'];
+
+												/*
 								echo '
 								<form role="form" action="updatemark/update_individual_mark_exe.php" method="post">
 								<input type="hidden" name="mark_id" value="'.$row["mark_id"].'">
@@ -173,44 +178,44 @@ session_start();
 								';
 								
 							*/
-							
-							?></td>
-							<td>
-							<?php 
-							
-							$totalmark = $totalpdfmark + $totalreportmark + $totalpresentmark + 
-							$row['mark_finalreport'] + $row['mark_individual'];
-							
-							echo round($totalmark,1); 
-							
-							?>
-							</td>
-						    </tr>
-					
-				<?php 
 
-			}
-?>						
+												?></td>
+										<td>
+											<?php
 
-						    </tbody>
+											$totalmark = $totalpdfmark + $totalreportmark + $totalpresentmark +
+												$row['mark_finalreport'] + $row['mark_individual'];
+
+											echo round($totalmark, 1);
+
+											?>
+										</td>
+									</tr>
+
+								<?php
+
+								}
+								?>
+
+							</tbody>
 						</table>
 					</div>
-						
+
 				</div>
 
 			</div>
 
-			
-		</div><!--/.row-->			
-			
-			
-			
+
 		</div><!--/.row-->
 
 
 
-		
-		
+	</div><!--/.row-->
+
+
+
+
+
 	</div><!--/.main-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
@@ -222,20 +227,20 @@ session_start();
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-table.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
+		! function($) {
+			$(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+				$(this).find('em:first').toggleClass("glyphicon-minus");
+			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		$(window).on('resize', function() {
+			if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>
 </body>
 
 </html>

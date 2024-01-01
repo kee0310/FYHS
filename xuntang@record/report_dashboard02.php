@@ -28,7 +28,7 @@ include("auth.php");
 	<script src="lib/jquery.js" type="text/javascript"></script>
 	<script src="src/facebox.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
+		jQuery(document).ready(function($) {
 			$('a[rel*=facebox]').facebox({
 				loadingImage: 'src/loading.gif',
 				closeImage: 'src/closelabel.png'
@@ -102,8 +102,7 @@ include("auth.php");
 						巡堂记录表
 					</div>
 					<div class="panel-body" style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">
-						<table data-toggle="table" data-search="true" data-select-item-name="toolbar1"
-							style="font-family: 楷体, KaiTi; font-size: 12pt;line-height: 1.4;">
+						<table data-toggle="table" data-search="true" data-select-item-name="toolbar1" style="font-family: 楷体, KaiTi; font-size: 12pt;line-height: 1.4;">
 							<thead>
 								<tr>
 									<th>填写日期</th>
@@ -139,7 +138,7 @@ include("auth.php");
 
 								while ($row = mysqli_fetch_array($result)) {
 
-									?>
+								?>
 
 									<tr>
 										<td>
@@ -165,14 +164,12 @@ include("auth.php");
 										<td>
 											<?php echo $row['record_solution']; ?>
 										</td>
-										<td><a href="http://www1.fyk.edu.my/xuntang@record/imgrecord/<?php echo $row['record_img01']; ?>"
-												target="_blank" title="<?php echo $row['record_img01']; ?>">
-												<img src="imgrecord/<?php echo $row['record_img01']; ?>"
-													style="width: 120px; height: auto"></a><br><br>
+										<td><a href="http://www1.fyk.edu.my/xuntang@record/imgrecord/<?php echo $row['record_img01']; ?>" target="_blank" title="<?php echo $row['record_img01']; ?>">
+												<img src="imgrecord/<?php echo $row['record_img01']; ?>" style="width: 120px; height: auto"></a><br><br>
 
 											<?php
 											if ($row['record_name'] == $user_name) {
-												?>
+											?>
 												<form action="imgupload01.php" method="post" enctype="multipart/form-data">
 													<div class="form-group">
 														<input type="hidden" name="record_id" value="<?php echo $row['record_id']; ?>">
@@ -188,14 +185,12 @@ include("auth.php");
 											?>
 
 										</td>
-										<td><a href="http://www1.fyk.edu.my/xuntang@record/imgrecord/<?php echo $row['record_img02']; ?>"
-												target="_blank" title="<?php echo $row['record_img02']; ?>">
-												<img src="imgrecord/<?php echo $row['record_img02']; ?>"
-													style="width: 120px; height: auto"></a><br><br>
+										<td><a href="http://www1.fyk.edu.my/xuntang@record/imgrecord/<?php echo $row['record_img02']; ?>" target="_blank" title="<?php echo $row['record_img02']; ?>">
+												<img src="imgrecord/<?php echo $row['record_img02']; ?>" style="width: 120px; height: auto"></a><br><br>
 
 											<?php
 											if ($row['record_name'] == $user_name) {
-												?>
+											?>
 												<form action="imgupload02.php" method="post" enctype="multipart/form-data">
 													<div class="form-group">
 														<input type="hidden" name="record_id" value="<?php echo $row['record_id']; ?>">
@@ -213,7 +208,7 @@ include("auth.php");
 
 									</tr>
 
-									<?php
+								<?php
 
 								}
 
@@ -246,17 +241,17 @@ include("auth.php");
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-table.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+		! function($) {
+			$(document).on("click", "ul.nav li.parent > a > span.icon", function() {
 				$(this).find('em:first').toggleClass("glyphicon-minus");
 			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 		})
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>

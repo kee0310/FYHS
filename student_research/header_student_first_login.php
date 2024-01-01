@@ -14,38 +14,39 @@
 
 	<!--Icons-->
 	<script src="js/lumino.glyphs.js"></script>
-
 	<link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
+
+	<!-- Navigation Bar -->
 	<div class="navbar">
 		<div class="container nav-container">
-			<div class="col-lg-8 col-sm-9 col-xs-8">
+			<!-- Logo -->
+			<div class="col-md-8 col-sm-9 col-xs-8">
 				<span class="logo">综合实践活动课程</span>
 			</div>
-			<a title="学生登出" href="student_logout.php">
+			<!-- Mobile Logout -->
+			<a title="学生登出" href="exe/student_logout.php">
 				<span class="mobile-login"><i class="fa fa-sign-out hidden-lg hidden-md hidden-sm"></i></span>
 			</a>
 		</div>
-	</div><!--/.navbar-->
+	</div>
 
-	<div class="col-sm-3 col-lg-2 sidebar" style="top: 0;">
-		<div align="center" style="padding: 20px; padding-left: 10px; background: var(--main-color)">
-			<a href="../index@a38b.php"><img src="../img/fylogo1.png" style="width: 100%; max-width: 200px;"></a>
+	<!-- Sidebar -->
+	<div class="col-sm-3 col-md-2 sidebar" style="top: 0;">
+		<!-- Logo -->
+		<div align="center" class="school-logo">
+			<a href="../index@a38b.php"><img src="img/fylogo.png" style="width: 100%;"></a>
 		</div>
-		<div>
-			<a class="login" title="学生登出" href="student_logout.php">
-				<span><i class="fa fa-sign-out"></i></span><span>登出</span>
-			</a>
-		</div>
-	</div><!--/.sidebar-->
+		<!-- Desktop Logout -->
+		<a class="login" title="学生登出" href="exe/student_logout.php">
+			<span><i class="fa fa-sign-out"></i> 登出</span>
+		</a>
+	</div>
+
 </body>
 
 </html>

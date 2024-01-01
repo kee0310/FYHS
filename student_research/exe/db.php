@@ -1,12 +1,8 @@
 <?php
 // Enter your Host, username, password, database below.
 // I left password empty because i do not set password on localhost.
-$con = mysqli_connect("db.fyk.edu.my","fykedumy","fykedumy66699","fykedumy");
+$con = mysqli_connect("db.fyk.edu.my", "fykedumy", "fykedumy66699", "fykedumy");
 // Check connection
-if (mysqli_connect_errno())
-  {
+if (mysqli_connect_errno()) {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-?>
-
-
+}

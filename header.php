@@ -98,9 +98,7 @@
             <!-- Start Social Links -->
             <ul class="social-list">
               <li>
-                <a class="facebook itl-tooltip" data-placement="bottom" title="Facebook"
-                  href="https://www.facebook.com/profile.php?id=346209705458964&ref=br_rs" target="_blank"><i
-                    class="fa fa-facebook"></i></a>
+                <a class="facebook itl-tooltip" data-placement="bottom" title="Facebook" href="https://www.facebook.com/profile.php?id=346209705458964&ref=br_rs" target="_blank"><i class="fa fa-facebook"></i></a>
               </li>
             </ul>
             <!-- End Social Links -->
@@ -126,8 +124,7 @@
 
           <div class="navbar-collapse collapse">
             <!-- Start Navigation List -->
-            <ul class="nav navbar-nav "
-              style="display: flex; flex-wrap: wrap; justify-content: center; float: none; width: fit-content; text-align: left;">
+            <ul class="nav navbar-nav " style="display: flex; flex-wrap: wrap; justify-content: center; float: none; width: fit-content; text-align: left;">
 
               <li>
                 <a href="index@a38b.php">首页</a>

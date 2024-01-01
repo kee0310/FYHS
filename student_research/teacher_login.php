@@ -1,165 +1,182 @@
-﻿<?php
-require('connect.php');
-?>
+﻿<!-- 
+
+	This is the login page for teacher.
+	It can't be access directly from main page.
+	Ref table in database: "zteacher_detail"
+
+	Teacher will be redirect to "teacher_dashboard01.php"
+
+-->
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>学生课外实践活动</title>
+	<meta charset="utf-8">
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/bootstrap-table.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--Icons-->
-<script src="js/lumino.glyphs.js"></script>
+	<title>学生课外实践活动 | 指导老师登入</title>
 
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]-->
-
-<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="lib/jquery.js" type="text/javascript"></script>
-<script src="src/facebox.js" type="text/javascript"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-      $('a[rel*=facebox]').facebox({
-        loadingImage : 'src/loading.gif',
-        closeImage   : 'src/closelabel.png'
-      })
-    })
-</script>
-<style>
-login {width: 100% ; align: center;}
-
-</style>
-
+	<!-- Get Header -->
+	<?php
+	session_start();
+	include("header.php");
+	require('exe/connect.php');
+	?>
 
 </head>
 
-<body>
-<?php
-ob_start();
-require('db.php');
-session_start();
+<style>
+	input {
+		background: none;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid dimgray;
+		background-clip: text !important;
+		color: darkgray;
+		font-family: "Consolas", 'Courier New', "kaiti";
+		width: 100%;
+		transition: .2s;
+		margin-top: 20px;
 
-// If form submitted, insert values into the database.
-if (isset($_POST['username'])){
-        // removes backslashes
-	$username = stripslashes($_REQUEST['username']);
-        //escapes special characters in a string
-	$username = mysqli_real_escape_string($con,$username);
-	$password = stripslashes($_REQUEST['password']);
-	$password = mysqli_real_escape_string($con,$password);
+		&:focus {
+			border-bottom: 1px solid gray;
+			box-shadow: rgba(255, 255, 255, .1) 0 7px 5px -4px;
+		}
 
-        $query = "SELECT * FROM `zteacher_detail` WHERE teacher_number='$username' and teacher_password='$password'";
-	$result = mysqli_query($con,$query) or die(mysql_error());
-	$rows = mysqli_num_rows($result);
+		&::-webkit-input-placeholder {
+			color: grey;
+		}
 
-	$_SESSION['username'] = $username;
+		&::-ms-reveal {
+			filter: invert(70%);
+		}
 
-        if($rows==1){
-  		
-	    echo "<meta http-equiv=REFRESH CONTENT=1;url=teacher_dashboard01.php>";
-exit();
-         }else{
-	echo "<div class='login'>
-<h3>Username/password is incorrect.</h3>
-<br/>Click here to <a href='teacher_login.php'>Login</a></div>";
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		&[type=number] {
+			-moz-appearance: textfield;
+			background: none;
+		}
 	}
-    }else{
 
-?>
-	<?php
-	$header = file_get_contents('header.php');
-	echo $header;
-	?>
-		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-				
-			<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-			</div><!--/.row-->
 
-	
-	<div style="height: 20px"></div>	
+	.submit-btn {
+		background-image: linear-gradient(115deg, #000000 20%, dimgray, #000000 80%);
+		transition: 0.5s;
+		background-size: 200% auto;
+		color: white;
+		border-radius: 8px;
+		display: block;
+		border: none;
+		background-position: right center;
+		margin-top: 50px;
+		margin-bottom: 10px;
+		padding: 0px 20px;
+		outline: 1px solid black;
+
+		&:hover {
+			background-position: left center;
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+</style>
+
+<body>
+
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">指导老师登入</div>
-				</div>
-			</div>
-					<div style="height: 20px"></div>
-					
-			<div class="col-lg-12">
-				<div class="panel panel-default">					
-
-		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-			<div class="login-panel panel panel-default">
-			<div class="panel-heading">登入</div>
-			<div class="panel-body">
-			
-			<div class="form">
-
-			<form action="" method="post" name="login">
-			<div class="form-group">
-			<input class="form-control" type="text" name="username" placeholder="教师编号" required />
-			</div>
-			<div class="form-group">
-			<input class="form-control" type="password" name="password" placeholder="密码" required />
-			</div>
-			<input name="submit" type="submit" value="Login" />
-			</form>
-			</div>
-			
-				</div>
-			</div>
+			<ol class="breadcrumb">
+				<li><a href="index.php"><i class="fa fa-home"></i></a></li>
+				<li><a href="">指导老师登入</a></li>
+			</ol>
 		</div>
 
+		<!-- Login Panel -->
+		<div align="center">
+			<div class="login-panel panel panel-default" style="max-width: 400px; margin-top: 100px;">
+				<div class="panel-heading">指导老师登入</div>
 
+				<!-- Form Start -->
+				<form class="panel-body" action="" method="post" name="login">
+					<div style="max-width: 250px; text-align: left;">
+						<input type="number" id="username" name="username" placeholder="教师编号" autocomplete="off" required />
+						<!-- Validate username -->
+						<div style="color: firebrick; font-size: smaller;">
+							<?php
+							if (isset($_REQUEST['username'])) {
+								$username = $_REQUEST['username'];
 
-		
+								// get user details from database
+								$query = "SELECT * FROM `zteacher_detail` WHERE teacher_number='$username'";
+								$result = mysqli_query($link, $query) or die(mysqli_error($link));
+								$row = mysqli_fetch_assoc($result);
 
-					
-					
-					
-				</div>
+								// check if username exsist
+								$num_rows = mysqli_num_rows($result);
+								if ($num_rows == 0) {
+									echo '⚠ <i>编号错误</i>';
+								}
+
+								// set session 
+								$_SESSION['username'] = $username;
+							}
+							?>
+						</div>
+
+						<input type="password" placeholder="密码" name="password" required />
+						<!-- Validate password -->
+						<div style="color: firebrick; font-size: smaller;">
+							<?php
+							if (isset($_REQUEST['password'])) {
+								$password = $_REQUEST['password'];
+
+								if ($num_rows == 1) {
+									// check if password correct 
+									if ($row['teacher_password'] == $password) {
+										echo "<meta http-equiv=REFRESH CONTENT=1;url=teacher_dashboard01.php>";
+									} else {
+										echo '⚠ <i>密码错误</i>';
+									}
+								}
+							}
+							?>
+						</div>
+					</div>
+
+					<button type="submit" class="submit-btn">Login</button>
+				</form>
+
 			</div>
-		</div><!--/.row-->	
-<?php } ?>
-		
-		
-	</div><!--/.main-->
+		</div>
+	</div>
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/bootstrap-table.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
+		let username = document.querySelector("#username");
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
+		// Prevent typing more than specific digit
+		username.addEventListener("input", () => {
+			if (username.value.length > 3) {
+				username.value = username.value.substr(0, 3);
+			}
+		});
+
+		// Prevent typing symbol
+		username.onkeydown = function(e) {
+			if (!((e.keyCode > 95 && e.keyCode < 106) ||
+					(e.keyCode > 47 && e.keyCode < 58) ||
+					e.keyCode == 8)) {
+				return false;
+			}
+		}
+	</script>
+
 </body>
 
 </html>

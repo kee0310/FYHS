@@ -1,62 +1,77 @@
-<?php
-require('connect.php');
-?>
+<!-- 
+
+	This is the second page of the program.
+  Use to illustrate the details of the activity.
+
+-->
 <!DOCTYPE html>
+
 <html>
 
 <head>
+
   <meta charset="utf-8">
 
   <title>综合实践活动课程</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+  <?php include("header.php"); ?><!-- Get Header -->
 
 </head>
 
 <style>
   .panel-content span {
-    color: #7b98ff;
     padding: 0 5px;
+    background: var(--second-color);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .column {
-    border: 1px solid transparent;
-    border-image: var(--second-color);
-    border-image-slice: 1;
+    border: 1px solid #3dc1eb;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-  }
 
-  .column img {
-    width: 100%;
-    max-width: 300px;
-    object-fit: cover;
-    margin: auto;
-    min-height: 150px;
-  }
+    & div {
+      padding: 20px;
+    }
 
-  .column div {
-    padding: 20px;
+    & img {
+      width: 100%;
+      max-width: 300px;
+      object-fit: cover;
+      margin: auto;
+      min-height: 150px;
+    }
+
+    & b {
+      color: #0010ff;
+    }
+
+    & p {
+      color: #777 !important;
+    }
   }
 
   .panel-content ul {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
 
-  .panel-content ul li {
-    padding-left: 2em;
-    text-indent: -1.6em;
-  }
+    & li {
+      padding-left: 2em;
+      text-indent: -1.6em;
 
-  .panel-content ul li::before {
-    content: '❀';
-    color: #7b98ff;
-    font-size: x-large;
-    padding-right: 10px;
+      &::before {
+        content: '❀';
+        background: var(--second-color);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: x-large;
+        padding-right: 10px;
+      }
+    }
   }
 
   .panel-content ol {
@@ -64,51 +79,39 @@ require('connect.php');
     counter-reset: li;
     padding: 0;
     margin: 0;
-  }
 
-  .panel-content ol li {
-    counter-increment: li;
-    padding-left: 2em;
-    text-indent: -1.6em;
-  }
+    & li {
+      counter-increment: li;
+      padding-left: 2em;
+      text-indent: -1.6em;
 
-  .panel-content ol li::before {
-    content: counter(li) ". ";
-    color: #7b98ff;
-    font-weight: bold;
-    letter-spacing: 3px;
-  }
-
-  .carousel-indicators li {
-    padding: 0 20px;
-  }
-
-  .carousel-indicators li:hover {
-    transform: scale(1.1) !important;
-  }
-
-  .carousel-indicators .active {
-    transform: scale(1.1) !important;
+      &::before {
+        content: counter(li) ". ";
+        background: var(--second-color);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        letter-spacing: 3px;
+      }
+    }
   }
 </style>
 
 <body>
-  <?php
-  $header = file_get_contents('header.php');
-  echo $header;
-  ?>
 
-  <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+  <div class="main col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
     <div class="row">
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i></a></li>
         <li><a href="">活动说明</a></li>
       </ol>
-    </div><!--/.row-->
+    </div>
 
-
+    <!-- Description 1 -->
     <div class="panel panel-default">
-      <div class="panel-heading">参与对象</div>
+      <div class="panel-heading">
+        参与对象
+      </div>
       <div class="panel-body">
         <div class="panel-content">
           <div style="display: flex; justify-content: center;">
@@ -130,8 +133,11 @@ require('connect.php');
       </div>
     </div>
 
+    <!-- Description 2 -->
     <div class="panel panel-default">
-      <div class="panel-heading">实行方向与种类</div>
+      <div class="panel-heading">
+        实行方向与种类
+      </div>
       <div class="panel-body">
         <div class="panel-content" align="center">
           <div style="display: grid; background: white; padding:0; max-width: 800px;">
@@ -140,7 +146,7 @@ require('connect.php');
                 <img src="https://www.iferp.in/assets/images/ban1.jpg" alt="">
               </div>
               <div class="col-md-8">
-                <b style="color: #7b98ff;">以研究为主的方法和过程。</b>
+                <b>以研究为主的方法和过程。</b>
                 <p>包括制定方案、调查、访问、观察、实验、统计、信息收集与处理等。</p>
               </div>
             </div>
@@ -149,32 +155,33 @@ require('connect.php');
                 <img src="https://www.planstreetinc.com/wp-content/uploads/2022/09/Social-Services-1200x675.jpg" alt="">
               </div>
               <div class="col-md-8" style="text-align: center; padding: 20px">
-                <b style="color: #7b98ff;">以社会实践和社区服务活动为主的方法和过程。</b>
+                <b>以社会实践和社区服务活动为主的方法和过程。</b>
                 <p>包括参观、考察、服务、宣传、义务劳动、经济活动等。</p>
               </div>
             </div>
             <div class="column" style="border-top:none;">
               <div class="col-md-4">
-                <img
-                  src="https://blog.adobe.com/en/publish/2020/01/01/media_1fc4cb174873280e8cd41adfe0599c31d5644dd6c.png?width=1200&format=pjpg&optimize=medium"
-                  alt="">
+                <img src="https://blog.adobe.com/en/publish/2020/01/01/media_1fc4cb174873280e8cd41adfe0599c31d5644dd6c.png?width=1200&format=pjpg&optimize=medium" alt="">
               </div>
               <div class="col-md-8">
-                <b style="color: #7b98ff;">以项目设计和技术实践为主的方法和过程。</b>
+                <b>以项目设计和技术实践为主的方法和过程。</b>
                 <p>包括项目立项与研究、设计、制作、研制、种植、养殖、信息发布，以及科技小发明、小制作等技术实践，鼓励学生大胆创新。</p>
               </div>
             </div>
 
           </div>
-          <span style="color: #7b98ff; font-size: x-large; font-weight: bold;">⚝</span>
+          <span style="font-size: x-large; font-weight: bold;">⚝</span>
           <i>这三类活动可以相对独立，也可以互融合，融汇贯通。</i>
         </div>
       </div>
     </div>
 
+    <!-- Description 3 -->
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">实施流程</div>
+        <div class="panel-heading">
+          实施流程
+        </div>
         <div class="panel-body">
           <div class="panel-content">
             <ol>
@@ -187,7 +194,6 @@ require('connect.php');
               <li>完成答辩并获得实践成绩 **备注3。</li>
             </ol>
           </div>
-
           <h3>申请方式</h3>
           <div class="panel-content">
             <ul>
@@ -199,9 +205,12 @@ require('connect.php');
       </div>
     </div>
 
+    <!-- Description 4 -->
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">执行报告内容</div>
+        <div class="panel-heading">
+          执行报告内容
+        </div>
         <div class="panel-body">
           <div class="panel-content">
             <ul>
@@ -217,10 +226,13 @@ require('connect.php');
       </div>
     </div>
 
+    <!-- Description 5 -->
     <div class="col-md-12">
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading">答辩</div>
+          <div class="panel-heading">
+            答辩
+          </div>
           <div class="panel-body">
             <div class="panel-content">
               <ul>
@@ -231,10 +243,11 @@ require('connect.php');
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading">实践成绩</div>
+          <div class="panel-heading">
+            实践成绩
+          </div>
           <div class="panel-body">
             <div class="panel-content">
               <ul>
@@ -247,6 +260,7 @@ require('connect.php');
       </div>
     </div>
 
+    <!-- Description 6 -->
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -263,7 +277,6 @@ require('connect.php');
               <li>落实并实践计划，过程中自我检讨和反省。</li>
             </ol>
           </div>
-
           <h3>申请流程</h3>
           <div class="panel-content">
             <ol>
@@ -278,6 +291,7 @@ require('connect.php');
       </div>
     </div>
 
+    <!-- Description 7 -->
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -292,7 +306,6 @@ require('connect.php');
               <li>假期中 &#x21AA; 构思议题</li>
             </ul>
           </div>
-
           <h3>2024年</h3>
           <div class="panel-content">
             <ul>
@@ -308,33 +321,8 @@ require('connect.php');
         </div>
       </div>
     </div>
+  </div>
 
-  </div><!--/.main-->
-
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/chart.min.js"></script>
-  <script src="js/chart-data.js"></script>
-  <script src="js/easypiechart.js"></script>
-  <script src="js/easypiechart-data.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/bootstrap-table.js"></script>
-
-  <script>
-    !function ($) {
-      $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-        $(this).find('em:first').toggleClass("glyphicon-minus");
-      });
-      $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-    }(window.jQuery);
-
-    $(window).on('resize', function () {
-      if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-    })
-    $(window).on('resize', function () {
-      if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-    })
-  </script>
 </body>
 
 </html>

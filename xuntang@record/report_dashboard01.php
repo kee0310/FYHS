@@ -29,7 +29,7 @@ session_start();
 	<script src="lib/jquery.js" type="text/javascript"></script>
 	<script src="src/facebox.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
+		jQuery(document).ready(function($) {
 			$('a[rel*=facebox]').facebox({
 				loadingImage: 'src/loading.gif',
 				closeImage: 'src/closelabel.png'
@@ -117,8 +117,7 @@ session_start();
 							</div>
 							<div class="col-md-12">
 								<h4>上课老师状况<h4>
-										<textarea class="form-control" rows="8" name="record_teacher"
-											pattern="[A-Za-z0-9]{1,20}"></textarea>
+										<textarea class="form-control" rows="8" name="record_teacher" pattern="[A-Za-z0-9]{1,20}"></textarea>
 							</div>
 							<div class="col-md-12">
 								<h4>其他<h4>
@@ -127,8 +126,7 @@ session_start();
 							<div class="col-md-12">
 
 								<h4>现场处理方法<h4>
-										<textarea class="form-control" rows="8" name="record_solution"
-											pattern="[A-Za-z0-9]{1,20}"></textarea>
+										<textarea class="form-control" rows="8" name="record_solution" pattern="[A-Za-z0-9]{1,20}"></textarea>
 
 							</div>
 							<div class="col-md-12">
@@ -167,17 +165,17 @@ session_start();
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-table.js"></script>
 	<script>
-		!function ($) {
-			$(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+		! function($) {
+			$(document).on("click", "ul.nav li.parent > a > span.icon", function() {
 				$(this).find('em:first').toggleClass("glyphicon-minus");
 			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 		})
-		$(window).on('resize', function () {
+		$(window).on('resize', function() {
 			if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>

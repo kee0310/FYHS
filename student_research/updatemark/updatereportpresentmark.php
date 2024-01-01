@@ -1,27 +1,27 @@
 <?php
 session_start();
 
-include("connect.php");
+include("exe/connect.php");
 header('content-type:text/html;charset=utf-8');
 // Create connection
 $conn = mysqli_connect("db.fyk.edu.my", "fykedumy", "fykedumy66699", "fykedumy");
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+	die("Connection failed: " . mysqli_connect_error());
 }
 
-			date_default_timezone_set("Asia/Kuala_Lumpur");
-			$date = date('Y/m/d:His', time());
-			
-			$id = $_SESSION['username'];
-			
-			$group_code=$_GET['a'];
-			$pdf_report01=$_GET['b'];
-			$pdf_report02=$_GET['c'];
-			$pdf_report03=$_GET['d'];
-			$pdf_present01=$_GET['e'];
-			$pdf_present02=$_GET['f'];
-			$pdf_present03=$_GET['g'];
+date_default_timezone_set("Asia/Kuala_Lumpur");
+$date = date('Y/m/d:His', time());
+
+$id = $_SESSION['username'];
+
+$group_code = $_GET['a'];
+$pdf_report01 = $_GET['b'];
+$pdf_report02 = $_GET['c'];
+$pdf_report03 = $_GET['d'];
+$pdf_present01 = $_GET['e'];
+$pdf_present02 = $_GET['f'];
+$pdf_present03 = $_GET['g'];
 
 
 $sql = "UPDATE zstudent_mark
@@ -31,12 +31,9 @@ $sql = "UPDATE zstudent_mark
 if (mysqli_query($conn, $sql)) {
 
 	header("location: ../admin_dashboard09.php");
-			exit();
+	exit();
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
 mysqli_close($conn);
-
-
-?>			
