@@ -1,23 +1,25 @@
 <!-- 
 
  This is a authentication file for teacher page.
- It will print a alert message, kill all session and redirect to main index page.
 
+ - It will print a alert message
+ - Kill all session 
+ - Redirect to main index  page
+ 
 -->
 <?php
-include('exe/connect.php');
+include('../connect.php');
 
-session_start();
+$id = $_SESSION['id'];
 
-$username = $_SESSION['username'];
-$result = mysqli_query($link, "SELECT teacher_role from zteacher_detail where teacher_number='$username'");
+$result = mysqli_query($conn, "SELECT * from zteacher_detail where teacher_id='$id'");
 $num_rows = mysqli_num_rows($result);
 
 if ($num_rows != 1) {
-	echo "<meta http-equiv=REFRESH CONTENT=1;url=index.php>";
-	echo '<script>alert("Only Teacher Account Can Access !")</script>';
+  echo "<meta http-equiv=REFRESH CONTENT=1;url=index.php>";
+  echo '<script>alert("Only Teacher Account Can Access !")</script>';
 
-	session_destroy();
-	exit();
+  session_destroy();
+  exit();
 }
 ?>

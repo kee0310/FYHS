@@ -51,7 +51,7 @@
 			<li><a title="满意度调查表" href="student_course_survey_form.php"><svg class="glyph stroked app-window">
 						<use xlink:href="#stroked-app-window"></use>
 					</svg> 满意度调查表</a></li>
-			<li><a title="首页" href="student_subject_all_list.php"><svg class="glyph stroked app-window">
+			<li><a title="首页" href="student_index.php"><svg class="glyph stroked app-window">
 						<use xlink:href="#stroked-app-window"></use>
 					</svg> 首页</a></li>
 			<li role="presentation" class="divider"></li>

@@ -1,170 +1,144 @@
 ﻿<?php
-require('exe/connect.php');
+include('connect.php');;
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>学生课外实践活动</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>学生课外实践活动</title>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/datepicker3.css" rel="stylesheet">
-	<link href="css/bootstrap-table.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-
-	<!--Icons-->
-	<script src="js/lumino.glyphs.js"></script>
-
-	<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]-->
-
-	<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
-	<script src="lib/jquery.js" type="text/javascript"></script>
-	<script src="src/facebox.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$('a[rel*=facebox]').facebox({
-				loadingImage: 'src/loading.gif',
-				closeImage: 'src/closelabel.png'
-			})
-		})
-	</script>
-	<style>
-		login {
-			width: 100%;
-			align: center;
-		}
-	</style>
-
+  <!-- Get Header -->
+  <?php
+  session_start();
+  include("header.php");
+  require('../connect.php');
+  ?>
 
 </head>
 
+<style>
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid dimgray;
+    background-clip: text !important;
+    color: darkgray;
+    font-family: "Consolas", 'Courier New', "kaiti";
+    width: 100%;
+    transition: .2s;
+    margin-top: 20px;
+
+    &:focus {
+      border-bottom: 1px solid gray;
+      box-shadow: rgba(255, 255, 255, .1) 0 7px 5px -4px;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    &::-webkit-input-placeholder {
+      color: grey;
+    }
+
+    &::-ms-reveal {
+      filter: invert(70%);
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+      background: none;
+    }
+  }
+
+  .submit-btn {
+    background-image: linear-gradient(115deg, #000000 20%, dimgray, #000000 80%);
+    border-radius: 8px;
+    padding: 0px 20px;
+    outline: 1px solid black;
+    margin-bottom: 10px;
+  }
+</style>
+
 <body>
-	<?php
-	ob_start();
-	require('exe/db.php');
-	session_start();
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li><a href="index.php"><i class="fa fa-home"></i></a></li>
+        <li><a href="">管理员登入</a></li>
+      </ol>
+    </div>
 
-	// If form submitted, insert values into the database.
-	if (isset($_POST['username'])) {
-		// removes backslashes
-		$username = stripslashes($_REQUEST['username']);
-		//escapes special characters in a string
-		$username = mysqli_real_escape_string($con, $username);
-		$password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con, $password);
+    <!-- Login Panel -->
+    <div align="center">
+      <div class="login-panel panel panel-default" style="max-width: 400px; margin-top: 100px;">
+        <div class="panel-heading">管理员登入</div>
 
-		$query = "SELECT * FROM `zadmin_detail` WHERE admin_number='$username' and admin_password='$password'";
-		$result = mysqli_query($con, $query) or die(mysql_error());
-		$rows = mysqli_num_rows($result);
+        <!-- Form Start -->
+        <form class="panel-body" action="" method="post" name="login">
+          <div style="max-width: 250px; text-align: left;">
+            <input type="text" id="id" name="id" placeholder="编号" autocomplete="off" required />
+            <!-- Validate id -->
+            <div style="color: firebrick; font-size: smaller;">
+              <?php
+              if (isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
 
-		$_SESSION['username'] = $username;
+                // get user details from database
+                $query = "SELECT * FROM `zadmin_detail` WHERE admin_id='$id'";
+                $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                $row = mysqli_fetch_assoc($result);
 
-		if ($rows == 1) {
+                // check if id exsist
+                $num_rows = mysqli_num_rows($result);
+                if ($num_rows == 0) {
+                  echo '⚠ <i>编号错误</i>';
+                }
 
-			echo "<meta http-equiv=REFRESH CONTENT=1;url=admin_dashboard01.php>";
-			exit();
-		} else {
-			echo "<div class='login'>
-<h3>Username/password is incorrect.</h3>
-<br/>Click here to <a href='admin_login.php'>Login</a></div>";
-		}
-	} else {
+                // set session 
+                $_SESSION['id'] = $id;
+              }
+              ?>
+            </div>
 
-	?>
-		<?php
-		$header = file_get_contents('header.php');
-		echo $header;
-		?>
+            <input type="password" placeholder="密码" name="password" required />
+            <!-- Validate password -->
+            <div style="color: firebrick; font-size: smaller;">
+              <?php
+              if (isset($_REQUEST['password'])) {
+                $password = $_REQUEST['password'];
 
-		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+                if ($num_rows == 1) {
+                  // check if password correct 
+                  if ($row['admin_password'] == $password) {
+                    echo "<meta http-equiv=REFRESH CONTENT=1;url=admin_dashboard01.php>";
+                  } else {
+                    echo '⚠ <i>密码错误</i>';
+                  }
+                }
+              }
+              ?>
+            </div>
+          </div>
 
-			<div class="row">
-				<ol class="breadcrumb">
-					<li><a href="#"><svg class="glyph stroked home">
-								<use xlink:href="#stroked-home"></use>
-							</svg></a></li>
-					<li class="active">Icons</li>
-				</ol>
-			</div><!--/.row-->
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
 
-
-			<div style="height: 20px"></div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"> 管理员登入</div>
-					</div>
-				</div>
-				<div style="height: 20px"></div>
-
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-
-						<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-							<div class="login-panel panel panel-default">
-								<div class="panel-heading">Log In</div>
-								<div class="panel-body">
-
-									<div class="form">
-
-										<form action="" method="post" name="login">
-											<div class="form-group">
-												<input class="form-control" type="text" name="username" placeholder="Username" required />
-											</div>
-											<div class="form-group">
-												<input class="form-control" type="password" name="password" placeholder="Password" required />
-											</div>
-											<input name="submit" type="submit" value="Login" />
-										</form>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-
-
-
-
-
-
-
-					</div>
-				</div>
-			</div><!--/.row-->
-		<?php } ?>
-
-
-		</div><!--/.main-->
-
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/chart.min.js"></script>
-		<script src="js/chart-data.js"></script>
-		<script src="js/easypiechart.js"></script>
-		<script src="js/easypiechart-data.js"></script>
-		<script src="js/bootstrap-datepicker.js"></script>
-		<script src="js/bootstrap-table.js"></script>
-		<script>
-			! function($) {
-				$(document).on("click", "ul.nav li.parent > a > span.icon", function() {
-					$(this).find('em:first').toggleClass("glyphicon-minus");
-				});
-				$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-			}(window.jQuery);
-
-			$(window).on('resize', function() {
-				if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-			})
-			$(window).on('resize', function() {
-				if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-			})
-		</script>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

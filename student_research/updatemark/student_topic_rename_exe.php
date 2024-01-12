@@ -1,12 +1,12 @@
 <?php
-include("exe/connect.php");
+include("../connect.php");
 
 
-$student_number = $_POST['student_number'];
-$apply_topic = $_POST['apply_topic'];
-$apply_topiceg = $_POST['apply_topiceg'];
+$student_id = $_POST['student_id'];
+$research_topic = $_POST['research_topic'];
+$research_topic_en = $_POST['research_topic_en'];
 
 
-mysql_query("UPDATE zgroup_detail SET apply_topicnew=N'$apply_topic',apply_topicegnew=N'$apply_topiceg' WHERE group_code='$student_number'");
+mysqli_query($conn, "UPDATE zstudent_group SET research_topicnew=N'$research_topic',research_topic_ennew=N'$research_topic_en' WHERE group_id='$student_id'");
 
-echo "<meta http-equiv=REFRESH CONTENT=1;url=../student_upload_pdf03.php>";
+echo "<meta http-equiv=REFRESH CONTENT=1;url=../student_research_finalreport.php>";

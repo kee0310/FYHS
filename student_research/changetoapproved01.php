@@ -1,10 +1,10 @@
 <?php
-include("exe/connect.php");
+include('connect.php');;
 
 
 $id = $_GET['id'];
 $return = 1;
 
-mysql_query("UPDATE zgroup_detail SET apply_approved=N'$return' WHERE apply_id='$id'");
+mysqli_query($conn, "UPDATE zgroup_research SET research_status=N'$return' WHERE group_id='$id'");
 
 header("location: admin_dashboard04.php");

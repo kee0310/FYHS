@@ -28,7 +28,7 @@ include("auth_admin2.php");
   <script src="lib/jquery.js" type="text/javascript"></script>
   <script src="src/facebox.js" type="text/javascript"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function ($) {
+    jQuery(document).ready(function($) {
       $('a[rel*=facebox]').facebox({
         loadingImage: 'src/loading.gif',
         closeImage: 'src/closelabel.png'
@@ -146,11 +146,13 @@ include("auth_admin2.php");
               <div class="form-group">
                 <label>内容</label>
                 <textarea class="form-control" name="announcement_content" rows="10" cols="50"></textarea>
-                <script>CKEDITOR.replace('announcement_content', {
+                <script>
+                  CKEDITOR.replace('announcement_content', {
                     autoParagraph: false,
                     enterMode: CKEDITOR.ENTER_BR,
-                    uiColor: '#30a5ff'
-                  });</script>
+                    uiColor: 'black'
+                  });
+                </script>
               </div>
 
               <div class="form-group">
@@ -178,24 +180,24 @@ include("auth_admin2.php");
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/bootstrap-table.js"></script>
   <script>
-    !function ($) {
-      $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+    ! function($) {
+      $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
         $(this).find('em:first').toggleClass("glyphicon-minus");
       });
       $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
     }(window.jQuery);
 
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
     })
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
     })
   </script>
   <script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
   <script type="text/javascript" src="/js/ckeditor/adapters/jquery.js"></script>
   <script type="text/javascript">
-    $(function () {
+    $(function() {
       $('#your_textarea').ckeditor({
         toolbar: 'Full',
         enterMode: CKEDITOR.ENTER_BR,

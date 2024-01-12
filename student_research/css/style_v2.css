@@ -2,6 +2,14 @@
 @import url(https://fonts.googleapis.com/css?family=Ma%20Shan%20Zheng);
 
 :root {
+  --bg-color: linear-gradient(#d9eff7 0%, rgb(0 0 0 / 10%) 100%),
+    linear-gradient(90deg, #bce5ff, #ebf1ff);
+  --main-color: #036797;
+  --second-color: linear-gradient(120deg, #363b37, #0010ff);
+  --font-color: rgb(189, 189, 189);
+}
+
+:root {
   --bg-color: linear-gradient(rgb(37 37 37) 0%, rgb(0 0 0 / 10%) 100%),
     linear-gradient(90deg, #4d626f, #0c001a);
   --main-color: #036797;
@@ -18,11 +26,6 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  padding: 0;
-}
-
-.col-md-6,
-.col-md-12 {
   padding: 0;
 }
 
@@ -53,14 +56,9 @@ body {
   background: var(--second-color);
   background-clip: text;
   color: white;
-  float: right;
-  font-family: kaiti;
-  font-family: ZCOOL KuaiLe;
+  font-family: ZCOOL KuaiLe, kaiti;
   font-size: 23px;
-  padding: 8px;
-  text-align: center;
   -webkit-text-stroke: 4px transparent;
-  margin-left: 25px;
 }
 
 .nav-container a .mobile-login {
@@ -296,10 +294,13 @@ body {
     transition: 0.3s;
     color: #ffffff8f;
     font-size: clamp(13px, 1.1vw, 20px);
+    width: 50vw;
+    max-width: 200px;
 
     & .fa {
       padding-right: 10px;
       width: 30px;
+      text-align: center;
     }
   }
 
@@ -519,6 +520,9 @@ body {
 
 .glass {
   position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   text-decoration: none;
@@ -527,6 +531,7 @@ body {
   width: 90%;
   margin: 5%;
 
+  border: 1px inset rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   transition: all 0.1s ease-in-out;
 
@@ -538,10 +543,6 @@ body {
     rgba(0, 0, 0, 0) 50%,
     rgba(0, 0, 0, 0) 100%
   );
-  border-color: rgba(255, 255, 255, 0.4);
-  border-image: none;
-  border-style: inset;
-  border-width: 1px;
 }
 
 .glass:before {
@@ -578,4 +579,34 @@ body {
     rgba(0, 0, 0, 0) 100%
   );
   z-index: 1;
+}
+
+.submit-btn {
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  display: block;
+  border: none;
+  background-position: right center;
+
+  background-image: linear-gradient(115deg, #0a7eb5 20%, #00d0ff, #0380bb 80%);
+  padding: 5px 30px;
+  text-shadow: 0px 0px 10px rgb(0, 0, 0, 1);
+  margin: 50px;
+
+  &:hover {
+    background-position: left center;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.panel-body .panel-body {
+  padding: 30px;
+  border-radius: 10px;
+}
+
+input[type="checkbox"] {
+  accent-color: #008df1;
+  margin: 0;
 }
