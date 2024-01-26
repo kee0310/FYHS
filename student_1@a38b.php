@@ -22,17 +22,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner11.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner11.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>重要条例和校规</h2>
@@ -77,8 +72,7 @@
                     <li>高中男生白色长校裤（须是直筒裤），初中男生白色短校裤，女生一律 白色校裙，校裙须长及膝盖。</li>
                   </ol>
 
-                  <div
-                    style="display: flex; flex-wrap: wrap; justify-content:center; background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
+                  <div style="display: flex; flex-wrap: wrap; justify-content:center; background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
                     <div class="col-md-4">
                       <img src="img/about/st01.jpg" style="width:100% ; height: auto" title="男生服装标准图">
                     </div>
@@ -100,8 +94,7 @@
                     <li>女生脑后部头发不得触及领口，左右两边头发不得触及领口且不可做任何绑扎。</li>
                   </ol>
 
-                  <div
-                    style="display: flex; flex-wrap: wrap; justify-content:center; background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
+                  <div style="display: flex; flex-wrap: wrap; justify-content:center; background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
                     <div class="col-md-6">
                       <img src="img/about/st04.jpg" style="" title="男生发型标准">
                     </div>
@@ -194,12 +187,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -58,35 +57,32 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>老师姓名</th>
-                  <th>组别数量</th>
-                  <th>状态（超出 / 达到上线）</th>
-
-
+                  <th data-sortable="true">老师姓名</th>
+                  <th data-sortable="true">老师编号</th>
+                  <th data-sortable="true">组别数量</th>
+                  <th data-sortable="true">状态（超出 / 达到上线）</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                include('../connect.php');
-                $result = mysqli_query($conn, "
-							
-							SELECT count(a.teacher_id) AS abc, b.teacher_name
-							FROM zgroup_research a
-              
-              LEFT JOIN zteacher_detail b
-              ON a.teacher_id = b.teacher_id
+                $result = mysqli_query($conn, "SELECT count(a.teacher_name) AS abc, a.teacher_name, b.teacher_id
+                            FROM zgroup_research a
 
-              GROUP BY a.teacher_id
-							ORDER BY abc ASC
-							");
+                            LEFT JOIN zteacher_detail b
+                            ON a.teacher_name = b.teacher_name
+                            COLLATE utf8_unicode_ci
+
+                            GROUP BY a.teacher_name 
+                            ORDER BY abc DESC
+                          ");
+
                 while ($row = mysqli_fetch_array($result)) {
-
-
                   echo '<tr>';
                   echo '<td>' . $row["teacher_name"] . '</td>';
+                  echo '<td>' . $row["teacher_id"] . '</td>';
                   echo '<td>' . $row["abc"] . '</td>';
                   if ($row["abc"] >= 4) {
                     echo '<td><span style="color:red">超出</span></td>';
@@ -95,11 +91,8 @@ include("header_admin.php");
                   } else {
                     echo '<td>-</td>';
                   }
-
-
                   echo '</tr>';
                 }
-
                 ?>
               </tbody>
             </table>
@@ -107,10 +100,6 @@ include("header_admin.php");
         </div>
       </div>
     </div><!--/.row-->
-
-
-
-
 
   </div><!--/.main-->
 

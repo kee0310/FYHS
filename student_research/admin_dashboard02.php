@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -58,24 +57,20 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>Group Code</th>
-                  <th>Rank</th>
-                  <th>Leader</th>
-                  <th>班级/学号</th>
-                  <th>学号</th>
-                  <th>姓名</th>
-                  <th>登入(未登入/非首次)</th>
-                  <th>组队时间</th>
-
-
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">职位</th>
+                  <th data-sortable="true">班级</th>
+                  <th data-sortable="true">学号</th>
+                  <th data-sortable="true">姓名</th>
+                  <th data-sortable="true">登入状态</th>
+                  <th data-sortable="true">组队时间</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                include('../connect.php');
                 $result = mysqli_query($conn, "
 							
 							SELECT
@@ -99,7 +94,6 @@ include("header_admin.php");
 
                   echo '<tr>';
                   echo '<td>' . $row["group_id"] . '</td>';
-                  echo '<td>' . $row["student_rank"] . '</td>';
 
                   if ($row["group_leader"] == 1) {
                     echo '<td><span style="color:red">组长</span></td>';
@@ -114,7 +108,7 @@ include("header_admin.php");
                   if ($row["student_tf"] == 1) {
                     echo '<td><span style="color:red">未登入</span></td>';
                   } else {
-                    echo '<td><span style="color:green">非首次</span></td>';
+                    echo '<td><span style="color:green">已登入</span></td>';
                   }
                   echo '<td>' . $row["group_time"] . '</td>';
 

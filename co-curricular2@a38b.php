@@ -15,17 +15,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: url(img/subbanner03.jpg) center; background-size: cover; padding-top: 200px;">
+    <div class="page-banner" style="background: url(img/subbanner03.jpg) center; background-size: cover; padding-top: 200px;">
 
       <div class="container">
         <div class="col-md-6">
@@ -59,7 +54,7 @@
 
           if ($result = $mysqli->query($query)) {
             while ($row = mysqli_fetch_array($result)) {
-              ?>
+          ?>
               <!-- first part start-->
               <div class="row">
                 <h2 class="classic-title col-md-12">
@@ -93,8 +88,7 @@
               <div class="row pricing-table" style="align-items:center; display: flex; flex-wrap: wrap">
                 <!-- Coco Logo -->
                 <div class="col-md-5 col-xs-12 w-100" align="center">
-                  <img style="max-height: 200px; max-width: 250px;" title="<?php echo $row['co_chname']; ?>"
-                    src="img/cocurricular/logo/<?php echo $row['co_logo']; ?>">
+                  <img style="max-height: 200px; max-width: 250px;" title="<?php echo $row['co_chname']; ?>" src="img/cocurricular/logo/<?php echo $row['co_logo']; ?>">
                 </div>
 
                 <!-- Logo Description -->
@@ -104,7 +98,7 @@
                     <?php
                     $text = $row['co_logodesp'];
                     echo str_replace(array('<strong>', '&nbsp;'), array('<strong style="color: firebrick;">', '&emsp;'), $text)
-                      ?>
+                    ?>
                   </div>
                 </div>
               </div>
@@ -119,12 +113,12 @@
                   <?php
                   $text = $row['co_history'];
                   echo str_replace('&nbsp;', '&emsp;', $text)
-                    ?>
+                  ?>
                 </div>
               </div>
               <!-- first part end-->
 
-              <?php
+          <?php
             }
             $result->close();
           }
@@ -143,19 +137,18 @@
 
             if ($result1 = $mysqli->query($query1)) {
               while ($row1 = mysqli_fetch_array($result1)) {
-                ?>
+            ?>
 
                 <div class="col-md-6 image-service-box">
                   <!-- Coco Image -->
-                  <img class="img-thumbnail" style="height: 400px; width: 100%; object-fit: cover"
-                    src="img/cocurricular/<?php echo $row1['coi_image']; ?>" alt="" />
+                  <img class="img-thumbnail" style="height: 400px; width: 100%; object-fit: cover" src="img/cocurricular/<?php echo $row1['coi_image']; ?>" alt="" />
 
                   <!-- Image Description -->
                   <p style="font-size: small;">
                     <?php echo $row1['coi_imagedesp']; ?>
                   </p>
                 </div>
-                <?php
+            <?php
               }
               $result1->close();
             }
@@ -169,12 +162,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
   </div>
   <!-- End Container -->
 

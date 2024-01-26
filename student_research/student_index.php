@@ -10,6 +10,7 @@
 
 <head>
   <meta charset="utf-8">
+
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,9 +19,9 @@
 
   <?php
   session_start();
-  include('connect.php');;
   include("exe/auth.php");
   require("header_student.php");
+  include('connect.php');
   ?>
 </head>
 
@@ -256,7 +257,7 @@
             <p>英文名：<?php echo ucwords($en_name); ?></p>
             <p>学号：<?php echo $id ?></p>
             <p>班级：<?php echo $row['student_class']; ?></p><br>
-            <p>如显示的资料有错误，请电邮到 <a href="mailto:ziwei@fyk.edu.my" title="电邮">ziwei@fyk.edu.my</a>。</p>
+            <p>如显示的资料有错误，请电邮到 <a href="mailto:sinfatt@fyk.edu.my" title="电邮">sinfatt@fyk.edu.my</a>。</p>
           </div>
         </div>
       </div>
@@ -290,6 +291,8 @@
 																					ORDER BY a.group_leader DESC
 																				");
 
+                $num_rows = mysqli_num_rows($result);
+
                 while ($row = mysqli_fetch_array($result)) {
 
                   // Define group leader
@@ -306,7 +309,7 @@
                   $student_email = $row['student_email'];
                   $ch_name = preg_replace('/\P{Han}+/u', '', $student_name);
                   $en_name = trim(strtolower(preg_replace('/[^a-zA-Z0-9\' ]/', '', $student_name)));
-                  $first_character = mb_substr(($ch_name ? $ch_name :  $en_name),  0, 1,  "utf-8");
+                  $first_character = strtoupper(mb_substr(($ch_name ? $ch_name :  $en_name),  0, 1,  "utf-8"));
               ?>
 
                   <details>
@@ -335,18 +338,13 @@
                     if ($group_id == $id && $student_id != $id) {
                       echo '<div class="delete" align="right"><a href="exe/delete_group_member.php?id=' . $student_id . '"><i class="fa-solid fa-user-slash"></i> 移除组员</a></div>';
                     }
-
-                    // exit group
-                    if ($group_id != $id && $student_id == $id) {
-                      echo '<div class="delete" align="right"><a href="exe/delete_group_member.php?id=' . $student_id . '">退出队伍 <i class="fa-solid fa-person-running"></i></a></div>';
-                    }
                     ?>
                   </details>
 
                 <?php
                 }
                 // add member
-                if ($num_rows <= 9 && $group_id == $id) {
+                if ($num_rows < 10 && $group_id == $id) {
                 ?>
 
                   <details>
@@ -354,8 +352,8 @@
                     <div id="content">
                       <form role="form" action="exe/add_group_member.php" method="post" style="display: grid;"><br>
                         <div>请输入学号</div>
-                        <input name="student_id" required style="color: black">
-                        <input type="hidden" name="group_id" value="<?php echo $id; ?>"><br>
+                        <input type="hidden" name="group_id" value="<?php echo $id; ?>">
+                        <input type="text" name="student_id" autocomplete="off" oninput="this.value = this.value.toUpperCase()" style="color: black;" required /><br>
                         <div align="center"><button type="submit" class="btn btn-primary" style="transform: scale(1.4)"><i class="fa-solid fa-user-plus"></i> 添加组员</button></div><br>
                       </form>
                     </div>
@@ -402,11 +400,11 @@
             $result = mysqli_query($conn, "SELECT * FROM zgroup_research where group_id='$group_id'");
             $num_rows = mysqli_num_rows($result);
 
-            if ($num_rows != 0) {
+            if ($num_rows == 1) {
               while ($row = mysqli_fetch_array($result)) {
 
                 // delete application form if is leader
-                if ($group_id == $id) {
+                if ($group_id == $id && $row['apply_allow_edit'] == 1) {
                   echo '<div class="delete" align="right"><a href="exe/delete_student_application.php?id=' . $id . '" style="font-size: larger; margin: 10px;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a></div>';
                 }
             ?>
@@ -418,7 +416,7 @@
                   <div>
                     <b style="font-size: x-large; color: #009fff;"><?php echo $row['research_direct'] ?></b>
                   </div>
-                  <div style="font-size: large; color: grey"><?php echo $row['research_tag'] ?></div>
+                  <div style="font-size: large; color: darkgray"><?php echo $row['research_tag'] ?></div>
                 </div>
 
                 <div align="center">
@@ -429,23 +427,18 @@
 
                 <div class="panel-body" style="border-radius: 10px; border: 1px solid rgba(255, 255, 255, .3);">
                   <div>指导老师：
-                    <?php
-                    $teacher_id = $row['teacher_id'];
-                    $result1 = mysqli_query($conn, "SELECT * FROM zteacher_detail where teacher_id='$teacher_id'");
-                    $row1 = mysqli_fetch_array($result1);
-                    echo $row1["teacher_name"];
-                    ?>
+                    <?php echo $row["teacher_name"]; ?>
                   </div>
 
                   <div>
                     项目是否批准：
                     <b>
                       <?php
-                      if ($row['research_status'] == null) {
+                      if ($row['status'] == null) {
                         echo "<span style='color: CornflowerBlue'>未审查</span>";
-                      } elseif ($row['research_status'] == 0) {
+                      } elseif ($row['status'] == 0) {
                         echo "<span style='color: red'>不批准</span>";
-                      } elseif ($row['research_status'] == 1) {
+                      } elseif ($row['status'] == 1) {
                         echo "<span style='color: MediumSeaGreen'>批准</span>";
                       } else {
                         echo "Error";
@@ -492,205 +485,67 @@
         <div class="panel-body">
           <div class="panel-content">
 
+
             <?php
             $result = mysqli_query($conn, "SELECT * FROM zgroup_budget where group_id='$group_id'");
             $num_rows = mysqli_num_rows($result);
 
-            if ($num_rows != 0) {
-              while ($row = mysqli_fetch_array($result)) {
-
-                // delete budget form if is leader
-                if ($group_id == $id) {
-                  echo '<div class="delete" align="right"><a href="exe/delete_student_budget.php?id=' . $id . '" style="font-size: larger; margin: 10px;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a></div>';
-                }
-            ?>
-
-                <table data-toggle="table" data-select-item-name="toolbar1" style="font-size: 12pt;line-height: 1.4;">
-                  <thead>
-                    <tr>
-                      <th>序号</th>
-                      <th>项目</th>
-                      <th>数额（RM）</th>
-                      <th>审批</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td><?php echo $row['budget_101']; ?></td>
-                      <td><?php echo $row['budget_102']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_103'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_103'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_103'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>2</td>
-                      <td><?php echo $row['budget_201']; ?></td>
-                      <td><?php echo $row['budget_202']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_203'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_203'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_203'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>3</td>
-                      <td><?php echo $row['budget_301']; ?></td>
-                      <td><?php echo $row['budget_302']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_303'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_303'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_303'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>4</td>
-                      <td><?php echo $row['budget_401']; ?></td>
-                      <td><?php echo $row['budget_402']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_403'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_403'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_403'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>5</td>
-                      <td><?php echo $row['budget_501']; ?></td>
-                      <td><?php echo $row['budget_502']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_503'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_503'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_503'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>6</td>
-                      <td><?php echo $row['budget_601']; ?></td>
-                      <td><?php echo $row['budget_602']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_603'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_603'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_603'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>7</td>
-                      <td><?php echo $row['budget_701']; ?></td>
-                      <td><?php echo $row['budget_702']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_703'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_703'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_703'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>8</td>
-                      <td><?php echo $row['budget_801']; ?></td>
-                      <td><?php echo $row['budget_802']; ?>.00</td>
-                      <td>
-                        <?php
-                        if ($row['budget_803'] == 1) {
-                          echo "<span style='color:green'>批准</span>";
-                        } elseif ($row['budget_803'] == 0) {
-                          echo "<span style='color:red'>不批准</span>";
-                        } elseif ($row['budget_803'] == 2) {
-                          echo "<span style='color:blue'>未审查</span>";
-                        } else {
-                          echo "Error";
-                        }
-                        ?>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td style="font-weight: bold; font-size: large">
-                        <?php
-
-                        $totalbudget = $row['budget_102'] + $row['budget_202'] + $row['budget_302'] +
-                          $row['budget_402'] + $row['budget_502'] + $row['budget_602'] + $row['budget_702'] +
-                          $row['budget_802'];
-
-                        echo $totalbudget;
-
-                        ?>.00
-                      </td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <div>备注、回馈：<?php echo $row['budget_comment']; ?></div>
-
-              <?php
+            if ($num_rows > 0) {
+              // delete budget form if is leader
+              if ($group_id == $id) {
+                echo '<div class="delete" align="right"><a href="student_research_budget.php" style="font-size: larger; margin: 10px; background: #30a5ff;">修改 <i class="fas fa-pen-to-square" style="transform: scale(0.8); "></i></a></div>';
               }
-            } else {
-              ?>
+            ?>
+              <table data-toggle="table" data-select-item-name="toolbar1" style="font-size: 12pt;line-height: 1.4;">
+                <thead>
+                  <tr>
+                    <th>编号</th>
+                    <th>项目</th>
+                    <th>数额（RM）</th>
+                    <th>审批</th>
+                    <th>备注、回馈</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  while ($row = mysqli_fetch_array($result)) {
+                  ?>
+
+                    <tr>
+                      <td><?php echo $row['budget_id']; ?></td>
+                      <td style="width: 40%;"><?php echo $row['budget_title']; ?></td>
+                      <td style="width: 10%;"><input type="text" name="budget_amount[]" value="<?php echo $row['budget_amount']; ?>" style="background: none; border: none; width: 100%; text-align: right;" disabled></td>
+                      <td> <b>
+                          <?php
+                          if ($row['status'] == null) {
+                            echo "<span style='color: CornflowerBlue'>未审查</span>";
+                          } elseif ($row['status'] == 0) {
+                            echo "<span style='color: red'>不批准</span>";
+                          } elseif ($row['status'] == 1) {
+                            echo "<span style='color: MediumSeaGreen'>批准</span>";
+                          } elseif ($row['status'] == 2) {
+                            echo "<span style='color: CornflowerBlue'>待审查</span>";
+                          } else {
+                            echo "Error";
+                          }
+                          ?>
+                        </b></td>
+                      <td style="width: 30%;"><?php echo $row['budget_comment']; ?></td>
+                    </tr>
+
+                  <?php
+                  }
+                  $result = mysqli_query($conn, "SELECT SUM(budget_amount)FROM zgroup_budget WHERE group_id='$group_id'");
+                  $row = $result->fetch_assoc()
+                  ?>
+
+                </tbody>
+              </table>
+              <div align="center">总额:&ensp;<b style="border-bottom: 3px double; color: gold; font-size: larger">RM <?php echo $row['SUM(budget_amount)']; ?></b></div>
+
+            <?php
+            } elseif ($num_rows == 0) {
+            ?>
 
               <div align="center" style="font-size: larger"><b>暂无</b>
                 <p style="font-size: 18px; font-weight: 500">请组长填写活动预算表格</p>
@@ -724,7 +579,7 @@
             $result = mysqli_query($conn, "SELECT * FROM zgroup_proposal where group_id='$group_id'");
             $num_rows = mysqli_num_rows($result);
 
-            if ($num_rows != 0) {
+            if ($num_rows == 1) {
               while ($row = mysqli_fetch_array($result)) {
             ?>
 
@@ -735,7 +590,7 @@
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete application form if is leader
-                  if ($group_id == $id) {
+                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
                     echo '<a href="exe/delete_student_proposal.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
@@ -789,7 +644,7 @@
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete report if is leader
-                  if ($group_id == $id) {
+                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
                     echo '<a href="exe/delete_student_report.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
@@ -822,7 +677,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          活动报告
+          最终活动报告
         </div>
         <div class="panel-body">
           <div class="panel-content">
@@ -836,13 +691,13 @@
             ?>
 
                 <div class="col-sm-11 col-xs-10">
-                  <div style="display: flex; flex-wrap: wrap;">活动报告：<a href="pdf/finalreport/<?php echo $row['pdf_file']; ?>" target="_blank" title="<?php echo $row['pdf_file']; ?>"><?php echo $row['pdf_file']; ?></a><br></div>
+                  <div style="display: flex; flex-wrap: wrap;">最终活动报告：<a href="pdf/finalreport/<?php echo $row['pdf_file']; ?>" target="_blank" title="<?php echo $row['pdf_file']; ?>"><?php echo $row['pdf_file']; ?></a><br></div>
                   <div style="display: flex; flex-wrap: wrap;">提交日期：<?php echo $row['pdf_date']; ?></div><br>
                 </div>
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete report if is leader
-                  if ($group_id == $id) {
+                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
                     echo '<a href="exe/delete_student_finalreport.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
@@ -854,7 +709,7 @@
               ?>
 
               <div align="center" style="font-size: larger"><b>暂无</b>
-                <p style="font-size: 18px; font-weight: 500">请组长填写活动报告</p>
+                <p style="font-size: 18px; font-weight: 500">请组长填写最终活动报告</p>
                 <?php
                 // redirect to application form if is leader
                 if ($group_id == $id) {
@@ -871,13 +726,7 @@
       </div>
     </div>
 
-    <!-- AOS initialization -->
-    <script src="js/aos-init.js" type="text/javascript"></script>
-
     <script>
-      const root = document.querySelector(":root"); //grabbing the root element
-
-      // Fetch all the details element.
       const details = document.querySelectorAll("details");
 
       // Add the onclick listeners.

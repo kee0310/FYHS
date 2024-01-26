@@ -181,12 +181,8 @@
   <!-- Full Body Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
     <!-- Start Home Page Slider -->
     <section id="home">
@@ -264,8 +260,7 @@
               <h4 class="classic-title"><i class='fa fa-bullhorn' style="transform: rotate(-10deg);"></i> 最新通告</h4>
             </a>
 
-            <div id="main-slide" class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2"
-              autoplay="true">
+            <div id="main-slide" class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2" autoplay="true">
               <?php
               include('connect.php');
               $query = "SELECT * FROM wannouncement ORDER BY announcement_date DESC";  // get announcement by date
@@ -273,10 +268,9 @@
 
                 while ($row = mysqli_fetch_array($result)) {
                   $date = strtotime($row['announcement_date']);
-                  ?>
+              ?>
 
-                  <div class="post-row item"
-                    onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')">
+                  <div class="post-row item" onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')">
 
                     <!-- Announcement Date -->
                     <div class="left-meta-post">
@@ -314,7 +308,7 @@
                       </div>
                     </div>
                   </div>
-                  <?php
+              <?php
                 }
                 /* free result set */
                 $result->close();
@@ -333,8 +327,7 @@
               <h4 class="classic-title"><i class="fa fa-newspaper-o"></i> 最新消息</h4>
             </a>
 
-            <div class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2"
-              data-mdb-interval="true">
+            <div class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2" data-mdb-interval="true">
               <?php
               include('connect.php');
               $query = "SELECT * FROM wnews ORDER BY news_date DESC";  // get news by date
@@ -342,10 +335,9 @@
 
                 while ($row = mysqli_fetch_array($result)) {
                   $date = strtotime($row['news_date']);
-                  ?>
+              ?>
 
-                  <div class="post-row item"
-                    onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')">
+                  <div class="post-row item" onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')">
 
                     <!-- News Date -->
                     <div class="left-meta-post">
@@ -384,7 +376,7 @@
                     </div>
                   </div>
 
-                  <?php
+              <?php
                 }
                 /* free result set */
                 $result->close();

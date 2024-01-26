@@ -83,17 +83,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/organization/org07.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/organization/org07.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>体育处</h2>
@@ -291,8 +286,7 @@
               </ol>
               <br>
               <div align="center">
-                <img src="img/de_sport02.jpg"
-                  style="width:100%; max-width: 700px; border: 8px solid blue; outline: 8px solid red; border-radius: 5px">
+                <img src="img/de_sport02.jpg" style="width:100%; max-width: 700px; border: 8px solid blue; outline: 8px solid red; border-radius: 5px">
               </div>
             </div>
           </div>
@@ -303,8 +297,7 @@
           <div class="row">
             <h2 class="classic-title">体育场地</h2>
 
-            <div align="center"
-              style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 0; font-family: sans;">
+            <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 0; font-family: sans;">
               <div class="col-md-4" style="display: grid;">
                 <img class="img-thumbnail" src="img/de_sport03.jpg" alt="" />
                 <small>田径与足球场</small>
@@ -344,12 +337,8 @@
   <!-- End content -->
 
 
-  <!-- Start Footer -->
-  <?php
-  $footer = file_get_contents('footer.php');
-  echo $footer;
-  ?>
-  <!-- End Footer -->
+  <!-- Footer -->
+  <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

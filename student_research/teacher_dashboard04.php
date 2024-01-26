@@ -1,7 +1,8 @@
 ﻿<?php
-include('connect.php');;
+session_start();
 include("exe/auth_teacher.php");
 include("header_teacher.php");
+include('connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,6 @@ include("header_teacher.php");
 <body>
 
   <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
 
     <div class="row">
       <ol class="breadcrumb">
@@ -125,17 +125,15 @@ include("header_teacher.php");
                     <td><?php echo $row['mark_finalreport']; ?></td>
                     <td><?php echo $row['mark_individual'];
 
-                        /*
-								echo '
+                        echo '
 								<form role="form" action="updatemark/update_individual_mark_exe.php" method="post">
-								<input type="hidden" name="mark_id" value="'.$row["mark_id"].'">
-								<input type="hidden" name="group_id" value="'.$row["group_id"].'">
+								<input type="hidden" name="mark_id" value="' . $row["mark_id"] . '">
+								<input type="hidden" name="group_id" value="' . $row["group_id"] . '">
 								<input id="name" name="mark_individual" type="text" maxlength="4" size="4" value="">
 								<button type="submit">save</button>
 								</form>
 								';
-								
-							*/
+
 
                         ?></td>
                     <td>

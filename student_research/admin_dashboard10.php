@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -68,7 +69,7 @@ include("header_admin.php");
 
                 <input type="hidden" name="code" value="<?php echo $row["group_id"]; ?>">
 
-                Group Code：<?php echo $row["group_id"]; ?><br><br>
+                队伍编号：<?php echo $row["group_id"]; ?><br><br>
                 答辩01：<input id="name" name="pdf_present01" type="text" maxlength="4" size="4" value="<?php echo $row["pdf_present01"]; ?>"><br><br>
                 答辩02：<input id="name" name="pdf_present02" type="text" maxlength="4" size="4" value="<?php echo $row["pdf_present02"]; ?>"><br><br>
                 答辩03：<input id="name" name="pdf_present03" type="text" maxlength="4" size="4" value="<?php echo $row["pdf_present03"]; ?>"><br><br>
@@ -88,9 +89,6 @@ include("header_admin.php");
         </div>
       </div>
     </div><!--/.row-->
-
-
-
 
 
   </div><!--/.main-->

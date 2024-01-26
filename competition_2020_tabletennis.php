@@ -17,17 +17,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: url(img/banner_competition2020.jpg) center; background-size: cover; padding-top: 200px;">
+    <div class="page-banner" style="background: url(img/banner_competition2020.jpg) center; background-size: cover; padding-top: 200px;">
       <div class="container" style="margin: 0; width: 100%">
         <div class="col-md-6">
           <h2 style="font-weight: bold; text-shadow: 3px 3px 2px rgb(0, 0, 0, 0.6), 0 0 2px rgb(0, 0, 0, 0.5)">
@@ -54,8 +49,7 @@
         <div class="page-content">
 
           <div class="wrap" style="" align="center">
-            <section class="stage " style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);"
-              data-animation="fadeInUp" data-animation-delay="02">
+            <section class="stage " style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp" data-animation-delay="02">
               <a href="competition_2020_football.php" title="足球" align="center">
                 <figure class="ball bubble">
                   <img src="img/c1.png" style="height: inherit; padding: 10px">
@@ -64,8 +58,7 @@
               </a>
             </section>
 
-            <section class="stage" style="width: clamp(100px, 30vw, 150px); height: clamp(100px, 30vw, 150px);"
-              data-animation="fadeInUp" data-animation-delay="01">
+            <section class="stage" style="width: clamp(100px, 30vw, 150px); height: clamp(100px, 30vw, 150px);" data-animation="fadeInUp" data-animation-delay="01">
               <a href="competition_2020_tabletennis.php" title="兵乓" align="center">
                 <figure class="ball bubble">
                   <img src="img/c2.png" style="width: inherit; padding: 30px">
@@ -74,8 +67,7 @@
               </a>
             </section>
 
-            <section class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);"
-              data-animation="fadeInUp" data-animation-delay="03">
+            <section class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp" data-animation-delay="03">
               <a href="competition_2020_basketball.php" title="篮球" align="center">
                 <figure class="ball bubble">
                   <img class="img" src="img/c3.png" style="height: inherit; padding: 15px">
@@ -84,8 +76,7 @@
               </a>
             </section>
 
-            <section class="stage" style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);"
-              data-animation="fadeInUp" data-animation-delay="01">
+            <section class="stage" style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp" data-animation-delay="01">
               <a href="competition_2020_badminton.php" title="羽球" align="center">
                 <figure class="ball bubble">
                   <img src="img/c4.png" style="width: inherit; padding: 15px;">
@@ -94,8 +85,7 @@
               </a>
             </section>
 
-            <section class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);"
-              data-animation="fadeInUp" data-animation-delay="02">
+            <section class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp" data-animation-delay="02">
               <a href="competition_2020_volleyball.php" title="排球" align="center">
                 <figure class="ball bubble">
                   <img src="img/c5.png" style="height: inherit; padding: 15px">
@@ -157,12 +147,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

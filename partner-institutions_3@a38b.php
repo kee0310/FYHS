@@ -15,17 +15,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner12.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner12.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>高雄市立高雄高级中学</h2>
@@ -171,10 +166,7 @@
                 <!-- Start Service Icon 1 -->
                 <div class="col-md-12 service-box service-icon-left-more">
                   <div class="service-content">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.4146322222614!2d120.29581411484374!3d22.638324336260354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e04f546bef74b%3A0xcca60d126129a960!2sKaohsiung%20Municipal%20Kaohsiung%20Senior%20High%20School!5e0!3m2!1sen!2smy!4v1649741218562!5m2!1sen!2smy"
-                      width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.4146322222614!2d120.29581411484374!3d22.638324336260354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e04f546bef74b%3A0xcca60d126129a960!2sKaohsiung%20Municipal%20Kaohsiung%20Senior%20High%20School!5e0!3m2!1sen!2smy!4v1649741218562!5m2!1sen!2smy" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                   </div>
                 </div>
                 <!-- End Service Icon 1 -->
@@ -190,12 +182,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

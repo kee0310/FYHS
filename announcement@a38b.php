@@ -96,17 +96,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner19.webp) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner19.webp) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>通告</h2>
@@ -151,15 +146,12 @@
               $dept = $_POST['dept'];
             }
             ?>
-            <form action="announcement@a38b.php#content" method="post" onclick="preventResubmitPrompt()"
-              style="display:grid; margin-bottom: 20px;" align="center">
+            <form action="announcement@a38b.php#content" method="post" onclick="preventResubmitPrompt()" style="display:grid; margin-bottom: 20px;" align="center">
               <div class="col-md-9 col-xs-12" style="margin: auto">
-                <input class="searchbar" type="text" placeholder="search" name="search" autocomplete="off"
-                  value="<?php echo $search ?>">
+                <input class="searchbar" type="text" placeholder="search" name="search" autocomplete="off" value="<?php echo $search ?>">
                 <div>
                   <button type="summit" name='searchbtn'>
-                    <i class="fa fa-search"
-                      style="position: absolute; right: 30px; font-size: 20px; color: grey; margin-top: -50px;"></i>
+                    <i class="fa fa-search" style="position: absolute; right: 30px; font-size: 20px; color: grey; margin-top: -50px;"></i>
                   </button>
                 </div>
               </div>
@@ -189,12 +181,10 @@
               while ($row = mysqli_fetch_array($result)) {
                 $date = strtotime($row['announcement_date']);
                 $id = $row['announcement_id']
-                  ?>
+            ?>
 
                 <div style="display: grid;">
-                  <div class="post-row item col-md-9"
-                    onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')"
-                    style="background: snow; padding: 0; margin: 10px auto; border: 1px solid mistyrose; border-radius: 15px; display: flex; cursor: pointer;">
+                  <div class="post-row item col-md-9" onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')" style="background: snow; padding: 0; margin: 10px auto; border: 1px solid mistyrose; border-radius: 15px; display: flex; cursor: pointer;">
 
                     <div class="col-md-3 col-bg-3 post-image " style="min-width: 30%; padding: 0; margin: 0;">
                       <?php
@@ -233,7 +223,7 @@
                   </div>
                 </div>
 
-                <?php
+            <?php
               }
               /* free result set */
               $result->close();
@@ -253,12 +243,8 @@
   <!-- End content -->
 
 
-  <!-- Start Footer -->
-  <?php
-  $footer = file_get_contents('footer.php');
-  echo $footer;
-  ?>
-  <!-- End Footer -->
+  <!-- Footer -->
+  <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

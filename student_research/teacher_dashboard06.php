@@ -1,7 +1,8 @@
 ﻿<?php
-include('connect.php');;
+session_start();
 include("exe/auth_teacher.php");
 include("header_teacher.php");
+include('connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +75,7 @@ include("header_teacher.php");
 							LEFT JOIN zgroup_research a ON a.group_id = b.group_id
               COLLATE utf8_unicode_ci
 							
-							LEFT JOIN zteacher_detail c ON a.teacher_id = c.teacher_id
+							LEFT JOIN zteacher_detail c ON a.teacher_name = c.teacher_name
               COLLATE utf8_unicode_ci
 
               ORDER BY a.group_id ASC

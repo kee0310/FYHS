@@ -12,9 +12,9 @@
 
   <?php
   session_start();
-  include('connect.php');;
   include("exe/auth.php");
   include("exe/auth_student_leader.php");
+  include('connect.php');
 
   //$result = mysqli_query($conn, "SELECT admin_survey_onoff from zadmin_detail");
   //$data = mysqli_fetch_assoc($result);
@@ -87,6 +87,10 @@
               <br>
               <p>提交日期：2023 / 6 / 7 (三)&emsp;至&emsp;2023 / 6 / 10 (六)</p>
               <br>
+              <label style="cursor: pointer; display: flex; gap: 20px;">
+                <input type="checkbox" required>此活动报告已获得小组成员全员认可并同意呈交。
+              </label>
+
               <label style="cursor: pointer; display: flex; gap: 20px;">
                 <input type="checkbox" required>此活动报告已获得指导老师审批并赞同呈交。
               </label>

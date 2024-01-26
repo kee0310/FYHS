@@ -1,8 +1,10 @@
 ﻿<?php
-include('connect.php');;
+session_start();
 include("exe/auth_teacher.php");
 include("header_teacher.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +12,6 @@ include("header_teacher.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>学生课外实践活动</title>
-
 </head>
 
 <body>
@@ -58,7 +59,7 @@ include("header_teacher.php");
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zteacher_detail WHERE teacher_id='$id'");
           $row = mysqli_fetch_assoc($result);
-          $teacher_id = $row['teacher_id'];
+          $teacher_name = $row['teacher_name'];
 
 
           $result = mysqli_query($conn, "
@@ -68,7 +69,7 @@ include("header_teacher.php");
 			LEFT JOIN zstudent_detail b ON a.group_id = b.student_id
 			COLLATE utf8_unicode_ci
 			
-			where a.teacher_id='$teacher_id'
+			where a.teacher_name='$teacher_name'
 			
 			ORDER BY a.group_id ASC
 
@@ -79,11 +80,11 @@ include("header_teacher.php");
             <div class="panel-body" style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">
               <p>项目是否批准：
                 <?php
-                if ($row['research_status'] == null) {
+                if ($row['status'] == null) {
                   echo "<span style='color: CornflowerBlue'>未审查</span>";
-                } elseif ($row['research_status'] == 0) {
+                } elseif ($row['status'] == 0) {
                   echo "<span style='color: red'>不批准</span>";
-                } elseif ($row['research_status'] == 1) {
+                } elseif ($row['status'] == 1) {
                   echo "<span style='color: MediumSeaGreen'>批准</span>";
                 } else {
                   echo "Error";

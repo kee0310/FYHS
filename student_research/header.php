@@ -132,7 +132,7 @@
 
     <!-- Logo -->
     <div align="center" class="school-logo">
-      <a href="../index@a38b.php"><img src="img/fylogo.png" style="width: 100%;"></a>
+      <a href="../index@a38b.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
     </div>
 
     <!-- Desktop Menu -->

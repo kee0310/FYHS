@@ -16,10 +16,6 @@ $result = mysqli_query($conn, "SELECT * from zteacher_detail where teacher_id='$
 $num_rows = mysqli_num_rows($result);
 
 if ($num_rows != 1) {
-  echo "<meta http-equiv=REFRESH CONTENT=1;url=index.php>";
   echo '<script>alert("Only Teacher Account Can Access !")</script>';
-
-  session_destroy();
-  exit();
 }
 ?>

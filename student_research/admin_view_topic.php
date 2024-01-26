@@ -1,6 +1,6 @@
 <?php
-include('connect.php');;
 include("exe/auth_admin.php");
+include('connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,55 +41,27 @@ include("exe/auth_admin.php");
   <table style="width: 100%">
     <tbody>
       <tr>
-        <td style="width: 50%;vertical-align: top;">
+        <td>
 
 
           <table style="width: 100%; border-collapse: collapse;" border="1">
             <thead>
               <tr>
-                <th style="font-family: 楷体, KaiTi; font-size: 16pt; line-height: 1.6;font-weight: bold;width: 20%" colspan="2">2024 年实践活动计划申请表</th>
+                <th style="font-family: 楷体, KaiTi; font-size: 16pt; line-height: 1.6;" colspan="2"><?php echo date("Y"); ?>年实践活动计划申请表</th>
               </tr>
 
 
               <?php
-              include('../connect.php');
-
               $id = $_GET['id'];
-              $result = mysqli_query($conn, "
-							
-              SELECT *,
-              
-                RANK () OVER ( 
-                PARTITION BY research_status
-                ORDER BY group_id ASC
-                ) group_rank
-              
-              FROM zgroup_research a
+              $result = mysqli_query($conn, "SELECT * FROM zgroup_research WHERE  group_id = $id");
 
-              LEFT JOIN zteacher_detail b
-              ON a.teacher_id = b.teacher_id
-
-              ");
               while ($row = mysqli_fetch_array($result)) {
               ?>
 
                 <tr>
-                  <td style="width: 20%" class="f" align="center">成员</td>
+                  <td style="width: 20%" class="f" align="center">队伍编号</td>
                   <td class="g" align="justify">
-                    <?php
-                    $group_id =  $row["group_id"];
-                    echo '队伍编号: ' . $group_id . '<br><br>';
-
-                    $result2 = mysqli_query($conn, "SELECT * FROM zstudent_detail a
-                      LEFT JOIN zstudent_group b
-                      ON a.student_id = b.student_id
-
-                      WHERE b.group_id='$group_id'
-                      ");
-                    while ($row2 = mysqli_fetch_array($result2)) {
-                      echo $row2["student_id"] . ' ' . $row2["student_class"] . ' ' . $row2["student_name"] . '<br>';
-                    }
-                    ?>
+                    <?php echo  $row["group_id"]; ?>
                 </tr>
                 <tr>
                   <td class="f" align="center">项目名称</td>
@@ -119,7 +91,7 @@ include("exe/auth_admin.php");
                 </tr>
                 <tr>
                   <td class="f" align="center">填写日期</td>
-                  <td class="g" align="justify"><?php echo $row["research_start_date"]; ?></td>
+                  <td class="g" align="justify"><?php echo $row["research_date"]; ?></td>
                 </tr>
               <?php
               }

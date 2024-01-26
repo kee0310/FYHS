@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -58,77 +57,74 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>项目名称</th>
-                  <th>学习方向</th>
-                  <th>指导老师</th>
-                  <th>审核</th>
-                  <th>填写日期</th>
-                  <th>允许删除</th>
-                  <th>评语</th>
-
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">项目名称</th>
+                  <th data-sortable="true">学习方向</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">审核</th>
+                  <th data-sortable="true">填写日期</th>
+                  <th data-sortable="true">允许删除</th>
+                  <th data-sortable="true">评语</th>
                 </tr>
               </thead>
+
               <tbody>
+
                 <?php
-                include('../connect.php');
-                $result = mysqli_query($conn, "
-							
-                  SELECT *,
-                  
-                    RANK () OVER ( 
-                    PARTITION BY research_status
-                    ORDER BY group_id ASC
-                    ) group_rank
-                  
-                  FROM zgroup_research a
-
-                  LEFT JOIN zteacher_detail b
-                  ON a.teacher_id = b.teacher_id
-
-                  ");
+                $result = mysqli_query($conn, "SELECT * FROM zgroup_research a ORDER BY research_date ASC");
                 while ($row = mysqli_fetch_array($result)) {
+                ?>
 
+                  <tr>
+                    <td><?php echo $row["group_id"]; ?></td>
+                    <td><a href="admin_view_topic.php?id=<?php echo $row["group_id"]; ?>" target="_blank"><?php echo $row["research_topic"]; ?></a></td>
+                    <td><?php echo $row["research_direct"]; ?></td>
+                    <td><?php echo $row["teacher_name"]; ?></td>
+                    <td>
+                      <?php
+                      // display and allow status change by click
+                      echo '<a href="exe/change_status.php?table=zgroup_research&id=' . $row["group_id"] . '&status=' . $row["status"] . '">';
+                      if ($row["status"] == null) {
+                        echo '<span style="color:blue">未审查</span>';
+                      } elseif ($row["status"] == 0) {
+                        echo '<span style="color:red">不批准</span>';
+                      } elseif ($row["status"] == 1) {
+                        echo '<span style="color:green">批准</span>';
+                      } elseif ($row["status"] == 2) {
+                        echo '<span style="color:blue">待审查</span>';
+                      } else {
+                        echo '<span>-</span>';
+                      }
+                      echo '</a>';
+                      ?>
+                    </td>
+                    <td><?php echo $row["research_date"]; ?></td>
 
-                  echo '<tr>';
-                  echo '<td>' . $row["group_rank"] . '</td>';
-                  echo '<td>' . $row["group_id"] . '</td>';
-                  echo '<td><a href="admin_view_topic.php?id=' . $row["group_id"] . '" target="_blank">' . $row["research_topic"] . '</a></td>';
-                  echo '<td>' . $row["research_direct"] . '</td>';
-                  echo '<td>' . $row["teacher_name"] . '</td>';
+                    <?php
+                    if ($row["apply_allow_edit"] == 1) {
+                      echo '<td><a href="changetoedit01.php?id=' . $row["group_id"] . '"><span style="color:green">能够</span></a></td>';
+                    } elseif ($row["apply_allow_edit"] == 0) {
+                      echo '<td><a href="changetoedit02.php?id=' . $row["group_id"] . '"><span style="color:red">不能够</span></a></td>';
+                    } else {
+                      echo '<td>Error</td>';
+                    }
+                    ?>
 
-                  if ($row["research_status"] == null) {
-                    echo '<td><a href="changetoapproved01.php?id=' . $row["group_id"] . '"><span style="color:blue">未审查</span></a></td>';
-                  } elseif ($row["research_status"] == 0) {
-                    echo '<td><a href="changetoapproved01.php?id=' . $row["group_id"] . '"><span style="color:red">不批准</span></a></td>';
-                  } elseif ($row["research_status"] == 1) {
-                    echo '<td><a href="changetoapproved02.php?id=' . $row["group_id"] . '"><span style="color:green">批准</span></a></td>';
-                  } else {
-                    echo '<td>-</td>';
-                  }
+                    <td>
+                      <form action="changecomment01.php" method="post" name="login">
+                        <input class="form-control" type="hidden" name="id" value="<?php echo $row["group_id"]; ?>" />
+                        <textarea class="form-control" rows="4" cols="80" name="teacher_comment"><?php echo $row["teacher_comment"]; ?></textarea>
+                        <br>
+                        <button type="submit">保存</button>
+                      </form>
+                    </td>
 
-                  echo '<td>' . $row["research_start_date"] . '</td>';
-
-                  if ($row["apply_allow_edit"] == 1) {
-                    echo '<td><a href="changetoedit01.php?id=' . $row["group_id"] . '"><span style="color:green">能够</span></a></td>';
-                  } elseif ($row["apply_allow_edit"] == 0) {
-                    echo '<td><a href="changetoedit02.php?id=' . $row["group_id"] . '"><span style="color:red">不能够</span></a></td>';
-                  } else {
-                    echo '<td>Error</td>';
-                  }
-
-                  echo '<td><form action="changecomment01.php" method="post" name="login">';
-                  echo '<input class="form-control" type="hidden" name="id" value="' . $row["group_id"] . '" />';
-                  echo '<textarea class="form-control" rows="4" cols="80" name="teacher_comment" />' . $row["teacher_comment"] . '</textarea><br>';
-                  echo '<button type="submit">保存</button></form></td>';
-
-                  echo '</tr>';
+                  </tr>
+                <?php
                 }
-
                 ?>
               </tbody>
             </table>

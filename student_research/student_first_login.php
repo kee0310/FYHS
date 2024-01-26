@@ -19,8 +19,9 @@
   <title>综合实践活动课程 | 首次登入</title>
 
   <?php
-  require("header_student_first_login.php");
+  session_start();
   include("exe/auth.php");
+  require("header_student_first_login.php");
   include('connect.php');;
   ?>
 
@@ -99,11 +100,28 @@
           $student_name = $row["student_name"]; // get full name if don't have chinese name
         }
 
+        if (version_compare(PHP_VERSION, '7.0.0', '<') && !function_exists('random_int')) {
+          /**
+           * Generates pseudo-random integers
+           *
+           * @param int $min
+           * @param int $max
+           * @return int Returns random integer in the range $min to $max, inclusive.
+           */
+          function random_int($min, $max)
+          {
+            mt_srand();
+
+            return mt_rand($min, $max);
+          }
+        }
+
         // assign 2 random characters if student login number is null
         if ($student_login_number == null) {
-          $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+          $characters = '023456789abcdefghijkmnopqrstuvwxyz';
           $charactersLength = strlen($characters);
           $randomString = '';
+
           for ($i = 0; $i < 2; $i++) {
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
           }
@@ -150,24 +168,30 @@
           </span><br><br>
 
           新密码：
-          <textarea id="textbox" style="display: none;"><?php echo $student_password_new ?></textarea>
+          <input id="textbox" style="display: none;" value="<?php echo $student_password_new ?>" />
           <mark style="background-color: yellow;">
             <?php echo $student_password_new ?>
           </mark>
 
-          <!-- Copy password to clipboard -->
+          <!-- Copy password to clipboard 
+          * disabled, 
+          * issue: writeText() are not able to be use on unsecure network
+
           &ensp;<i class="fa fa-copy" onclick="copyText()" style="cursor: pointer; font-size: large;"></i>
           <small id="copyText" style="visibility: hidden; color: grey;">&ensp;copied!</small></br>
+          -->
 
-          请立即<a href="exe/student_logout.php">登出</a>，并使用新密码重新登入
+          <br>
+          请立即<a href="exe/logout.php">登出</a>，并使用新密码重新登入
         </p><br>
       </div>
     </div>
   </div>
 
   <script>
+    var text = document.getElementById("textbox");
+
     function copyText() {
-      var text = document.getElementById("textbox");
 
       text.select();
       text.setSelectionRange(0, 99999);

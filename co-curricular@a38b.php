@@ -15,17 +15,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: url(img/subbanner03.jpg) center; background-size: cover; padding-top: 200px;">
+    <div class="page-banner" style="background: url(img/subbanner03.jpg) center; background-size: cover; padding-top: 200px;">
 
       <div class="container">
         <div class="col-md-6">

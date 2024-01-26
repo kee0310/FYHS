@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -57,64 +57,55 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>项目名称</th>
-                  <th>组长姓名</th>
-                  <th>班级</th>
-                  <th>指导老师</th>
-                  <th>预算总数额</th>
-                  <th>填写日期</th>
-                  <th>允许删除</th>
-                  <th>评语</th>
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">项目名称</th>
+                  <th data-sortable="true">组长姓名</th>
+                  <th data-sortable="true">班级</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">预算总数额</th>
+                  <th data-sortable="true">填写日期</th>
+                  <th data-sortable="true">允许删除</th>
+                  <th data-sortable="true">评语</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                include('../connect.php');
-                $result = mysqli_query($conn, "
+                $result = mysqli_query($conn, "SELECT b.*, a.research_topic, a.teacher_name, c.student_name, c.student_class
 
-							SELECT a.group_id,a.research_topic,a.teacher_id,
-							b.budget_id,b.budget_102,b.budget_202,b.budget_302,
-							b.budget_402,b.budget_502,b.budget_602,b.budget_702,
-							b.budget_802,b.budget_comment,b.budget_date,b.budget_allow_edit,
-							c.student_name,c.student_class,
-							
-								RANK () OVER ( 
-								ORDER BY a.group_id ASC
-								) group_rank
                 FROM zgroup_budget b
                 
-                LEFT JOIN zgroup_research a ON a.group_id = b.group_id
+                LEFT JOIN zgroup_research a ON b.group_id = a.group_id
                 COLLATE utf8_unicode_ci
 
                 LEFT JOIN zstudent_detail c ON a.group_id = c.student_id
                 COLLATE utf8_unicode_ci
 
+                GROUP BY b.group_id
 							");
                 while ($row = mysqli_fetch_array($result)) {
+                  $group_id = $row["group_id"];
 
 
                   echo '<tr>';
-                  echo '<td>' . $row["group_rank"] . '</td>';
                   echo '<td>' . $row["group_id"] . '</td>';
-                  echo '<td><a href="admin_view_budget.php?id=' . $row["budget_id"] . '" target="_blank">' . $row["research_topic"] . '</a></td>';
-                  echo '<td>' . $row["teacher_id"] . '</td>';
+                  echo '<td><a href="admin_view_budget.php?id=' . $row["group_id"] . '">' . $row["research_topic"] . '</a></td>';
                   echo '<td>' . $row["student_name"] . '</td>';
                   echo '<td>' . $row["student_class"] . '</td>';
+                  echo '<td>' . $row["teacher_name"] . '</td>';
 
-                  $budgettotal = $row["budget_102"] + $row["budget_202"] + $row["budget_302"] + $row["budget_402"] + $row["budget_502"] + $row["budget_602"] + $row["budget_702"] + $row["budget_802"];
 
-                  echo '<td>RM' . $budgettotal . '.00</td>';
+                  $result2 = mysqli_query($conn, "SELECT SUM(budget_amount)FROM zgroup_budget WHERE group_id='$group_id'");
+                  $row2 = $result2->fetch_assoc();
+                  echo '<td>RM ' . $row2['SUM(budget_amount)'] . '</td>';
 
                   echo '<td>' . $row["budget_date"] . '</td>';
 
-                  if ($row["budget_allow_edit"] == 1) {
+                  if ($row["editable"] == 1) {
                     echo '<td><a href="changetoeditbudget01.php?id=' . $row["budget_id"] . '"><span style="color:green">能够</span></a></td>';
-                  } elseif ($row["budget_allow_edit"] == 0) {
+                  } elseif ($row["editable"] == 0) {
                     echo '<td><a href="changetoeditbudget02.php?id=' . $row["budget_id"] . '"><span style="color:red">不能够</span></a></td>';
                   } else {
                     echo '<td>Error</td>';

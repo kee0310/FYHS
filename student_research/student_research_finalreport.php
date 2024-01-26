@@ -12,9 +12,9 @@
 
   <?php
   session_start();
-  include('connect.php');;
   include("exe/auth.php");
   include("exe/auth_student_leader.php");
+  include('connect.php');
 
   //$result = mysqli_query($conn, "SELECT admin_survey_onoff from zadmin_detail");
   //$data = mysqli_fetch_assoc($result);

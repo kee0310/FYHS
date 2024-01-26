@@ -41,17 +41,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner04.jpg) center #f9f9f9;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner04.jpg) center #f9f9f9;">
       <div class="container">
         <div class="col-md-6">
           <h2>行政单位</h2>
@@ -83,8 +78,7 @@
 
             <!-- Start Pricing Table Section -->
             <div class="pricing-section pricing-tables">
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_principalsoffice.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_principalsoffice.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od1.jpg">
                   <h3>校长室</h3>
@@ -106,8 +100,7 @@
                 </div>
               </div>
 
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_disciplinary.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_disciplinary.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od3.jpg">
                   <h3>训导处</h3>
@@ -118,8 +111,7 @@
                 </div>
               </div>
 
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_cocurricular.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_cocurricular.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od4.jpg">
                   <h3>联课活动处</h3>
@@ -129,8 +121,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_generalaffairs.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_generalaffairs.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od5.jpg">
                   <h3>事务处</h3>
@@ -140,8 +131,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_humanresource.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_humanresource.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od6.jpg">
                   <h3>人力资源处</h3>
@@ -161,8 +151,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_furtherstudiescounselling.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_furtherstudiescounselling.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od8.jpg">
                   <h3>升学辅导处</h3>
@@ -172,8 +161,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_counselling.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_counselling.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od9.jpg">
                   <h3>生活辅导处</h3>
@@ -183,8 +171,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_computercentre.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_computercentre.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od10.jpg">
                   <h3>电脑中心</h3>
@@ -194,8 +181,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_multimediacentre.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_multimediacentre.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od10.jpg">
                   <h3>视听教育馆</h3>
@@ -215,8 +201,7 @@
                   <a class="btn-system btn-small border-btn">查看更多 >></a>
                 </div>
               </div>
-              <div class="pricing-table col-md-2 col-sm-12"
-                onclick="window.open('department_eveningclass.php', '_self')">
+              <div class="pricing-table col-md-2 col-sm-12" onclick="window.open('department_eveningclass.php', '_self')">
                 <div class="plan-name">
                   <img src="img/organization/org_department_icon/od13.jpg">
                   <h3>夜间部</h3>
@@ -236,12 +221,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

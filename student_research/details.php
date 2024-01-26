@@ -50,7 +50,7 @@
     }
 
     & p {
-      color: #777 !important;
+      color: black !important;
     }
   }
 

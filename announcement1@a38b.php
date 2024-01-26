@@ -93,7 +93,7 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
+    <!-- Header -->
     <?php
     $header = file_get_contents('header.php');
     echo $header;
@@ -104,7 +104,7 @@
     if ($result = $mysqli->query($query)) {
       while ($row = mysqli_fetch_array($result)) {
         $date = strtotime($row['announcement_date']);
-        ?>
+    ?>
 
         <!-- Start Content -->
         <div id="content">
@@ -140,8 +140,7 @@
                   <i class="fa fa-building"></i>
                   <?php echo $row['announcement_dept']; ?>
 
-                  <div class="content"
-                    style="background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
+                  <div class="content" style="background: white; padding: 20px; border: 1px solid mistyrose; border-radius: 15px">
                     <?php echo $row['announcement_content']; ?>
 
                     <?php
@@ -169,8 +168,7 @@
 
               <div class="col-md-4">
                 <!-- Other Announcement -->
-                <div class="latest-posts"
-                  style="background: url(img/subbanner19.webp) center ; background-size: cover; padding: 20px 10px; box-shadow: inset 0 0 10px 500px rgba(0,0,0,0.1);">
+                <div class="latest-posts" style="background: url(img/subbanner19.webp) center ; background-size: cover; padding: 20px 10px; box-shadow: inset 0 0 10px 500px rgba(0,0,0,0.1);">
                   <div style="font-size: x-large; text-align: center;">
                     <b>其他活动/通知/公告</b>
                   </div>
@@ -182,11 +180,9 @@
                     while ($row = mysqli_fetch_array($result)) {
                       $date = strtotime($row['announcement_date']);
                       $id = $row['announcement_id']
-                        ?>
+                  ?>
 
-                      <div class="post-row item "
-                        onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')"
-                        style="background: rgba(255,255,255,0.7); padding: 0; margin: 10px; display: flex; cursor: pointer; overflow: hidden; outline: rgba(255, 166, 0, 0.3) 2px solid;">
+                      <div class="post-row item " onclick="window.open('announcement1@a38b.php?id=<?php echo $row['announcement_id'] ?>', '_self')" style="background: rgba(255,255,255,0.7); padding: 0; margin: 10px; display: flex; cursor: pointer; overflow: hidden; outline: rgba(255, 166, 0, 0.3) 2px solid;">
                         <div class="col-md-3 col-bg-3 post-image " style="min-width: 30%; padding: 0; margin: 0;">
                           <?php
                           include('connect.php');
@@ -215,15 +211,14 @@
                           </div>
                         </div>
                       </div>
-                      <?php
+                  <?php
                     }
                   }
                   ?>
                 </div>
 
                 <!-- Other News -->
-                <div class="latest-posts"
-                  style="background: url(img/subbanner08.webp) center ; background-size: cover; padding: 20px 10px; box-shadow: inset 0 0 10px 500px rgba(0,0,0,0.1);">
+                <div class="latest-posts" style="background: url(img/subbanner08.webp) center ; background-size: cover; padding: 20px 10px; box-shadow: inset 0 0 10px 500px rgba(0,0,0,0.1);">
                   <div style="font-size: x-large; text-align: center;">
                     <b>其他消息</b>
                   </div>
@@ -235,11 +230,9 @@
                     while ($row = mysqli_fetch_array($result)) {
                       $date = strtotime($row['news_date']);
                       $id = $row['news_id']
-                        ?>
+                  ?>
 
-                      <div class="post-row item "
-                        onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')"
-                        style="background: rgba(255,255,255,0.7); padding: 0; margin: 10px; display: flex; cursor: pointer; overflow: hidden; outline: rgba(0, 0, 0, 0.1) 2px solid;">
+                      <div class="post-row item " onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')" style="background: rgba(255,255,255,0.7); padding: 0; margin: 10px; display: flex; cursor: pointer; overflow: hidden; outline: rgba(0, 0, 0, 0.1) 2px solid;">
                         <div class="col-md-3 col-bg-3 post-image " style="min-width: 30%; padding: 0; margin: 0;">
                           <?php
                           include('connect.php');
@@ -268,7 +261,7 @@
                           </div>
                         </div>
                       </div>
-                      <?php
+                  <?php
                     }
                   }
                   ?>
@@ -279,7 +272,7 @@
         </div>
         <!-- End content -->
 
-        <?php
+    <?php
       }
 
       /* free result set */

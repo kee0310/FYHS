@@ -10,27 +10,13 @@
 
   <title>综合实践活动课程</title>
 
+
   <?php
   session_start();
-  include('connect.php');;
   include("exe/auth.php");
   include("exe/auth_student_leader.php");
-  ?>
-
-  <?php
-  //$result = mysqli_query($conn, "SELECT admin_survey_onoff from zadmin_detail");
-  //$data = mysqli_fetch_assoc($result);
-
-  $surveyonoff = 0; //$data['admin_survey_onoff']
-
-  if ($surveyonoff == 1) {
-    include("header_student_survey_on.php");
-  } elseif ($surveyonoff == 0) {
-    include("header_student.php");
-  }
-
-  $id = $_SESSION["id"];
-  $group_id = $_SESSION['group_id'];
+  include("header_student.php");
+  include('connect.php');
   ?>
 
 </head>
@@ -150,7 +136,7 @@
     <div class="row">
       <ol class="breadcrumb">
         <li><a href="student_index.php"><i class="fa fa-home"></i></a></li>
-        <li><a href="">申请表</a></li>
+        <li><a href="">申请表格</a></li>
       </ol>
     </div>
 
@@ -193,10 +179,10 @@
           } else {
           ?>
 
-            <form action="exe/add_student_application.php" method="post" enctype="multipart/form-data">
+            <form name="apply" action="exe/add_student_application.php" method="post" enctype="multipart/form-data">
               <!-- Hidden property -->
               <input type="date" value="<?php echo date("Y-m-d"); ?>" name="research_date" style="display: none;">
-              <input type="text" value="<?php echo $group_id; ?>" name="group_id" style="display: none;">
+              <input type="text" value="<?php echo $id; ?>" name="group_id" style="display: none;">
 
               <!-- Select topic -->
               <div class="panel-content">
@@ -213,22 +199,12 @@
               <div class="panel-content">
                 <div class="column">指导老师 <span>*</span></div>
                 <div class="col-md-6 col-xs-12">
-                  <input list="teachers" placeholder="" name="teacher_id">
-                  <?php
-                  if (isset($_REQUEST['teacher_id'])) {
-                    $teacher_id = $_REQUEST['teacher_id'];
-                    if ($teacher_id == null) {
-                      echo '请选择指导老师';
-                      header('location: ');
-                    }
-                  }
-                  ?>
+                  <input list="teachers" placeholder="" name="teacher_name">
                   <datalist id="teachers">
                     <?php
-                    $result = mysqli_query($conn, "SELECT teacher_name, teacher_id FROM zteacher_detail ORDER BY teacher_id");
-                    $row = mysqli_fetch_assoc($result);
+                    $result = mysqli_query($conn, "SELECT teacher_name FROM zteacher_detail ORDER BY teacher_id");
                     while ($row = mysqli_fetch_array($result)) {
-                      echo '<option value="' . $row["teacher_id"] . "&nbsp;" . $row["teacher_name"] . '">';
+                      echo '<option value="' . $row["teacher_name"] . '">';
                     }
                     ?>
                   </datalist>

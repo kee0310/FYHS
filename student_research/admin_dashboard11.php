@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -58,16 +57,16 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>中文项目名称</th>
-                  <th>英文项目名称</th>
-                  <th>指导老师</th>
-                  <th>活动报告</th>
-                  <th>允许删除</th>
+                  <th data-sortable="true">序号</th>
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">中文项目名称</th>
+                  <th data-sortable="true">英文项目名称</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">活动报告</th>
+                  <th data-sortable="true">允许删除</th>
 
                 </tr>
               </thead>
@@ -80,7 +79,7 @@ include("header_admin.php");
 
                 $result = mysqli_query($conn, "
 							
-                SELECT a.group_id,a.research_topic,a.research_topic_en,c.teacher_name,b.pdf_id,b.pdf_file,b.pdf_date,
+                SELECT a.group_id,a.research_topic,a.research_topic_en,a.teacher_name,b.pdf_id,b.pdf_file,b.pdf_date,
                 b.pdf_allow_edit,
   
                 
@@ -91,12 +90,9 @@ include("header_admin.php");
                 FROM zgroup_finalreport b
                 LEFT JOIN zgroup_research a ON a.group_id = b.group_id
                 COLLATE utf8_unicode_ci
-                LEFT JOIN zteacher_detail c ON a.teacher_id = c.teacher_id
-                COLLATE utf8_unicode_ci
 
 							");
                 while ($row = mysqli_fetch_array($result)) {
-
 
                   echo '<tr>';
                   echo '<td>' . $row["group_rank"] . '</td>';

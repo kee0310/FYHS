@@ -74,7 +74,7 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
+    <!-- Header -->
 
     <header class="clearfix">
 
@@ -259,8 +259,6 @@
                 <ul class="dropdown">
                   <li><a href="other_resource1@a38b.php">校园刊物</a>
                   </li>
-                  <li><a href="other_resource2@a38b.php">新闻剪报</a>
-                  </li>
                 </ul>
               </li>
             </ul>
@@ -410,8 +408,6 @@
             <a href="other_1@a38b.php">其他</a>
             <ul class="dropdown">
               <li><a href="other_resource1@a38b.php">校园刊物</a>
-              </li>
-              <li><a href="other_resource2@a38b.php">新闻剪报</a>
               </li>
             </ul>
           </li>

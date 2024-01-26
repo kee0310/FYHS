@@ -32,23 +32,24 @@
 
 <style>
   .panel {
-    background: rgba(255, 255, 255, .3);
+    background: url('https://images.unsplash.com/photo-1550627951-a398399005a7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmxhY2slMjBsaW5lc3xlbnwwfHwwfHx8MA%3D%3D');
     font-size: larger;
-    max-width: 400px;
+    max-width: 350px;
+    width: 100vw;
     box-shadow: 1px 2px 20px rgba(255, 255, 255, .2);
+    margin: 0;
     margin-top: 10vh;
     padding: 0;
+    border-radius: 20px;
   }
 
   .login-heading {
-    background: linear-gradient(115deg, #379ecf, #000000 80%);
     background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy5Nz9j25lckauSdBdPi_54hkZxE8WyTqSJg&usqp=CAU') center;
     background-size: cover;
-    padding-top: 60px;
+    background: none;
     font-size: 40px;
-    height: 200px;
+    padding: 20px;
     color: white;
-    font-weight: bold;
     text-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
     clip-path: polygon(0% 0%,
         100% 0%,
@@ -58,16 +59,22 @@
 
   .panel-body {
     color: brown;
-    padding: 20px;
-    background: none;
+    background: white;
+    border-radius: 50px 0 0 0;
+    text-align: left;
 
     & .fa {
-      background: linear-gradient(115deg, #379ecf, #000000 90%);
+      background: #272727;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: brightness(90%);
       padding-right: 10px;
       padding-top: 10px;
+
+      & span {
+        font-family: kaiti;
+        padding-left: 10px;
+      }
     }
 
     & a {
@@ -85,14 +92,11 @@
     border: none;
     border-bottom: 1px solid black;
     background-clip: text !important;
-    color: #0000007a;
+    color: #000000db;
     font-family: "Consolas", 'Courier New', "kaiti";
     width: 100%;
     transition: .2s;
 
-    &:focus {
-      border-bottom: 1px solid #007db9;
-    }
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -111,20 +115,19 @@
     }
 
     &::-webkit-input-placeholder {
-      color: #0000007a;
+      color: #000000ad;
     }
   }
 
   .submit-btn {
-    background-image: linear-gradient(115deg, #000000 20%, #379ecf, #000000 80%);
+    background: black;
     border-radius: 30px;
-    margin: 0;
-    margin-top: 50px;
-    width: 90%;
+    margin: 30px 0;
+    width: 100%;
   }
 
   input::-webkit-input-placeholder {
-    color: #0000007a;
+    color: #000000ad;
   }
 </style>
 
@@ -145,10 +148,10 @@
         <!-- Form Start -->
         <form class="panel-body" action="" method="post" name="login">
 
-          <div style="display: grid; justify-content: center;">
-            <div style="display: flex; margin-top: 20px;">
-              <i class="fa fa-id-card"></i>
-              <input id="id" type="text" name="id" placeholder="学号" autocomplete="off" oninvalid="this.setCustomValidity('请输入学号 (e.g. 200134)')" oninput="this.setCustomValidity(''); this.value = this.value.toUpperCase()" required />
+          <div style="display: grid; padding: 40px ;">
+            <div style="margin-top: 20px;">
+              <i class="fa fa-id-card"><span>学号</span></i><br>
+              <input id="id" type="text" name="id" placeholder="学生证号码" autocomplete="off" oninvalid="this.setCustomValidity('请输入学号 (e.g. 200134)')" oninput="this.setCustomValidity(''); this.value = this.value.toUpperCase()" required />
             </div>
             <!-- Validate id -->
             <div>
@@ -182,8 +185,8 @@
               ?>
             </div>
 
-            <div style="display: flex; margin-top: 20px;">
-              <i class="fa fa-key" aria-hidden="true"></i>
+            <div style="margin-top: 30px;">
+              <i class="fa fa-key"><span>密码</span></i>
               <input id="password" type="password" name="password" placeholder="乱码 + 身份证号码" oninvalid="this.setCustomValidity('请输入乱码 + 身份证号码 (e.g. 8G124938017728)')" oninput="this.setCustomValidity('')" required />
             </div>
             <!-- Validate password -->

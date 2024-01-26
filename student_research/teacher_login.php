@@ -22,7 +22,7 @@
   <?php
   session_start();
   include("header.php");
-  include('connect.php');;
+  include('connect.php');
   ?>
 
 </head>
@@ -58,18 +58,6 @@
     &::-ms-reveal {
       filter: invert(70%);
     }
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    &[type=number] {
-      appearance: textfield;
-      -moz-appearance: textfield;
-      background: none;
-    }
   }
 
   .submit-btn {
@@ -99,7 +87,7 @@
         <!-- Form Start -->
         <form class="panel-body" action="" method="post" name="login">
           <div style="max-width: 250px; text-align: left;">
-            <input type="number" id="id" name="id" placeholder="教师编号" autocomplete="off" required />
+            <input type="text" id="id" name="id" placeholder="教师编号" autocomplete="off" required />
             <!-- Validate id -->
             <div style="color: firebrick; font-size: smaller;">
               <?php
@@ -107,7 +95,7 @@
                 $id = $_REQUEST['id'];
 
                 // get user details from database
-                $query = "SELECT * FROM `zteacher_detail` WHERE teacher_id='$id'";
+                $query = "SELECT * FROM zteacher_detail WHERE teacher_id='$id'";
                 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                 $row = mysqli_fetch_assoc($result);
 
@@ -149,26 +137,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    let id = document.querySelector("#id");
-
-    // Prevent typing more than specific digit
-    id.addEventListener("input", () => {
-      if (id.value.length > 3) {
-        id.value = id.value.substr(0, 3);
-      }
-    });
-
-    // Prevent typing symbol
-    id.onkeydown = function(e) {
-      if (!((e.keyCode > 95 && e.keyCode < 106) ||
-          (e.keyCode > 47 && e.keyCode < 58) ||
-          e.keyCode == 8)) {
-        return false;
-      }
-    }
-  </script>
 
 </body>
 

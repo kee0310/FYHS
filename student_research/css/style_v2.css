@@ -10,11 +10,31 @@
 }
 
 :root {
+  --bg-color: linear-gradient(
+      rgba(255, 255, 255, 1) 0%,
+      rgba(251, 251, 251, 0.1) 100%
+    ),
+    linear-gradient(90deg, #84d2ff, #8d5acd);
+  --main-color: #036797;
+  --second-color: linear-gradient(120deg, #3dc1eb, #0010ff);
+  --main-color: linear-gradient(
+    120deg,
+    rgb(133 159 255) 0%,
+    rgb(160 157 241) 40%,
+    rgb(122 204 243) 72%,
+    rgb(158 135 241) 100%
+  );
+  --second-color: linear-gradient(90deg, #82c7ef, #bb8df3);
+  --font-color: rgb(189, 189, 189);
+}
+
+:root {
   --bg-color: linear-gradient(rgb(37 37 37) 0%, rgb(0 0 0 / 10%) 100%),
     linear-gradient(90deg, #4d626f, #0c001a);
   --main-color: #036797;
   --second-color: linear-gradient(120deg, #3dc1eb, #0010ff);
-  --font-color: rgb(189, 189, 189);
+  --font-color: gainsboro;
+  --hfont-color: white;
 }
 
 body {
@@ -174,7 +194,7 @@ body {
 }
 
 .breadcrumb a {
-  color: grey;
+  color: gainsboro;
   text-decoration: none;
 }
 
@@ -199,7 +219,7 @@ body {
   padding: 20px;
   padding-left: 10px;
   background: var(--main-color);
-  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFXZv0VBfQe5tVq6frR-_CLMHTnDzaRiwoBQ&usqp=CAU")
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQItuNkQLIRRZme752BMCZtZBPPChEW27y9P2dCawG0u99MsTF0403EkOUSlgLrECNC_e4&usqp=CAU")
     right bottom;
   background-size: cover;
 }
@@ -292,7 +312,7 @@ body {
     z-index: 1;
     position: relative;
     transition: 0.3s;
-    color: #ffffff8f;
+    color: gainsboro;
     font-size: clamp(13px, 1.1vw, 20px);
     width: 50vw;
     max-width: 200px;
@@ -371,7 +391,7 @@ body {
   background: rgb(255 255 255 / 5%);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: rgb(189, 189, 189) !important;
+  color: var(--font-color);
   font-family: Arial, 楷体, KaiTi;
   font-size: clamp(17px, 1.5vw, 20px);
   line-height: 1.8;
@@ -380,11 +400,11 @@ body {
 }
 
 .panel p {
-  color: rgb(189, 189, 189) !important;
+  color: var(--font-color);
 }
 
 .panel-default .panel-heading {
-  color: white;
+  color: var(--hfont-color);
   font-size: clamp(20px, 2vw, 30px);
   font-weight: bold;
   height: fit-content;
@@ -421,7 +441,7 @@ body {
   border-bottom: 1px solid transparent;
   border-image: var(--second-color);
   border-image-slice: 1;
-  color: gainsboro;
+  color: var(--hfont-color);
   font-size: clamp(15px, 1.8vw, 25px);
   font-weight: bold;
   line-height: 1.4;
@@ -484,7 +504,7 @@ body {
 }
 
 .content {
-  color: rgb(189, 189, 189) !important;
+  color: var(--font-color);
   font-family: Arial, KaiTi;
   font-size: clamp(17px, 1.7vw, 200px);
   line-height: 1.8;

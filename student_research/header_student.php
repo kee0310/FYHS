@@ -74,7 +74,7 @@
       </div>
 
       <!-- Mobile Logout -->
-      <a title="学生登出" href="exe/student_logout.php">
+      <a title="学生登出" href="exe/logout.php">
         <span class="mobile-login"><i class="fa fa-sign-out hidden-lg hidden-md hidden-sm"></i></span>
       </a>
 
@@ -87,8 +87,8 @@
           <a title="首页" href="student_index.php">
             <span><i class="fa fa-home"></i>首页</span>
           </a>
-          <a title="申请表" href="student_research_application.php">
-            <span><i class="fa fa-solid fa-person-chalkboard"></i>申请表</span>
+          <a title="申请表格" href="student_research_application.php">
+            <span><i class="fa fa-solid fa-person-chalkboard"></i>申请表格</span>
           </a>
           <a title="预算案" href="student_research_budget.php">
             <span><i class="fa fa-bar-chart"></i>预算案</span>
@@ -112,14 +112,14 @@
 
     <!-- Logo -->
     <div align="center" class="school-logo">
-      <a href="../index@a38b.php"><img src="img/fylogo.png" style="width: 100%;"></a>
+      <a href="../index@a38b.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
     </div>
 
     <!-- Desktop Menu -->
     <a class="button-index" title="首页" href="student_index.php"><span>首页</span></a>
     <div class="sidemenu">
-      <a title="申请表" href="student_research_application.php">
-        <span><i class="fa fa-solid fa-person-chalkboard"></i>申请表</span>
+      <a title="申请表格" href="student_research_application.php">
+        <span><i class="fa fa-solid fa-person-chalkboard"></i>申请表格</span>
       </a>
       <a title="预算案" href="student_research_budget.php">
         <span><i class="fa fa-bar-chart"></i>预算案</span>
@@ -136,7 +136,7 @@
     </div>
 
     <!-- Desktop Logout -->
-    <a class="login" title="学生登出" href="exe/student_logout.php">
+    <a class="login" title="学生登出" href="exe/logout.php">
       <span><i class="fa fa-sign-out"></i> 登出</span>
     </a>
   </div>

@@ -1,7 +1,8 @@
 ﻿<?php
-include('connect.php');
+session_start();
 include("exe/auth_teacher.php");
 include("header_teacher.php");
+include('connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,11 +69,41 @@ include("header_teacher.php");
 			LEFT JOIN zgroup_research a ON a.group_id = b.group_id
 			COLLATE utf8_unicode_ci
 			
-			where a.teacher_id='$teacher_id'
+			where a.teacher_name='$teacher_name'
 
 			ORDER BY a.group_id ASC
 			
 			");
+
+          $result = mysqli_query(
+            $conn,
+            "SELECT c.* FROM zgroup_research c
+
+                  LEFT JOIN  zgroup_proposal a 
+                  ON a.group_id = c.group_id 
+                  COLLATE utf8_unicode_ci 
+
+                  LEFT JOIN zstudent_detail b 
+                  ON a.group_id = b.student_id 
+                  COLLATE utf8_unicode_ci 
+
+                  where c.teacher_name='$teacher_name' 
+                  ORDER BY a.group_id ASC"
+          );
+
+          $result = mysqli_query(
+            $conn,
+            "SELECT a.*, c.research_topic 
+            
+              FROM zgroup_budget a 
+
+              LEFT JOIN zgroup_research c
+              ON a.group_id = c.group_id 
+              COLLATE utf8_unicode_ci 
+
+              where c.teacher_name='$teacher_name' 
+              ORDER BY a.group_id ASC"
+          );
           while ($row = mysqli_fetch_array($result)) {
 
 

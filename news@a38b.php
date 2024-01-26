@@ -95,17 +95,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner08.webp) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner08.webp) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>消息</h2>
@@ -149,15 +144,21 @@
               $dept = $_POST['dept'];
             }
             ?>
-            <form action="news@a38b.php#content" method="post" onclick="preventResubmitPrompt()"
-              style="display: grid; margin-bottom: 20px;" align="center">
+            <form action="news@a38b.php#content" method="post" onclick="preventResubmitPrompt()" style="display: grid; margin-bottom: 20px;" align="center">
               <div class="col-md-9 col-xs-12" style="margin: auto">
-                <input class="searchbar" type="text" placeholder="search" name="search" autocomplete="off"
-                  value="<?php echo $search ?>">
+                <input class="searchbar" type="text" placeholder="search" name="search" autocomplete="off" list="teachers" value="<?php echo $search ?>">
+                <datalist id="teachers">
+                  <?php
+                  $result = mysqli_query($conn, "SELECT teacher_name, teacher_id FROM zteacher_detail ORDER BY teacher_id");
+                  $row = mysqli_fetch_assoc($result);
+                  while ($row = mysqli_fetch_array($result)) {
+                    echo '<option value="' . $row["teacher_id"] . "&nbsp;" . $row["teacher_name"] . '">';
+                  }
+                  ?>
+                </datalist>
                 <div>
                   <button type="summit" name='searchbtn'>
-                    <i class="fa fa-search"
-                      style="position: absolute; right: 30px; font-size: 20px; color: grey; margin-top: -50px;"></i>
+                    <i class="fa fa-search" style="position: absolute; right: 30px; font-size: 20px; color: grey; margin-top: -50px;"></i>
                   </button>
                 </div>
               </div>
@@ -186,11 +187,9 @@
               while ($row = mysqli_fetch_array($result)) {
                 $date = strtotime($row['news_date']);
                 $id = $row['news_id']
-                  ?>
+            ?>
                 <div style="display: grid;">
-                  <div class="post-row item col-md-9"
-                    onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')"
-                    style="background: snow; padding: 0; margin: 10px auto; border: 1px solid mistyrose; border-radius: 15px; display: flex; cursor: pointer;">
+                  <div class="post-row item col-md-9" onclick="window.open('news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')" style="background: snow; padding: 0; margin: 10px auto; border: 1px solid mistyrose; border-radius: 15px; display: flex; cursor: pointer;">
 
                     <!-- Display post image -->
                     <div class="col-md-3 col-bg-3 post-image " style="min-width: 30%; padding: 0; margin: 0;">
@@ -229,7 +228,7 @@
                   </div>
                 </div>
 
-                <?php
+            <?php
               }
               /* free result set */
               $result->close();
@@ -249,12 +248,8 @@
   <!-- End content -->
 
 
-  <!-- Start Footer -->
-  <?php
-  $footer = file_get_contents('footer.php');
-  echo $footer;
-  ?>
-  <!-- End Footer -->
+  <!-- Footer -->
+  <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

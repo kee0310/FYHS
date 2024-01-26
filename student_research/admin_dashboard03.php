@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +32,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -58,64 +57,45 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>人数</th>
-                  <th>学生姓名</th>
-                  <th>班级</th>
-                  <th>申请项目名称</th>
-                  <th>指导老师</th>
-                  <th>状态（超出/不足/完成）</th>
-
-
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">人数</th>
+                  <th data-sortable="true">学生姓名</th>
+                  <th data-sortable="true">班级</th>
+                  <th data-sortable="true">申请项目名称</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">人数状态</th>
                 </tr>
               </thead>
+
               <tbody>
                 <?php
-                include('../connect.php');
-                $result = mysqli_query($conn, "
-							
-							SELECT count(I.group_id) AS abc,b.research_topic,b.teacher_id,I.group_id,a.student_id,a.student_class,
-							
-								RANK () OVER ( 
-								ORDER BY I.group_id
-								) group_rank							
-							
-							FROM zstudent_group I
-							
-							LEFT JOIN zstudent_detail a
-							ON I.student_id = a.student_id
-							
-							LEFT JOIN zgroup_research b
-							ON I.group_id = b.group_id
+                $result = mysqli_query($conn, "SELECT count(I.group_id) AS abc,b.research_topic,b.teacher_name,I.group_id,a.student_id,a.student_class
+                            FROM zstudent_group I
+                            
+                            LEFT JOIN zstudent_detail a
+                            ON I.student_id = a.student_id
+                            
+                            LEFT JOIN zgroup_research b
+                            ON I.group_id = b.group_id
 
-							COLLATE utf8_unicode_ci
-							
-							GROUP BY I.group_id
-							ORDER BY I.group_id ASC
+                            COLLATE utf8_unicode_ci
+                            
+                            GROUP BY I.group_id
+                            ORDER BY I.group_id ASC
+                          ");
 
-
-							");
                 while ($row = mysqli_fetch_array($result)) {
-                  $teacher = $row["teacher_id"];
-                  $result2 = mysqli_query($conn, "SELECT * FROM zteacher_detail WHERE teacher_id='$teacher'");
-                  $row2 = mysqli_fetch_array($result2);
 
                   echo '<tr>';
-                  echo '<td>' . $row["group_rank"] . '</td>';
                   echo '<td>' . $row["group_id"] . '</td>';
                   echo '<td>' . $row["abc"] . '</td>';
                   echo '<td>' . $row["student_id"] . '</td>';
                   echo '<td>' . $row["student_class"] . '</td>';
                   echo '<td>' . $row["research_topic"] . '</td>';
-                  if (isset($row2['teacher_name'])) {
-                    echo '<td>' . $row2["teacher_name"] . '</td>';
-                  } else {
-                    echo '<td></td>';
-                  }
+                  echo '<td>' . $row["teacher_name"] . '</td>';
                   if ($row["abc"] >= 11) {
                     echo '<td><span style="color:red">超出</span></td>';
                   } elseif ($row["abc"] <= 3) {
@@ -123,8 +103,6 @@ include("header_admin.php");
                   } else {
                     echo '<td><span style="color:green">完成</span></td>';
                   }
-
-
                   echo '</tr>';
                 }
 
@@ -135,10 +113,6 @@ include("header_admin.php");
         </div>
       </div>
     </div><!--/.row-->
-
-
-
-
 
   </div><!--/.main-->
 

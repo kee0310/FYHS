@@ -17,9 +17,9 @@
   <link rel="stylesheet" type="text/css" href="css/tools.css" media="screen">
 
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       // Add smooth scrolling to all links
-      $("a").on('click', function (event) {
+      $("a").on('click', function(event) {
 
         // Make sure this.hash has a value before overriding default behavior
         if (this.hash !== "") {
@@ -33,7 +33,7 @@
           // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
           $('html, body').animate({
             scrollTop: $(hash).offset().top
-          }, 10, function () {
+          }, 10, function() {
 
             // Add hash (#) to URL when done scrolling (default click behavior)
             window.location.hash = hash;
@@ -137,17 +137,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner07.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner07.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>关于宽柔</h2>
@@ -176,7 +171,7 @@
         <div class="page-content">
 
           <!-- first part start-->
-          <div id="about1" align="center" style="scroll-margin-top: 80px">
+          <div id="about1" align="center" style="padding-top: 100px">
 
             <!-- FY Logo -->
             <div class="row">
@@ -227,7 +222,7 @@
 
 
           <!-- second part start -->
-          <div id="about2" align="center" style="scroll-margin-top: 80px">
+          <div id="about2" align="center" style="padding-top: 100px">
 
             <!-- School Vision -->
             <div class="row">
@@ -303,15 +298,13 @@
               <div style="display: flex; flex-wrap: wrap; justify-content: center;">
                 <div class="counter-item col-xs-12 col-sm-3 col-md-3" style="margin-top:50px;">
                   <i class="fa fa-male" style="color: #46bbec"></i>
-                  <div class="timer" id="item4" data-to="5405" data-speed="5000"
-                    style="color: #46bbec; font-family: 楷体, KaiTi;"></div>
+                  <div class="timer" id="item4" data-to="5405" data-speed="5000" style="color: #46bbec; font-family: 楷体, KaiTi;"></div>
                   <h4 style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">2022年师生人数</h4>
                 </div>
 
                 <div class="counter-item col-xs-12 col-sm-3 col-md-3" style="margin-top:50px;">
                   <i class="fa fa-male" style="color: #46bbec"></i>
-                  <div class="timer" id="item4" data-to="8690" data-speed="5000"
-                    style="color: #46bbec; font-family: 楷体, KaiTi;"></div>
+                  <div class="timer" id="item4" data-to="8690" data-speed="5000" style="color: #46bbec; font-family: 楷体, KaiTi;"></div>
                   <h4 style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">高中毕业生总人数</h4>
                 </div>
               </div>
@@ -715,8 +708,7 @@
               <h2 class="classic-title">发展计划</h2>
 
               <p>校长5年中、长期发展计划/<br>各部门3年中、短期发展计划</p>
-              <iframe src="doc/document01.pdf#zoom=100" type="application/pdf" title="发展计划" width="80%"
-                height="1000px"></iframe>
+              <iframe src="doc/document01.pdf#zoom=100" type="application/pdf" title="发展计划" width="80%" height="1000px"></iframe>
             </div>
           </div>
           <!-- ninth part end -->
@@ -727,12 +719,8 @@
   </div>
 
 
-  <!-- Start Footer -->
-  <?php
-  $footer = file_get_contents('footer.php');
-  echo $footer;
-  ?>
-  <!-- End Footer -->
+  <!-- Footer -->
+  <?php include('footer.php'); ?>
 
 
   </div>
@@ -749,26 +737,82 @@
       // ID of the element in which to draw the chart.
       element: 'myfirstchart',
       // Chart data records -- each entry in this array corresponds to a point on the chart.
-      data: [
-        { year: '2004', value: 1184 },
-        { year: '2005', value: 1840 },
-        { year: '2006', value: 2674 },
-        { year: '2007', value: 3340 },
-        { year: '2008', value: 3897 },
-        { year: '2009', value: 4277 },
-        { year: '2010', value: 4396 },
-        { year: '2011', value: 4512 },
-        { year: '2012', value: 4602 },
-        { year: '2013', value: 4660 },
-        { year: '2014', value: 4661 },
-        { year: '2015', value: 4755 },
-        { year: '2016', value: 4872 },
-        { year: '2017', value: 4993 },
-        { year: '2018', value: 5043 },
-        { year: '2019', value: 5009 },
-        { year: '2020', value: 4938 },
-        { year: '2021', value: 5090 },
-        { year: '2022', value: 5118 }
+      data: [{
+          year: '2004',
+          value: 1184
+        },
+        {
+          year: '2005',
+          value: 1840
+        },
+        {
+          year: '2006',
+          value: 2674
+        },
+        {
+          year: '2007',
+          value: 3340
+        },
+        {
+          year: '2008',
+          value: 3897
+        },
+        {
+          year: '2009',
+          value: 4277
+        },
+        {
+          year: '2010',
+          value: 4396
+        },
+        {
+          year: '2011',
+          value: 4512
+        },
+        {
+          year: '2012',
+          value: 4602
+        },
+        {
+          year: '2013',
+          value: 4660
+        },
+        {
+          year: '2014',
+          value: 4661
+        },
+        {
+          year: '2015',
+          value: 4755
+        },
+        {
+          year: '2016',
+          value: 4872
+        },
+        {
+          year: '2017',
+          value: 4993
+        },
+        {
+          year: '2018',
+          value: 5043
+        },
+        {
+          year: '2019',
+          value: 5009
+        },
+        {
+          year: '2020',
+          value: 4938
+        },
+        {
+          year: '2021',
+          value: 5090
+        },
+        {
+          year: '2022',
+          value: 5118
+        }
       ],
       // The name of the data record attribute that contains x-values.
       xkey: 'year',

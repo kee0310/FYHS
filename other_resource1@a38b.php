@@ -10,22 +10,58 @@
 
 </head>
 
+<style>
+  .document {
+    background: salmon;
+    border: 1px salmon solid;
+    color: white;
+    cursor: pointer;
+    display: grid;
+    font-family: kaiti;
+    font-size: 20px;
+    margin: 20px;
+    overflow: hidden;
+    text-align: center;
+    transition: all .3s ease;
+    width: 250px;
+    opacity: 0;
+  }
+
+  .document:hover {
+    background: tomato;
+    border: 1px tomato solid;
+  }
+
+  .document:hover .content {
+    -webkit-filter: brightness(40%);
+    transition: all .3s ease;
+  }
+
+  .pdfIcon {
+    -webkit-filter: brightness(200%);
+    font-size: xx-large;
+    margin-left: 110px;
+    margin-top: 70px;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .document:hover .pdfIcon {
+    visibility: visible;
+  }
+</style>
+
 <body>
 
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/resource/banner1.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner20.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>校园刊物</h2>
@@ -58,36 +94,39 @@
             <div class="col-md-12">
 
               <!-- Start resource1 -->
-              <?php
-              include('connect.php');
+              <div style="display: flex; flex-wrap: wrap; justify-content: center;">
 
-              $query = "SELECT * FROM wresource1 ORDER BY resource1_id DESC";
+                <?php
+                include('connect.php');
+                $query = "SELECT * FROM wresource1 ORDER BY resource1_id DESC";
+                if ($result = $mysqli->query($query)) {
+                  while ($row = mysqli_fetch_array($result)) {
+                ?>
 
-              if ($result = $mysqli->query($query)) {
+                    <!-- First document -->
+                    <div class="document" onclick="window.open('doc/resource1/<?php echo $row['resource1_file'] ?>', '_blank')" data-animation="fadeInUp" data-animation-delay="01">
+                      <div class="content" style="margin: -20px; padding-left: 15px;">
+                        <iframe src="doc/resource1/<?php echo $row['resource1_file'] ?>" style=" pointer-events: none; width: 100%; height: 200px;"></iframe>
+                      </div>
+                      <p style="margin-top: 25px; padding: 0 16px">
+                        <?php echo $row['resource1_title'] ?>
+                      </p>
+                      <div class="pdfIcon">
+                        <i class="fa fa-file-pdf-o"></i>
+                      </div>
+                    </div>
 
-                while ($row = mysqli_fetch_array($result)) {
-
-                  echo '<!-- Start resource1 -->';
-                  echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                  echo '<div class="team-member">';
-                  echo '<!-- Memebr Photo, Name & Position -->';
-                  echo '<div class="member-photo" align="center">';
-                  echo '<a href="doc/resource1/' . $row['resource1_file'] . '" target="_blank" title="' . $row['resource1_title'] . ' "><img alt="" src="img/resource/resource1.jpg" style="width: 70% ; height: auto"/></a>';
-                  echo '<div class="member-name">' . $row['resource1_title'] . ' </div>';
-
-                  echo '</div>';
-                  echo '</div>';
-                  echo '</div>';
-                  echo '<!-- End resource1 -->';
+                <?php
+                  }
+                  /* free result set */
+                  $result->close();
                 }
-                /* free result set */
-                $result->close();
-              }
 
-              /* close connection */
-              $mysqli->close();
-              ?>
-              <!-- End resource1 -->
+                /* close connection */
+                $mysqli->close();
+                ?>
+                <!-- End resource1 -->
+              </div>
 
             </div>
           </div>
@@ -99,12 +138,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

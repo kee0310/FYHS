@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -49,24 +50,24 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>项目名称</th>
-                  <th>Title</th>
-                  <th>指导老师</th>
-                  <th>活动报告</th>
-                  <th>允许删除</th>
-                  <th>答辩1</th>
-                  <th>答辩2</th>
-                  <th>答辩3</th>
-                  <th>报告1</th>
-                  <th>报告2</th>
-                  <th>报告3</th>
-                  <th>总分</th>
-                  <th>平均分</th>
+                  <th data-sortable="true">序号</th>
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">项目名称</th>
+                  <th data-sortable="true">Title</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">活动报告</th>
+                  <th data-sortable="true">允许删除</th>
+                  <th data-sortable="true">答辩1</th>
+                  <th data-sortable="true">答辩2</th>
+                  <th data-sortable="true">答辩3</th>
+                  <th data-sortable="true">报告1</th>
+                  <th data-sortable="true">报告2</th>
+                  <th data-sortable="true">报告3</th>
+                  <th data-sortable="true">总分</th>
+                  <th data-sortable="true">平均分</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,10 +79,8 @@ include("header_admin.php");
 
                 $result = mysqli_query($conn, "
 							
-							SELECT a.group_id,a.research_topic,a.research_topic_en,a.teacher_id,b.pdf_id,b.pdf_file,b.pdf_date,
-							b.pdf_allow_edit,d.budget_id,b.pdf_report01,pdf_report02,pdf_report03,pdf_present01,pdf_present02,pdf_present03,
-							d.budget_102,d.budget_202,d.budget_302,d.budget_402,d.budget_502,d.budget_602,d.budget_702,
-							d.budget_802,
+							SELECT a.group_id,a.research_topic,a.research_topic_en,a.teacher_name,b.pdf_id,b.pdf_file,b.pdf_date,
+							b.pdf_allow_edit,b.pdf_report01,pdf_report02,pdf_report03,pdf_present01,pdf_present02,pdf_present03,
 							
 								RANK () OVER ( 
 								ORDER BY a.group_id ASC
@@ -91,8 +90,6 @@ include("header_admin.php");
 							LEFT JOIN zgroup_research a ON a.group_id = b.group_id
               COLLATE utf8_unicode_ci
 							LEFT JOIN zstudent_detail c ON a.group_id = c.student_id
-              COLLATE utf8_unicode_ci
-							LEFT JOIN zgroup_budget d ON a.group_id = d.group_id
               COLLATE utf8_unicode_ci
 
 
@@ -105,7 +102,7 @@ include("header_admin.php");
                   echo '<td><a href="print/admin_evaluation_form01.php?id=' . $row["group_id"] . '&a=' . $row["group_rank"] . '" target="_blank">' . $row["group_id"] . '</a></td>';
                   echo '<td><a href="admin_dashboard10.php?id=' . $row["group_id"] . '" >' . $row["research_topic"] . '</a></td>';
                   echo '<td>' . $row["research_topic_en"] . '</td>';
-                  echo '<td>' . $row["teacher_id"] . '</td>';
+                  echo '<td>' . $row["teacher_name"] . '</td>';
                   echo '<td><a href="pdf/report/' . $row["pdf_file"] . '" target="_blank" >' . $row["pdf_file"] . '</a></td>';
 
 

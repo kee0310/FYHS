@@ -52,17 +52,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner04.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner04.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>行政组织图</h2>
@@ -570,7 +565,7 @@
             <div class="members">
               <div class="team-member col-md-3 col-sm-6 col-xs-12">
                 <div class="member-photo">
-                  <img alt="" src="img/organization/upload/x55.jpg" style="width: 75% ; height: auto" />
+                  <img alt="" src="img/organization/upload/x55.jpg" />
                   <div class="member-name col-md-12">许甄甄<span>图书馆主任</span></div>
                 </div>
               </div>
@@ -579,7 +574,7 @@
             <div class="members">
               <div class="team-member col-md-3 col-sm-6 col-xs-12">
                 <div class="member-photo">
-                  <img alt="" src="img/organization/upload/x56.jpg" style="width: 75% ; height: auto" />
+                  <img alt="" src="img/organization/upload/x56.jpg" />
                   <div class="member-name col-md-12">岑瑞娟<span>图书馆助理主任</span></div>
                 </div>
               </div>
@@ -593,7 +588,7 @@
             <div class="members">
               <div class="team-member col-md-3 col-sm-6 col-xs-12">
                 <div class="member-photo">
-                  <img alt="" src="img/organization/upload/x57.jpg" style="width: 75% ; height: auto" />
+                  <img alt="" src="img/organization/upload/x57.jpg" />
                   <div class="member-name col-md-12">方智雄<span>夜间部主任<br>兼任事务处助理主任</span></div>
                 </div>
               </div>
@@ -639,12 +634,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->
@@ -659,7 +650,8 @@
       let departmentList = ["principaloffice", "academic", "disciplinary",
         "generalaffairs", "humanresource", "cocurricular", "sports",
         "furtherstudiescounselling", "counselling", "computercentre",
-        "multimediacentre", "library", "eveningclass"];
+        "multimediacentre", "library", "eveningclass"
+      ];
 
       for (let i = 0; i < departmentList.length; i++) {
         document.querySelector("." + departmentList[i]).style.display = "none";

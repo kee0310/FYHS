@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +11,7 @@ include("header_admin.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>学生课外实践活动</title>
+
 
 
   <script type="text/javascript">
@@ -40,8 +42,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -65,38 +65,37 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true">
               <thead>
                 <tr>
-                  <th>班级/学号</th>
-                  <th>姓名</th>
-                  <th>身份证号码</th>
-                  <th>新密码</th>
-                  <th>电邮</th>
-                  <th>登入(未登入/非首次)</th>
-                  <th>组队(未完成/已完成)</th>
-                  <th>Group Code</th>
-                  <th>Leader</th>
-
-
+                  <th data-sortable="true">学号</th>
+                  <th data-sortable="true">班级</th>
+                  <th data-sortable="true">姓名</th>
+                  <th data-sortable="true">身份证号码</th>
+                  <th data-sortable="true">新密码</th>
+                  <th data-sortable="true">电邮</th>
+                  <th data-sortable="true">登入状态</th>
+                  <th data-sortable="true">组队状态</th>
+                  <th data-sortable="true">队伍编号</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                include('../connect.php');
-                $result = mysqli_query($conn, "
-							
-							SELECT *
-							FROM zstudent_detail O 
-							LEFT JOIN zstudent_group I ON O.student_id = I.student_id
-							GROUP BY O.student_id
-							ORDER BY O.student_id ASC
-							");
+                $result = mysqli_query(
+                  $conn,
+                  "SELECT a.*, b.group_id  FROM zstudent_detail a
+
+                  LEFT JOIN zstudent_group b
+                  ON a.student_id = b.student_id
+                  
+                  ORDER BY a.student_id ASC
+                  "
+                );
 
                 while ($row = mysqli_fetch_array($result)) {
 
-
-                  echo '<tr>';
+                  echo '<tr >';
+                  echo '<td>' . $row["student_id"] . '</td>';
                   echo '<td>' . $row["student_class"] . '</td>';
                   echo '<td>' . $row["student_name"] . '</td>';
                   echo '<td>' . $row["student_password"] . '</td>';
@@ -106,7 +105,7 @@ include("header_admin.php");
                   if ($row["student_tf"] == 1) {
                     echo '<td><span style="color:red">未登入</span></td>';
                   } else {
-                    echo '<td><span style="color:green">非首次</span></td>';
+                    echo '<td><span style="color:green">已登入</span></td>';
                   }
 
                   if ($row["group_id"] == null) {
@@ -116,7 +115,6 @@ include("header_admin.php");
                   }
 
                   echo '<td>' . $row["group_id"] . '</td>';
-                  echo '<td>' . $row["group_leader"] . '</td>';
 
                   echo '</tr>';
                 }
@@ -128,10 +126,6 @@ include("header_admin.php");
         </div>
       </div>
     </div><!--/.row-->
-
-
-
-
 
   </div><!--/.main-->
 
@@ -158,6 +152,7 @@ include("header_admin.php");
       if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
     })
   </script>
+
 </body>
 
 </html>

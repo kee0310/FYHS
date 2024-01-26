@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +12,16 @@ include("header_admin.php");
     .material-icons.print {
       Font-size: 45px;
       color: #ffffff;
+    }
+
+    td,
+    th {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .a .fht-cell {
+      min-width: 200px;
     }
   </style>
 
@@ -27,8 +38,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -62,49 +71,34 @@ include("header_admin.php");
             分数5：10%：指导老师评分<br>
             总分：100%
           </div>
-          <div class="panel-body" style="font-family: 楷体, KaiTi; font-size: 16pt;line-height: 1.6;">
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" style="font-family: 楷体, KaiTi; font-size: 12pt;line-height: 1.4;">
+          <div class="panel-body ">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" style="font-family: 楷体, KaiTi; font-size: 12pt;line-height: 1.4;">
               <thead>
                 <tr>
-                  <th>年份</th>
-                  <th>Group Code</th>
-                  <th>Role</th>
-                  <th>学号</th>
-                  <th>班级</th>
-                  <th>姓名</th>
-                  <th>项目</th>
-                  <th>指导老师</th>
-                  <th>分数1</th>
-                  <th>分数2</th>
-                  <th>分数3</th>
-                  <th>分数4</th>
-                  <th>分数5</th>
-                  <th>总分</th>
-                  <th>等级</th>
-                  <th>check</th>
+                  <th data-sortable="true">年份</th>
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">职位</th>
+                  <th data-sortable="true">学号</th>
+                  <th data-sortable="true">班级</th>
+                  <th data-sortable="true">姓名</th>
+                  <th data-sortable="true">项目</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th class="a" data-sortable="true">各项分数（%）</th>
+                  <th data-sortable="true">总分</th>
+                  <th data-sortable="true">等级</th>
                 </tr>
               </thead>
               <tbody>
 
-
                 <?php
-                include('../connect.php');
-
-
-                $result = mysqli_query($conn, "
-
-			SELECT *
-			FROM zstudent_mark a
-
-			ORDER BY a.group_id ASC, a.mark_membernumber ASC
-			
-			");
+                $result = mysqli_query($conn, "SELECT * FROM zstudent_mark_2023 ORDER BY group_id ASC");
                 while ($row = mysqli_fetch_array($result)) {
-
-
-
+                  // count mark
+                  $mark01 = $row['mark_pdf01'] + $row['mark_pdf02'] + $row['mark_pdf03'];
+                  $mark02 = ($row['mark_report01'] + $row['mark_report02'] + $row['mark_report03']) / 3;
+                  $mark03 = ($row['mark_present01'] + $row['mark_present02'] + $row['mark_present03']) / 3;
+                  $totalmark = $mark01 + $mark02 + $mark03 + $row['mark_finalreport'] + $row['mark_individual'];
                 ?>
-
 
                   <tr>
                     <td><?php echo $row['year']; ?></td>
@@ -113,8 +107,6 @@ include("header_admin.php");
                       <a href="resource/<?php echo $row['year']; ?>/proposal/<?php echo $row['group_id']; ?>p.pdf" target="_blank">Proposal</a><br>
                       <a href="resource/<?php echo $row['year']; ?>/report/<?php echo $row['group_id']; ?>r.pdf" target="_blank">Report</a><br>
                       <a href="resource/<?php echo $row['year']; ?>/finalreport/<?php echo $row['group_id']; ?>f.pdf" target="_blank">FinalReport</a>
-
-
                     </td>
                     <td><?php echo $row['mark_role']; ?></td>
                     <td><?php echo $row['student_id']; ?></td>
@@ -123,48 +115,28 @@ include("header_admin.php");
                     <td><?php echo $row['mark_topic']; ?><br><?php echo $row['mark_topiceg']; ?></td>
                     <td><?php echo $row['mark_teacher']; ?></td>
 
-                    <?php $mark01 = $row['mark_pdf01'] + $row['mark_pdf02'] + $row['mark_pdf03']
-                    ?>
-
-                    <td><?php echo $mark01; ?></td>
-
-                    <?php $mark02 = ($row['mark_report01'] + $row['mark_report02'] + $row['mark_report03']) / 3
-                    ?>
-
-                    <td><?php echo round($mark02, 1); ?></td>
-
-
-                    <?php $mark03 = ($row['mark_present01'] + $row['mark_present02'] + $row['mark_present03']) / 3
-                    ?>
-
-                    <td><?php echo round($mark03, 1); ?></td>
-
-                    <td><?php echo $row['mark_finalreport']; ?></td>
-                    <td><?php echo $row['mark_individual']; ?></td>
                     <td>
-                      <?php
+                      <div style="display: flex; ">
+                        <div style="width: 50%">
+                          <div style="border-bottom: 1px solid gainsboro; border-right: 1px solid gainsboro; width: 100%">计划书:</div>
+                          <div style="border-bottom: 1px solid gainsboro; border-right: 1px solid gainsboro;">报告:</div>
+                          <div style="border-bottom: 1px solid gainsboro; border-right: 1px solid gainsboro;">答辩:</div>
+                          <div style="border-bottom: 1px solid gainsboro; border-right: 1px solid gainsboro;">最终报告:</div>
+                          <div style="border-right: 1px solid gainsboro;">老师评分:</div>
+                        </div>
 
-                      $totalmark = $mark01 + $mark02 + $mark03 + $row['mark_finalreport'] + $row['mark_individual'];
-
-                      echo round($totalmark, 1);
-
-                      ?>
+                        <div style="width: 50%">
+                          <div style="border-bottom: 1px solid gainsboro;"><?php echo round($mark01, 1); ?></div>
+                          <div style="border-bottom: 1px solid gainsboro;"><?php echo round($mark02, 1); ?></div>
+                          <div style="border-bottom: 1px solid gainsboro;"><?php echo round($mark03, 1); ?></div>
+                          <div style="border-bottom: 1px solid gainsboro;"><?php echo $row['mark_finalreport']; ?></div>
+                          <div><?php echo $row['mark_individual']; ?></div>
+                        </div>
+                      </div>
                     </td>
-                    <td><?php
 
-                        if ($totalmark >= '80') {
-                          echo "A";
-                        } elseif ($totalmark >= '70' && $totalmark <= '79.9') {
-                          echo "B";
-                        } elseif ($totalmark >= '60' && $totalmark <= '69.9') {
-                          echo "C";
-                        } elseif ($totalmark >= '40' && $totalmark <= '59.9') {
-                          echo "D";
-                        } else {
-                          echo "E";
-                        }
+                    <td><?php echo round($totalmark, 1) . '%'; ?></td>
 
-                        ?></td>
                     <td><?php echo $row['mark_grade']; ?></td>
 
                   </tr>

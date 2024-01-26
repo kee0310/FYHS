@@ -43,17 +43,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/de_library01.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/de_library01.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>图书馆</h2>
@@ -86,8 +81,7 @@
             <h2 class="classic-title">图书馆 Library</h2>
 
             <div class="intro">
-              <p style="font-size: larger; border-bottom: 1px white solid" data-animation="fadeInRight"
-                data-animation-delay="01">
+              <p style="font-size: larger; border-bottom: 1px white solid" data-animation="fadeInRight" data-animation-delay="01">
                 主任：许甄甄<br>
                 助理主任：岑瑞娟<br>
                 职员：陈燕芳、许婷婷<br>
@@ -155,8 +149,7 @@
                 也让学生们更了解艺术的意义。</li>
             </ul>
 
-            <div
-              style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 0; font-family: sans; padding: 30px;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 0; font-family: sans; padding: 30px;">
               <div class="col-md-4" style="display: grid;">
                 <img class="img-thumbnail" src="img/de_library03.jpg" alt="" />
               </div>
@@ -192,12 +185,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

@@ -1,8 +1,9 @@
 ﻿<?php
-include('connect.php');;
 include("exe/auth_admin.php");
 include("header_admin.php");
+include('connect.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,8 +33,6 @@ include("header_admin.php");
             </svg></a></li>
         <li class="active">
           <?php
-          include('../connect.php');
-
           $id = $_SESSION['id'];
           $result = mysqli_query($conn, "SELECT * FROM zadmin_detail WHERE admin_id='$id'");
           $row = mysqli_fetch_assoc($result);
@@ -59,63 +58,49 @@ include("header_admin.php");
           <div class="panel-body">
 
 
-            <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+            <table data-toggle="table" data-pagination="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
               <thead>
                 <tr>
-                  <th>序号</th>
-                  <th>Group Code</th>
-                  <th>项目名称</th>
-                  <th>指导老师</th>
-                  <th>计划书</th>
-                  <th>预算案</th>
-                  <th>总数额</th>
-                  <th>提交时间</th>
-                  <th>允许删除</th>
-                  <th>教务处</th>
-                  <th>联课处</th>
-                  <th>加减分</th>
-                  <th>总分</th>
+                  <th data-sortable="true">队伍编号</th>
+                  <th data-sortable="true">项目名称</th>
+                  <th data-sortable="true">指导老师</th>
+                  <th data-sortable="true">计划书</th>
+                  <th data-sortable="true">预算案</th>
+                  <th data-sortable="true">总数额 (RM)</th>
+                  <th data-sortable="true">提交时间</th>
+                  <th data-sortable="true">允许删除</th>
+                  <th data-sortable="true">教务处</th>
+                  <th data-sortable="true">联课处</th>
+                  <th data-sortable="true">加减分</th>
+                  <th data-sortable="true">总分</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
 
 
-                $result = mysqli_query($conn, "
-							
-							SELECT a.group_id,a.research_topic,c.teacher_name,b.pdf_id,b.pdf_file,b.pdf_date,
-							b.pdf_allow_edit,d.budget_id,b.pdf_mark01,pdf_mark02,pdf_mark03,
-							d.budget_102,d.budget_202,d.budget_302,d.budget_402,d.budget_502,d.budget_602,d.budget_702,
-							d.budget_802,
-							
-								RANK () OVER ( 
-								ORDER BY a.group_id ASC
-								) group_rank
-							
-							FROM zgroup_proposal b
-							LEFT JOIN zgroup_research a ON a.group_id = b.group_id
-              COLLATE utf8_unicode_ci
-							LEFT JOIN zteacher_detail c ON a.teacher_id = c.teacher_id
-              COLLATE utf8_unicode_ci
-							LEFT JOIN zgroup_budget d ON a.group_id = d.group_id
-              COLLATE utf8_unicode_ci
+                $result = mysqli_query($conn, "SELECT b.*,a.research_topic,a.teacher_name
+                                        FROM zgroup_proposal b
 
+                                        LEFT JOIN zgroup_research a ON a.group_id = b.group_id
+                                        COLLATE utf8_unicode_ci
 
-							");
+                                        GROUP BY b.group_id
+                                      ");
+
                 while ($row = mysqli_fetch_array($result)) {
-
+                  $group_id = $row["group_id"];
 
                   echo '<tr>';
-                  echo '<td>' . $row["group_rank"] . '</td>';
                   echo '<td>' . $row["group_id"] . '</td>';
                   echo '<td>' . $row["research_topic"] . '</td>';
                   echo '<td>' . $row["teacher_name"] . '</td>';
                   echo '<td><a href="pdf/proposal/' . $row["pdf_file"] . '" target="_blank" >' . $row["pdf_file"] . '</a></td>';
-                  echo '<td><a href="admin_view_budget.php?id=' . $row["budget_id"] . '" target="_blank">' . $row["research_topic"] . '</a></td>';
+                  echo '<td><a href="admin_view_budget.php?id=' . $row["group_id"] . '">' . $row["research_topic"] . '</a></td>';
 
-                  $budgettotal = $row["budget_102"] + $row["budget_202"] + $row["budget_302"] + $row["budget_402"] + $row["budget_502"] + $row["budget_602"] + $row["budget_702"] + $row["budget_802"];
-
-                  echo '<td>RM' . $budgettotal . '.00</td>';
+                  $result2 = mysqli_query($conn, "SELECT SUM(budget_amount)FROM zgroup_budget WHERE group_id='$group_id'");
+                  $row2 = $result2->fetch_assoc();
+                  echo '<td>' . $row2['SUM(budget_amount)'] . '</td>';
 
                   echo '<td>' . $row["pdf_date"] . '</td>';
 

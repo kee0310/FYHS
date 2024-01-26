@@ -1,7 +1,8 @@
 ﻿<?php
-include('connect.php');;
+session_start();
 include("exe/auth_teacher.php");
 include("header_teacher.php");
+include('connect.php');
 ?>
 <!DOCTYPE html>
 
@@ -53,24 +54,20 @@ include("header_teacher.php");
 
 
           <?php
-          $result = mysqli_query($conn, "SELECT * FROM zteacher_detail WHERE teacher_id='$id'");
-          $row = mysqli_fetch_assoc($result);
-          $teacher_id = $row['teacher_id'];
+          $result = mysqli_query(
+            $conn,
+            "SELECT a.*, c.research_topic 
+        
+          FROM zgroup_finalreport a 
 
+          LEFT JOIN zgroup_research c
+          ON a.group_id = c.group_id 
+          COLLATE utf8_unicode_ci 
 
-          $id = $_SESSION['id'];
-          $result = mysqli_query($conn, "
+          where c.teacher_name='$teacher_name' 
+          ORDER BY a.group_id ASC"
+          );
 
-			SELECT a.research_topic,a.group_id,b.pdf_file,b.pdf_date
-			FROM zgroup_finalreport b
-			LEFT JOIN zgroup_research a ON a.group_id = b.group_id
-			COLLATE utf8_unicode_ci
-			
-			where a.teacher_id='$teacher_id'
-
-			ORDER BY a.group_id ASC
-			
-			");
           while ($row = mysqli_fetch_array($result)) {
           ?>
 

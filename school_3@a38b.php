@@ -40,17 +40,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner06.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner06.jpg) center; background-size: cover;">
       <div class="container">
         <div class="col-md-6">
           <h2>楼宇</h2>
@@ -78,8 +73,7 @@
       <div class="container" style="padding: 0; background: black; ">
 
         <!-- First Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc03.jpg) bottom; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc03.jpg) bottom; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInRight" data-animation-delay="02">
             <p class="title">丹斯里林梧桐大礼堂</p><br>
             丹斯里林梧桐大礼堂于2004年12月落成，并于2007年4月14日盛大欢庆落成开幕志庆，总建设耗资约马币400万令吉，建设工程于2003年6月开始，耗时1年5个月。<br><br>
@@ -91,8 +85,7 @@
 
 
         <!-- Second Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc06.jpg) bottom; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc06.jpg) bottom; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInLeft" data-animation-delay="02">
             <p class="title">中华体育场</p><br>
             中华体育场经于2004年12月落成，并于2007年8月12日盛大欢庆落成开幕典礼，总建设耗资约马币300万令吉，建设工程于2003年6月开始，耗时1年5个月完成。<br><br>
@@ -104,8 +97,7 @@
 
 
         <!-- Third Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc08.jpg) left bottom; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc08.jpg) left bottom; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInRight" data-animation-delay="02">
             <p class="title">李光前及陈爱礼教学楼</p><br>
             李光前教学楼及陈爱礼教学楼经于2004年12月落成，并于2007年8月12日盛大欢庆落成开幕志庆。此两栋教学楼建设耗资约马币600万令吉，建设工程于2003年6月开始，耗时1年5个月完成。<br><br>
@@ -117,8 +109,7 @@
 
 
         <!-- Fourth Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc04.jpg) center; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc04.jpg) center; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInLeft" data-animation-delay="02">
             <p class="title">郑格如综合大楼</p><br>
             郑格如综合大楼于2006年12月落成并于2007年3月17日盛大欢庆落成开幕志庆，总建设耗资约马币450万令吉，建设工程于2005年8月开始，耗时1年3个月完成。<br><br>
@@ -130,8 +121,7 @@
 
 
         <!-- Fifth Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc05.jpg) bottom left; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc05.jpg) bottom left; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInRight" data-animation-delay="02">
             <p class="title">宽友图书馆</p><br>
             宽友图书楼于2006年12月落成，并于2007年8月12日盛大欢庆落成开幕志庆，总建设耗资约马币200万令吉，建设工程于2005年8月开始，属于宽中古来分校第二期建校工程建设。<br><br>
@@ -144,8 +134,7 @@
 
 
         <!-- Sixth Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc07.jpg) top right; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc07.jpg) top right; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInLeft" data-animation-delay="02">
             <p class="title">丹斯里高级拿督张愈昌技职楼</p><br>
             丹斯里高级拿督张愈昌技职楼于2007年8月4日举行落成仪式，建设耗资约马币200万令吉，共有4层楼，内设餐饮科实习室、电机科实习室、家政室等。<br><br>
@@ -157,8 +146,7 @@
 
 
         <!-- Seventh Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc09.jpg) bottom left; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc09.jpg) bottom left; background-size: cover; padding-right: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInRight" data-animation-delay="02">
             <p class="title">学生活动楼</p><br>
             学生活动楼于2006年12月落成，并于2007年8月12日盛大欢庆落成开幕志庆，建设工程于2005年8月开始，属于宽中古来分校第二期建校工程建设。<br><br>
@@ -169,8 +157,7 @@
 
 
         <!-- Eighth Part Start -->
-        <div class="intro"
-          style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc10.jpg) bottom right; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
+        <div class="intro" style="background: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1)), url(img/sc10.jpg) bottom right; background-size: cover; padding-left: clamp(100px, 50vw, 50vw);">
           <div data-animation="fadeInLeft" data-animation-delay="02">
             <p class="title">科学楼</p><br>
             科学楼于2006年12月落成，并于2007年8月12日盛大欢庆落成开幕志庆，科学楼属于宽中古来分校第二期建校工程建设，比邻于丹斯里高级拿督张愈昌技职楼旁。<br><br>
@@ -184,12 +171,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

@@ -123,17 +123,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/organization/org05.jpg) center; background-size: cover;">
+    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/organization/org05.jpg) center; background-size: cover;">
       <div class="container" style="position: relative;">
         <div class="col-md-6">
           <h2>事务处</h2>
@@ -170,12 +165,9 @@
                 工作范围
               </h1>
               <div style="display: flex;">
-                <img src="img/de_general07.jpg" alt="园艺保养" title="园艺保养" data-animation="fadeInUp"
-                  data-animation-delay="01" />
-                <img src="img/de_general08.jpg" alt="食堂管理" title="食堂管理" data-animation="fadeInUp"
-                  data-animation-delay="02" />
-                <img src="img/de_general09.jpg" alt="贩卖部管理" title="贩卖部管理" data-animation="fadeInUp"
-                  data-animation-delay="03" />
+                <img src="img/de_general07.jpg" alt="园艺保养" title="园艺保养" data-animation="fadeInUp" data-animation-delay="01" />
+                <img src="img/de_general08.jpg" alt="食堂管理" title="食堂管理" data-animation="fadeInUp" data-animation-delay="02" />
+                <img src="img/de_general09.jpg" alt="贩卖部管理" title="贩卖部管理" data-animation="fadeInUp" data-animation-delay="03" />
               </div>
               <ul class="col-md-8 col-xs-12" style="margin: auto" data-animation="fadeInUp" data-animation-delay="01">
                 <li data-animation="fadeInUp" data-animation-delay="01">庶务与维修设备</li>
@@ -190,12 +182,9 @@
                 <li data-animation="fadeInUp" data-animation-delay="01">校园整洁</li>
               </ul>
               <div style="display: flex;">
-                <img src="img/de_general10.jpg" alt="校园保安" title="校园保安" data-animation="fadeInUp"
-                  data-animation-delay="01" />
-                <img src="img/de_general11.jpg" alt="缴费" title="缴费" data-animation="fadeInUp"
-                  data-animation-delay="02" />
-                <img src="img/de_general12.jpg" alt="校园整洁" title="校园整洁" data-animation="fadeInUp"
-                  data-animation-delay="03" />
+                <img src="img/de_general10.jpg" alt="校园保安" title="校园保安" data-animation="fadeInUp" data-animation-delay="01" />
+                <img src="img/de_general11.jpg" alt="缴费" title="缴费" data-animation="fadeInUp" data-animation-delay="02" />
+                <img src="img/de_general12.jpg" alt="校园整洁" title="校园整洁" data-animation="fadeInUp" data-animation-delay="03" />
               </div>
             </div>
           </div>
@@ -212,13 +201,11 @@
                 （二）场地租用：一年内，礼堂及大讲堂租用各达 18 次<br>
                 （三）预防故障维修：每个月不超过 1 次故障造成教学停顿或顾客投诉
               </p>
-              <!-- First document -->
               <div style="display: flex; flex-wrap: wrap;">
-                <div class="document" onclick="window.open('doc/document01.pdf', '_blank')" data-animation="fadeInUp"
-                  data-animation-delay="01">
+                <!-- First document -->
+                <div class="document" onclick="window.open('doc/document01.pdf', '_blank')" data-animation="fadeInUp" data-animation-delay="01">
                   <div class="content" style="margin: -20px; padding-left: 15px;">
-                    <iframe src="doc/document01.pdf#zoom=50"
-                      style=" pointer-events: none; width: 100%; height: 200px;"></iframe>
+                    <iframe src="doc/document01.pdf#zoom=50" style=" pointer-events: none; width: 100%; height: 200px;"></iframe>
                   </div>
                   <p style="margin-top: 25px; padding: 0 16px">
                     2022年第二期至第四期学杂费缴费通知书
@@ -228,11 +215,9 @@
                   </div>
                 </div>
                 <!-- Second document -->
-                <div class="document" onclick="window.open('doc/document02.pdf', '_blank')" data-animation="fadeInUp"
-                  data-animation-delay="02">
+                <div class="document" onclick="window.open('doc/document02.pdf', '_blank')" data-animation="fadeInUp" data-animation-delay="02">
                   <div class="content" style="margin: -20px; padding-left: 15px;">
-                    <iframe src="doc/document02.pdf#zoom=50"
-                      style=" pointer-events: none; width: 100%; height: 200px;"></iframe>
+                    <iframe src="doc/document02.pdf#zoom=50" style=" pointer-events: none; width: 100%; height: 200px;"></iframe>
                   </div>
                   <p style="margin-top: 25px; padding: 0 16px">
                     使用网上付款缴交学费注意事项
@@ -302,12 +287,8 @@
     </div>
     <!-- End content -->
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->

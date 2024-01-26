@@ -13,7 +13,7 @@ include('connect.php');;
   <?php
   session_start();
   include("header.php");
-  require('../connect.php');
+  require('connect.php');
   ?>
 
 </head>

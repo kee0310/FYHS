@@ -51,17 +51,12 @@
   <!-- Container -->
   <div id="container">
 
-    <!-- Start Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+    <!-- Header -->
+    <?php include('header.php') ?>
 
 
     <!-- Start Page Banner -->
-    <div class="page-banner"
-      style="background: url(img/banner_competition2020.jpg) center; background-size: cover; padding-top: 200px;">
+    <div class="page-banner" style="background: url(img/banner_competition2020.jpg) center; background-size: cover; padding-top: 200px;">
       <div class="container" style="margin: 0; width: 100%">
         <div class="col-md-6">
           <h2 style="font-weight: bold; text-shadow: 3px 3px 2px rgb(0, 0, 0, 0.6), 0 0 2px rgb(0, 0, 0, 0.5)">
@@ -93,9 +88,7 @@
 
             <div class="wrap" style="" align="center">
               <input type="radio" name="ball_type" id="football" checked>
-              <label for="football" class="stage "
-                style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp"
-                data-animation-delay="01">
+              <label for="football" class="stage " style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp" data-animation-delay="01">
                 <figure class="ball bubble">
                   <img src="img/c1.png" style="height: inherit; padding: 10px">
                 </figure>
@@ -103,9 +96,7 @@
               </label>
 
               <input type="radio" name="ball_type" id="pingpong">
-              <label for="pingpong" class="stage"
-                style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp"
-                data-animation-delay="02">
+              <label for="pingpong" class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp" data-animation-delay="02">
                 <figure class="ball bubble">
                   <img src="img/c2.png" style="width: inherit; padding: 20px">
                 </figure>
@@ -113,9 +104,7 @@
               </label>
 
               <input type="radio" name="ball_type" id="basketball">
-              <label for="basketball" class="stage"
-                style="width: clamp(100px, 30vw, 150px); height: clamp(100px, 30vw, 150px);" data-animation="fadeInUp"
-                data-animation-delay="01">
+              <label for="basketball" class="stage" style="width: clamp(100px, 30vw, 150px); height: clamp(100px, 30vw, 150px);" data-animation="fadeInUp" data-animation-delay="01">
                 <figure class="ball bubble">
                   <img class="img" src="img/c3.png" style="height: inherit; padding: 20px">
                 </figure>
@@ -123,9 +112,7 @@
               </label>
 
               <input type="radio" name="ball_type" id="badminton">
-              <label for="badminton" class="stage"
-                style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp"
-                data-animation-delay="03">
+              <label for="badminton" class="stage" style="width: clamp(40px, 23vw, 60px); height: clamp(40px, 23vw, 60px);" data-animation="fadeInUp" data-animation-delay="03">
                 <figure class="ball bubble">
                   <img src="img/c4.png" style="width: inherit; padding: 15px;">
                 </figure>
@@ -133,9 +120,7 @@
               </label>
 
               <input type="radio" name="ball_type" id="volleyball">
-              <label for="volleyball" class="stage"
-                style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp"
-                data-animation-delay="02">
+              <label for="volleyball" class="stage" style="width: clamp(70px, 25vw, 100px); height: clamp(70px, 25vw, 100px);" data-animation="fadeInUp" data-animation-delay="02">
                 <figure class="ball bubble">
                   <img src="img/c5.png" style="height: inherit; padding: 15px">
                 </figure>
@@ -1138,12 +1123,8 @@
     <!-- End content -->
 
 
-    <!-- Start Footer -->
-    <?php
-    $footer = file_get_contents('footer.php');
-    echo $footer;
-    ?>
-    <!-- End Footer -->
+    <!-- Footer -->
+    <?php include('footer.php'); ?>
 
   </div>
   <!-- End Container -->
@@ -1154,20 +1135,29 @@
   <script type="text/javascript" src="js/script.js"></script>
 
   <script>
-    $('.wrap').click(function () {
+    $('.wrap').click(function() {
       if ($('input#football').is(':checked')) {
-        $('.content1').animate({ 'margin-left': '0' });
+        $('.content1').animate({
+          'margin-left': '0'
+        });
       } else if ($('input#pingpong').is(':checked')) {
-        $('.content1').animate({ 'margin-left': '-100%' });
+        $('.content1').animate({
+          'margin-left': '-100%'
+        });
       } else if ($('input#basketball').is(':checked')) {
-        $('.content1').animate({ 'margin-left': '-200%' });
+        $('.content1').animate({
+          'margin-left': '-200%'
+        });
       } else if ($('input#badminton').is(':checked')) {
-        $('.content1').animate({ 'margin-left': '-300%' });
+        $('.content1').animate({
+          'margin-left': '-300%'
+        });
       } else if ($('input#volleyball').is(':checked')) {
-        $('.content1').animate({ 'margin-left': '-400%' });
+        $('.content1').animate({
+          'margin-left': '-400%'
+        });
       }
     });
-
   </script>
 </body>
 
