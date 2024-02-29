@@ -30,7 +30,7 @@ $sql = "UPDATE zstudent_mark
 
 if (mysqli_query($conn, $sql)) {
 
-  header("location: ../admin_dashboard09.php");
+  header("location: ../admin_researchReport.php");
   exit();
 } else {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);

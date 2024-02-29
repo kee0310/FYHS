@@ -61,20 +61,20 @@
           $end_time_view     = 20251025235900;
 
           $id = $_SESSION['id'];
-          $result = mysqli_query($conn, "SELECT count(*) as total, pdf_allow_edit from zgroup_finalreport where group_id='$id'");
+          $result = mysqli_query($conn, "SELECT count(*) as total, editable from zgroup_finalreport where group_id='$id'");
           $data = mysqli_fetch_assoc($result);
 
           $totalapply = $data['total'];
-          $pdf_allow_edit = $data['pdf_allow_edit'];
+          $editable = $data['editable'];
 
           if ($start_time_view > $date) {
             echo "还未开放上载：-";
           } elseif ($end_time_view < $date) {
             echo "上载已经截止：-";
           } elseif ($totalapply >= 1) {
-            if ($pdf_allow_edit == 1) {
+            if ($editable == 1) {
               echo "已完成上载最终报告。如需修改最终报告，请将现有的最终报告删除。";
-              echo '<a href="exe/delete_student_finalreport.php?id=' . $id . '" title="删除最终报告">删除最终报告</a>';
+              echo '<a href="exe/delete_student_pdf.php?file=finalreport&id=' . $id . '" title="删除最终报告">删除最终报告</a>';
             } else {
               echo "已完成上载最终报告。如需修改最终报告，请将现有的最终报告删除。";
               echo '<span style="color: red">无法删除最终报告</span>';
@@ -89,12 +89,12 @@
                 <p>档案命名：<span style="color:red"></span>组长学号 + finalreport</p>
                 <p>例：162001finalreport</p>
                 <br>
-                <input type="file" name="file" accept=".pdf" /><br>
+                <input id="file" type="file" name="file" accept=".pdf" /><br>
               </div>
               <br>
               <div>提交日期：2023年8月1日（星期二） 至 2023年9月23日（星期六）</div>
 
-              <div align="center"><button type="submit" name="btn-upload" class="submit-btn">upload</button></div>
+              <div align="center"><button type="submit" name="btn-upload" class="submit-btn type1">upload</button></div>
             </form>
 
           <?php
@@ -183,6 +183,23 @@
         </div>
       </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $('.submit-btn.type1').hide();
+
+      $('#file').on('change', function() {
+        const size =
+          (this.files[0].size / 1024 / 1024).toFixed(2);
+
+        if (size > 8) {
+          alert("文件过大，请压缩至小于 8MB");
+          $('.submit-btn.type1').hide();
+        } else {
+          $('.submit-btn.type1').show();
+        }
+      });
+    </script>
 
 </body>
 

@@ -29,7 +29,7 @@ if (isset($_POST['btn-upload'])) {
     // if upload success
     if (move_uploaded_file($file_loc, $folder . $final_file)) {
       // insert to database
-      mysqli_query($conn, "INSERT INTO zgroup_finalreport(group_id, pdf_allow_edit,pdf_file,pdf_date) VALUES (N'$id',N'1',N'$final_file',N'$date')");
+      mysqli_query($conn, "INSERT INTO zgroup_finalreport(group_id, editable,pdf_file,pdf_date) VALUES (N'$id',N'1',N'$final_file',N'$date')");
       echo "<meta http-equiv=REFRESH CONTENT=1;url=../student_index.php>";
 
       // alert if upload unsuccess

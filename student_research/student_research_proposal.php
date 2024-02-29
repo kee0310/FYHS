@@ -54,11 +54,11 @@
           $end_time_view     = 20240425235900;
 
           $id = $_SESSION['id'];
-          $result = mysqli_query($conn, "SELECT count(*) as total,pdf_allow_edit from zgroup_proposal where group_id='$id'");
+          $result = mysqli_query($conn, "SELECT count(*) as total,editable from zgroup_proposal where group_id='$id'");
           $data = mysqli_fetch_assoc($result);
 
           $totalapply = $data['total'];
-          $pdf_allow_edit = $data['pdf_allow_edit'];
+          $editable = $data['editable'];
 
 
           if ($start_time_view > $date) {
@@ -67,9 +67,9 @@
             echo "上载已经截止：2023年3月1日（星期三） 至 2023年3月25日（星期六）";
           } elseif ($totalapply >= 1) {
 
-            if ($pdf_allow_edit == 1) {
+            if ($editable == 1) {
               echo "已完成上载计划书。如需修改计划书，请将现有的计划书删除。";
-              echo '<a href="exe/delete_student_proposal.php?id=' . $id . '" title="删除计划书">删除计划书</a>';
+              echo '<a href="exe/delete_student_pdf.php?file=proposal&id=' . $id . '" title="删除计划书">删除计划书</a>';
             } else {
               echo "已完成上载计划书。如需修改计划书，请将现有的计划书删除。";
               echo '<span style="color: red">无法删除计划书</span>';
@@ -90,7 +90,7 @@
                 <div class="panel-body">
                   <p>档案命名：<span style="color:red">组长学号</span> + proposal</p>
                   <p>例：162001proposal</p><br>
-                  <input type="file" name="file" accept=".pdf" style="margin-left: 20px" />
+                  <input id="file" type="file" name="file" accept=".pdf" style="margin-left: 20px" />
                 </div><br>
 
                 <p>提交日期：2023 / 3 / 1 (三)&emsp;至&emsp;2023 / 3 / 25 (六)</p><br>
@@ -115,6 +115,23 @@
       </div>
     </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $('.submit-btn').hide();
+
+    $('#file').on('change', function() {
+      const size =
+        (this.files[0].size / 1024 / 1024).toFixed(2);
+
+      if (size > 8) {
+        alert("文件过大，请压缩至小于 8MB");
+        $('.submit-btn').hide();
+      } else {
+        $('.submit-btn').show();
+      }
+    });
+  </script>
 
 </body>
 

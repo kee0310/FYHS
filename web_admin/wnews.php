@@ -28,7 +28,7 @@ include("auth_admin2.php");
   <script src="lib/jquery.js" type="text/javascript"></script>
   <script src="src/facebox.js" type="text/javascript"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function ($) {
+    jQuery(document).ready(function($) {
       $('a[rel*=facebox]').facebox({
         loadingImage: 'src/loading.gif',
         closeImage: 'src/closelabel.png'
@@ -83,13 +83,11 @@ include("auth_admin2.php");
     <div class="row" style="margin: 20px 0;">
       <div class="panel panel-default">
         <div class="panel-heading" style="width: 100%">最新消息
-          <a class="btn btn-primary" title="Create" href="wannouncement_create.php"
-            style="float: right; background: green; border: green; font-size: large; padding: 10px 50px;">New</a>
+          <a class="btn btn-primary" title="Create" href="wnews_create.php" style="float: right; background: green; border: green; font-size: large; padding: 10px 50px;">New</a>
         </div>
 
         <div class="panel-body" style="height: fit-content;">
-          <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true"
-            data-search="true" data-select-item-name="toolbar1" style="font-size:12px">
+          <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" style="font-size:12px">
             <thead>
               <tr>
                 <th>ID</th>
@@ -105,9 +103,9 @@ include("auth_admin2.php");
             <tbody>
               <?php
               include('connect.php');
-              $result = mysqli_query($conn, "SELECT *	FROM wnews ORDER BY news_date DESC");
+              $result = mysqli_query($conn, "SELECT *	FROM wnews ORDER BY news_date DESC, news_id DESC");
               while ($row = mysqli_fetch_array($result)) {
-                ?>
+              ?>
                 <tr>
                   <td>
                     <?php echo $row['news_id'] ?>
@@ -125,21 +123,18 @@ include("auth_admin2.php");
                     <?php echo $row['news_content'] ?>
                   </td>
                   <td>
-                    <div type="button" class="btn btn-primary"
-                      onclick="window.open('../news1@a38b.php?id=<?php echo $row['news_id'] ?>', '_self')">
+                    <div type="button" class="btn btn-primary" onclick="window.open('../news_detail.php?id=<?php echo $row['news_id'] ?>', '_self')">
                       View
                     </div>
                   </td>
                   <td>
-                    <a class="btn btn-primary" title="Edit"
-                      href="wnews_edit.php?id=<?php echo $row['news_id'] ?>">Edit</a>
+                    <a class="btn btn-primary" title="Edit" href="wnews_edit.php?id=<?php echo $row['news_id'] ?>">Edit</a>
                   </td>
                   <td>
-                    <a class="btn btn-primary" title="Delete" style="background: red; border-color: red;"
-                      href="wnews_delete.php?id=<?php echo $row['news_id'] ?>">Delete</a>
+                    <a class="btn btn-primary" title="Delete" style="background: red; border-color: red;" href="wnews_delete.php?id=<?php echo $row['news_id'] ?>">Delete</a>
                   </td>
                 </tr>
-                <?php
+              <?php
               }
               ?>
             </tbody>
@@ -159,17 +154,17 @@ include("auth_admin2.php");
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/bootstrap-table.js"></script>
   <script>
-    !function ($) {
-      $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+    ! function($) {
+      $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
         $(this).find('em:first').toggleClass("glyphicon-minus");
       });
       $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
     }(window.jQuery);
 
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
     })
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
     })
   </script>

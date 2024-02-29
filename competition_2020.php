@@ -64,7 +64,7 @@
         </div>
         <div class="col-md-6">
           <ul class="breadcrumbs" style="text-shadow: 0px 0px 8px rgb(0, 0, 0, 1);">
-            <a href="index@a38b.php">
+            <a href="index.php">
               <li><i>首页 /&ensp;</i></li>
             </a>
             <a href="">

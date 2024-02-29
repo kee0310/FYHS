@@ -29,7 +29,7 @@ foreach ($_FILES["file"]["tmp_name"] as $key => $tmp_name) {
       mysqli_query(
         $conn,
         "INSERT INTO wannouncement_img
-          VALUES (NULL, '$file_name', '$announcement_id')"
+          VALUES (NULL, '$file_name', NULL, '$announcement_id')"
       );
     } else {
       $filename = basename($file_name, $ext);
@@ -38,7 +38,7 @@ foreach ($_FILES["file"]["tmp_name"] as $key => $tmp_name) {
       mysqli_query(
         $conn,
         "INSERT INTO wannouncement_img 
-          VALUES (NULL, '$newFileName', '$announcement_id')"
+          VALUES (NULL, '$newFileName', NULL, '$announcement_id')"
       );
     }
   } else {
@@ -47,4 +47,3 @@ foreach ($_FILES["file"]["tmp_name"] as $key => $tmp_name) {
 }
 
 header("location: wannouncement.php");
-?>

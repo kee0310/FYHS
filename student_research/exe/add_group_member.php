@@ -2,6 +2,7 @@
 
 <?php
 include('../connect.php');
+header('Content-type:text/html; charset=utf-8');
 
 $student_id = $_POST['student_id'];
 $group_id = $_POST['group_id'];

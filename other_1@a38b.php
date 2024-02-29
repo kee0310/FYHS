@@ -126,101 +126,77 @@
 
 <body>
 
-  <!-- Container -->
-  <div id="container">
-
-    <!-- Header -->
-    <?php
-    $header = file_get_contents('header.php');
-    echo $header;
-    ?>
-    <!-- End Header -->
+  <!-- Header -->
+  <?php include('header.php') ?>
 
 
-    <!-- Start Page Banner -->
-    <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner16.jpg) center; background-size: cover;">
-      <div class="container">
-        <div class="col-md-6">
-          <h2>其他</h2>
-        </div>
-        <div class="col-md-6">
-          <ul class="breadcrumbs">
-            <a href="index@a38b.php">
-              <li><i>首页 /&ensp;</i></li>
-            </a>
-            <a href="">
-              <li><i>其他</i></li>
-            </a>
-          </ul>
-        </div>
+  <!-- Start Page Banner -->
+  <div class="page-banner" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1)), url(img/subbanner16.jpg) center; background-size: cover;">
+    <div class="container">
+      <div class="col-md-6">
+        <h2>其他</h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="breadcrumbs">
+          <a href="index.php">
+            <li><i>首页 /&ensp;</i></li>
+          </a>
+          <a href="">
+            <li><i>其他</i></li>
+          </a>
+        </ul>
       </div>
     </div>
-    <!-- End Page Banner -->
+  </div>
+  <!-- End Page Banner -->
 
 
-    <!-- Start Content -->
-    <div id="content">
-      <div class="container">
-        <div class="page-content">
+  <!-- Start Content -->
+  <div id="content">
+    <div class="container">
+      <div class="page-content" align="center">
 
 
-          <div class="row" align="center">
-            <div class="col-md-12">
-              <div class="vertical-tab" role="tabpanel">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+        <div class="vertical-tab" role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
 
-                  <li role="presentation" class="active"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">宽友特讯</a></li>
-                  <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">新闻剪报</a></li>
-                  <li role="presentation"><a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab">其他刊物</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content tabs">
-                  <div role="tabpanel" class="tab-pane fade in active" id="Section3">
-                    <h3>宽友特讯</h3>
-                    <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
-                      consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
-                      iaculis mi varius, mi eros viverra massa.</p>
-                  </div>
-                  <div role="tabpanel" class="tab-pane fade" id="Section4">
-                    <h3>新闻剪报</h3>
-                    <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
-                      consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
-                      iaculis mi varius, mi eros viverra massa.</p>
-                  </div>
-                  <div role="tabpanel" class="tab-pane fade" id="Section5">
-                    <h3>其他刊物</h3>
-                    <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
-                      consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
-                      iaculis mi varius, mi eros viverra massa.</p>
-                  </div>
-                </div>
-              </div>
+            <li role="presentation" class="active"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">宽友特讯</a></li>
+            <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">新闻剪报</a></li>
+            <li role="presentation"><a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab">其他刊物</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content tabs">
+            <div role="tabpanel" class="tab-pane fade in active" id="Section3">
+              <h3>宽友特讯</h3>
+              <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
+                consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
+                iaculis mi varius, mi eros viverra massa.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section4">
+              <h3>新闻剪报</h3>
+              <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
+                consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
+                iaculis mi varius, mi eros viverra massa.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Section5">
+              <h3>其他刊物</h3>
+              <p style="text-align:justify">Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae
+                consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non
+                iaculis mi varius, mi eros viverra massa.</p>
             </div>
           </div>
-
-
-
-
         </div>
+
       </div>
     </div>
-    <!-- End content -->
-
-    <!-- Footer -->
-    <?php include('footer.php'); ?>
-
   </div>
-  <!-- End Container -->
-
-  <!-- Go To Top Link -->
-  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-  <script type="text/javascript" src="js/script.js"></script>
-
 </body>
+
+<!-- Footer -->
+<?php include('footer.php'); ?>
 
 </html>

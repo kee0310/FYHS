@@ -1,13 +1,19 @@
 ﻿<!--
-
-	This page will be display for first time login student.
+	This page will be display for the first time login student.
 	* Ref table in database: "zstudent_detail"
 
-	- "student_login_number" will be generate randomly if null.
-	- It will combine with old password to form a "student_password_new".
+	- 'student_login_number' will be generate randomly if null.
+	- It will combine with old password to form a 'student_password_new'
 	- Student will need to logout and login again with their new password.
-
 -->
+
+<?php
+session_start();
+include("exe/auth.php");
+require("header_student_first_login.php");
+include('connect.php');;
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -17,13 +23,6 @@
   <meta charset="utf-8">
 
   <title>综合实践活动课程 | 首次登入</title>
-
-  <?php
-  session_start();
-  include("exe/auth.php");
-  require("header_student_first_login.php");
-  include('connect.php');;
-  ?>
 
 </head>
 

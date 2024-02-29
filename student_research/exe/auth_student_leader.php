@@ -11,6 +11,7 @@
 -->
 <?php
 include('../connect.php');
+header('Content-type:text/html; charset=utf-8');
 
 $id = $_SESSION['id'];
 $result = mysqli_query($conn, "SELECT * from zstudent_group where student_id='$id' and group_leader='1'");

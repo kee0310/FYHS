@@ -25,6 +25,12 @@
 
 </head>
 
+<style>
+  .fa {
+    width: 25px;
+  }
+</style>
+
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -51,36 +57,36 @@
       </div>
     </form>
     <ul class="nav menu">
-      <li><a title="学生账号" href="admin_dashboard01.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>学生账号</a></li>
-      <li><a title="组别排列" href="admin_dashboard02.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>组别排列</a></li>
-      <li><a title="组员人数" href="admin_dashboard03.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>组员人数</a></li>
-      <li><a title="申请表" href="admin_dashboard04.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>申请表</a></li>
-      <li><a title="老师组别人数" href="admin_dashboard05.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>老师组别人数</a></li>
-      <li><a title="预算案" href="admin_dashboard06.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>预算案</a></li>
-      <li><a title="计划书" href="admin_dashboard07.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>计划书</a></li>
-      <li><a title="活动报告" href="admin_dashboard09.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>活动报告</a></li>
-      <li><a title="最终活动报告" href="admin_dashboard11.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>最终活动报告</a></li>
-      <li><a title="学生分数" href="admin_dashboard08.php"><svg class="glyph stroked app-window">
-            <use xlink:href="#stroked-app-window"></use>
-          </svg>学生分数</a></li>
+      <li>
+        <a title="学生账号" href="admin_allStudent.php"><i class="fa fa-search"></i>学生账号</a>
+      </li>
+      <li>
+        <a title="组别排列" href="admin_allGroupedStudent.php"><i class="fa fa-search"></i>组别排列</a>
+      </li>
+      <li>
+        <a title="组员人数" href="admin_allGroup.php"><i class="fa fa-search"></i>组员人数</a>
+      </li>
+      <li>
+        <a title="老师组别人数" href="admin_allTeacher.php"><i class="fa fa-search"></i>老师组别人数</a>
+      </li>
+      <li>
+        <a title="申请表" href="admin_researchApplication.php"><i class="fa fa-pen"></i>申请表</a>
+      </li>
+      <li>
+        <a title="预算案" href="admin_researchBudget.php"><i class="fa fa-pen"></i>预算案</a>
+      </li>
+      <li>
+        <a title="计划书" href="admin_researchProposal.php"><i class="fa fa-pen"></i>计划书</a>
+      </li>
+      <li>
+        <a title="活动报告" href="admin_researchReport.php"><i class="fa fa-pen"></i>活动报告</a>
+      </li>
+      <li>
+        <a title="最终活动报告" href="admin_researchFinalreport.php"><i class="fa fa-pen"></i>最终活动报告</a>
+      </li>
+      <li>
+        <a title="学生分数" href="admin_historyMark.php"><i class="fa fa-folder-open"></i>学生分数</a>
+      </li>
 
       <li role="presentation" class="divider"></li>
       <li><a href="exe/logout.php"><svg class="glyph stroked male-user">
@@ -90,8 +96,11 @@
 
   </div><!--/.sidebar-->
 
+  <script src="js/jquery-1.11.1.min.js"></script>
 
+  <script src="js/bootstrap.min.js"></script>
 
+  <script src="js/bootstrap-table.js"></script>
 
 </body>
 

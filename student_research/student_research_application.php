@@ -158,18 +158,18 @@
           $end_time_view     = 20251025235900;
 
           $id = $_SESSION['id'];
-          $result = mysqli_query($conn, "SELECT count(*) as total, apply_allow_edit from zgroup_research where group_id='$id'");
+          $result = mysqli_query($conn, "SELECT count(*) as total, editable from zgroup_research where group_id='$id'");
           $data = mysqli_fetch_assoc($result);
 
           $totalapply = $data['total'];
-          $apply_allow_edit = $data['apply_allow_edit'];
+          $editable = $data['editable'];
 
           if ($start_time_view > $date) {
             echo "还未开放申请：-";
           } elseif ($end_time_view < $date) {
             echo "申请已经截止：-";
           } elseif ($totalapply >= 1) {
-            if ($apply_allow_edit == 1) {
+            if ($editable == 1) {
               echo "已完成上载申请表格。如需修改申请表格，请将现有的申请表格删除。";
               echo '<a href="exe/delete_student_application.php?id=' . $id . '" title="删除申请表格">删除申请表格</a>';
             } else {
@@ -181,7 +181,6 @@
 
             <form name="apply" action="exe/add_student_application.php" method="post" enctype="multipart/form-data">
               <!-- Hidden property -->
-              <input type="date" value="<?php echo date("Y-m-d"); ?>" name="research_date" style="display: none;">
               <input type="text" value="<?php echo $id; ?>" name="group_id" style="display: none;">
 
               <!-- Select topic -->
@@ -202,7 +201,7 @@
                   <input list="teachers" placeholder="" name="teacher_name">
                   <datalist id="teachers">
                     <?php
-                    $result = mysqli_query($conn, "SELECT teacher_name FROM zteacher_detail ORDER BY teacher_id");
+                    $result = mysqli_query($conn, "SELECT teacher_name FROM zteacher_detail WHERE teacher_role = 'teacher' ORDER BY teacher_id");
                     while ($row = mysqli_fetch_array($result)) {
                       echo '<option value="' . $row["teacher_name"] . '">';
                     }

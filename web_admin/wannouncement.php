@@ -28,7 +28,7 @@ include("auth_admin2.php");
   <script src="lib/jquery.js" type="text/javascript"></script>
   <script src="src/facebox.js" type="text/javascript"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function ($) {
+    jQuery(document).ready(function($) {
       $('a[rel*=facebox]').facebox({
         loadingImage: 'src/loading.gif',
         closeImage: 'src/closelabel.png'
@@ -83,14 +83,12 @@ include("auth_admin2.php");
       <div class="panel panel-default">
         <div class="panel-heading" style="width: 100%">活动/通知/公告
 
-          <a class="btn btn-primary" title="Create" href="wannouncement_create.php"
-            style="float: right; background: green; border: green; font-size: large; padding: 10px 50px;">New</a>
+          <a class="btn btn-primary" title="Create" href="wannouncement_create.php" style="float: right; background: green; border: green; font-size: large; padding: 10px 50px;">New</a>
         </div>
 
 
         <div class="panel-body" style="height: fit-content;">
-          <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true"
-            data-search="true" data-select-item-name="toolbar1" style="font-size:12px">
+          <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" style="font-size:12px">
             <thead>
               <tr>
                 <th>ID</th>
@@ -106,7 +104,7 @@ include("auth_admin2.php");
             <tbody>
               <?php
               include('connect.php');
-              $result = mysqli_query($conn, "SELECT *	FROM wannouncement ORDER BY announcement_date DESC");
+              $result = mysqli_query($conn, "SELECT *	FROM wannouncement ORDER BY announcement_date DESC, announcement_id DESC");
               while ($row = mysqli_fetch_array($result)) {
 
                 echo '<tr>
@@ -127,7 +125,7 @@ include("auth_admin2.php");
                         
                                 <!-- Add image inside the body of modal -->
                                 <div class="modal-body" style="height: 100%">
-                                  <iframe src="http://www1.fyk.edu.my/announcement1@a38b.php?id=' . $row['announcement_id'] . '" frameborder="0" width="100%" height="100%"></iframe>
+                                  <iframe src="http://www1.fyk.edu.my/announcement_detail.php?id=' . $row['announcement_id'] . '" frameborder="0" width="100%" height="100%"></iframe>
                                 </div>
                         
                                 <div class="modal-footer">
@@ -161,17 +159,17 @@ include("auth_admin2.php");
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/bootstrap-table.js"></script>
   <script>
-    !function ($) {
-      $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+    ! function($) {
+      $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
         $(this).find('em:first').toggleClass("glyphicon-minus");
       });
       $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
     }(window.jQuery);
 
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
     })
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
       if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
     })
   </script>

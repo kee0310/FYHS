@@ -169,18 +169,27 @@
             ?>
 
             <form role="form" action="exe/add_student_budget.php" method="post">
-              <div class="col-md-12">
-                <input type="hidden" name="group_id" value="<?php echo $id ?>">
-              </div>
-              <br>
+              <input type="hidden" name="group_id" value="<?php echo $id ?>">
 
               <fieldset class="inputs-set" id="email-list" class="input-field" onchange="">
               </fieldset>
 
-              <div align="center">
-                <button class="btn-add-input" onclick="addField();" type="button">＋</button>
-                <div class="btn-add-input-text">添加项目</div>
-              </div>
+
+              <?php
+              // delete application form if is leader
+              $result = mysqli_query($conn, "SELECT * FROM zgroup_budget where group_id='$id'");
+              $row = mysqli_fetch_array($result);
+              if ($row['group_id'] == $id && $row['editable'] == 1) {
+              ?>
+
+                <div align="center">
+                  <button class="btn-add-input" onclick="addField();" type="button">＋</button>
+                  <div class="btn-add-input-text">添加项目</div>
+                </div>
+
+              <?php
+              }
+              ?>
 
               <div align="center"><button type="submit" class="submit-btn newbtn" style="display: none">确认</button></div>
             </form>
@@ -190,9 +199,7 @@
           ?>
 
             <form role="form" action="exe/add_student_budget.php" method="post">
-              <div class="col-md-12">
-                <input type="hidden" name="group_id" value="<?php echo $id ?>">
-              </div>
+              <input type="hidden" name="group_id" value="<?php echo $id ?>">
 
               <p class="panel-body" style="margin: 30px 0;">
                 备注：请在填写预算时，以<span style="color: red">整数</span>进行填写。

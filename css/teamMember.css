@@ -4,6 +4,7 @@
 }
 
 .team-member .member-photo {
+  width: fit-content;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -18,11 +19,11 @@
 }
 
 .team-member .member-photo img {
-  background: transparent
-    url("http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif")
-    center no-repeat !important;
-  background-size: 50%;
-  width: 75%;
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+  max-width: 140px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .team-member .member-photo .member-name {
@@ -31,11 +32,11 @@
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -o-border-radius: 2px;
-  bottom: 12px;
+  bottom: -10px;
   color: #fff;
   font-size: 18px;
   min-width: 40%;
-  padding: 5px 10px;
+  padding: 2px 10px;
   position: absolute;
   right: 0px;
   z-index: 9994;

@@ -1,5 +1,6 @@
 <?php
 include('../connect.php');
+header('Content-type:text/html; charset=utf-8');
 
 session_start();
 $id = $_SESSION['id'];

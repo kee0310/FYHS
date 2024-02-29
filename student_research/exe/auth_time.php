@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('../connect.php');
+header('Content-type:text/html; charset=utf-8');
+
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $date = date('YmdHis', time());
 

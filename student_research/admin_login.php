@@ -123,7 +123,7 @@ include('connect.php');;
                 if ($num_rows == 1) {
                   // check if password correct 
                   if ($row['admin_password'] == $password) {
-                    echo "<meta http-equiv=REFRESH CONTENT=1;url=admin_dashboard01.php>";
+                    echo "<meta http-equiv=REFRESH CONTENT=1;url=admin_allStudent.php>";
                   } else {
                     echo '⚠ <i>密码错误</i>';
                   }

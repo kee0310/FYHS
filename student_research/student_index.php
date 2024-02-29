@@ -1,14 +1,21 @@
 <!-- 
-
-	This is the first page of the student page.
+	This is the first page of the student site.
   Use to introduce the practical activity.
-
 -->
+
+<?php
+session_start();
+include("exe/auth.php");
+require("header_student.php");
+include('connect.php');
+?>
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
+
   <meta charset="utf-8">
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -17,12 +24,6 @@
 
   <title>综合实践活动课程</title>
 
-  <?php
-  session_start();
-  include("exe/auth.php");
-  require("header_student.php");
-  include('connect.php');
-  ?>
 </head>
 
 <style>
@@ -100,7 +101,6 @@
       background: var(--second-color);
       font-weight: bold;
       color: white;
-      text-shadow: 2px 2px rgba(255, 255, 255, 0.2);
       margin: 10px 0;
       margin-right: 20px;
       z-index: 10;
@@ -309,7 +309,7 @@
                   $student_email = $row['student_email'];
                   $ch_name = preg_replace('/\P{Han}+/u', '', $student_name);
                   $en_name = trim(strtolower(preg_replace('/[^a-zA-Z0-9\' ]/', '', $student_name)));
-                  $first_character = strtoupper(mb_substr(($ch_name ? $ch_name :  $en_name),  0, 1,  "utf-8"));
+                  $first_character = mb_substr(($ch_name ? $ch_name :  $en_name),  0, 1,  "utf-8");
               ?>
 
                   <details>
@@ -335,9 +335,9 @@
 
                     <?php
                     // remove member
-                    if ($group_id == $id && $student_id != $id) {
-                      echo '<div class="delete" align="right"><a href="exe/delete_group_member.php?id=' . $student_id . '"><i class="fa-solid fa-user-slash"></i> 移除组员</a></div>';
-                    }
+                    //if ($group_id == $id && $student_id != $id) {
+                    //  echo '<div class="delete" align="right"><a href="exe/delete_group_member.php?id=' . $student_id . '"><i class="fa-solid fa-user-slash"></i> 移除组员</a></div>';
+                    //}
                     ?>
                   </details>
 
@@ -404,7 +404,7 @@
               while ($row = mysqli_fetch_array($result)) {
 
                 // delete application form if is leader
-                if ($group_id == $id && $row['apply_allow_edit'] == 1) {
+                if ($group_id == $id && $row['editable'] == 1) {
                   echo '<div class="delete" align="right"><a href="exe/delete_student_application.php?id=' . $id . '" style="font-size: larger; margin: 10px;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a></div>';
                 }
             ?>
@@ -437,8 +437,10 @@
                       if ($row['status'] == null) {
                         echo "<span style='color: CornflowerBlue'>未审查</span>";
                       } elseif ($row['status'] == 0) {
-                        echo "<span style='color: red'>不批准</span>";
+                        echo "<span style='color: CornflowerBlue'>待审查</span>";
                       } elseif ($row['status'] == 1) {
+                        echo "<span style='color: red'>不批准</span>";
+                      } elseif ($row['status'] == 2) {
                         echo "<span style='color: MediumSeaGreen'>批准</span>";
                       } else {
                         echo "Error";
@@ -492,7 +494,8 @@
 
             if ($num_rows > 0) {
               // delete budget form if is leader
-              if ($group_id == $id) {
+              $row = mysqli_fetch_array($result);
+              if ($row['group_id'] == $id && $row['editable'] == 1) {
                 echo '<div class="delete" align="right"><a href="student_research_budget.php" style="font-size: larger; margin: 10px; background: #30a5ff;">修改 <i class="fas fa-pen-to-square" style="transform: scale(0.8); "></i></a></div>';
               }
             ?>
@@ -590,8 +593,8 @@
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete application form if is leader
-                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
-                    echo '<a href="exe/delete_student_proposal.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
+                  if ($group_id == $id && $row['editable'] == 1) {
+                    echo '<a href="exe/delete_student_pdf.php?file=proposal&id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
                 </div>
@@ -644,8 +647,8 @@
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete report if is leader
-                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
-                    echo '<a href="exe/delete_student_report.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
+                  if ($group_id == $id && $row['editable'] == 1) {
+                    echo '<a href="exe/delete_student_pdf.php?file=report&id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
                 </div>
@@ -697,8 +700,8 @@
                 <div class="delete col-sm-1 col-xs-2" align="right" style="width: min-content; padding: 10px 0;" ;>
                   <?php
                   // delete report if is leader
-                  if ($group_id == $id && $row['pdf_allow_edit'] == 1) {
-                    echo '<a href="exe/delete_student_finalreport.php?id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
+                  if ($group_id == $id && $row['editable'] == 1) {
+                    echo '<a href="exe/delete_student_pdf.php?file=finalreport&id=' . $id . '" style="font-size: larger;"><i class="fa fa-trash-can" style="transform: scale(0.8)"></i></a>';
                   }
                   ?>
                 </div>

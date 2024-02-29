@@ -114,19 +114,19 @@
       </div>
       <div class="panel-body">
         <div class="panel-content">
-          <div style="display: flex; justify-content: center;">
+          <div style="display: flex; justify-content: center; text-align: center">
             <span>ඞඞ</span>
-            <p>全体高一学生，组队申请。</p>
-            <span>ඞඞ</span>
-          </div>
-          <div style="display: flex; justify-content: center;">
-            <span>ඞඞ</span>
-            <p>每个小组至少4人且不得超过10人。</p>
+            <p>全体高一学生，组队申请</p>
             <span>ඞඞ</span>
           </div>
-          <div style="display: flex; justify-content: center;">
+          <div style="display: flex; justify-content: center; text-align: center">
             <span>ඞඞ</span>
-            <p>每一组可邀请一位指导老师。</p>
+            <p>每个小组至少4人且不得超过10人</p>
+            <span>ඞඞ</span>
+          </div>
+          <div style="display: flex; justify-content: center; text-align: center">
+            <span>ඞඞ</span>
+            <p>每一组可邀请一位指导老师</p>
             <span>ඞඞ</span>
           </div>
         </div>

@@ -48,7 +48,7 @@
   <div class="col-sm-3 col-md-2 sidebar" style="top: 0;">
     <!-- Logo -->
     <div align="center" class="school-logo">
-      <a href="../index@a38b.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
+      <a href="../index.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
     </div>
     <!-- Desktop Logout -->
     <a class="login" title="学生登出" href="exe/logout.php">

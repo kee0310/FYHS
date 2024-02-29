@@ -1,5 +1,4 @@
 <!-- 
-
 	This is a fixed header of the program.
 	Also perform as a switcher to another page.
 
@@ -9,8 +8,8 @@
 		schedule.php
 		powerpoint.php
 		student_login.php
-
 -->
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -28,7 +27,7 @@
   <link href="css/bootstrap-table.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/style_v2.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/star.css" rel="stylesheet">
 
   <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -107,7 +106,7 @@
       <!-- Mobile Menu -->
       <div class="menu-items hidden-lg hidden-md hidden-sm">
         <div align="center" class="school-logo">
-          <a href="../index@a38b.php"><img src="img/fylogo.png" style="width: 100%; max-width: 200px; margin: 10px; "></a>
+          <a href="../index.php"><img src="img/fylogo.png" style="width: 100%; max-width: 200px; margin: 10px; "></a>
         </div>
         <div class="sidemenu" style="padding: 10px 0" align="center">
           <a title="首页" href="index.php">
@@ -132,7 +131,7 @@
 
     <!-- Logo -->
     <div align="center" class="school-logo">
-      <a href="../index@a38b.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
+      <a href="../index.php"><img src="img/fylogo2.png" style="width: 100%;"></a>
     </div>
 
     <!-- Desktop Menu -->
